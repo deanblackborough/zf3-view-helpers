@@ -13,6 +13,6 @@ class TestHelper extends AbstractHelper
 
     public function render() : string
     {
-        return '<p>Test renderer....woohoo!</p>';
+        return '<p>Test composer renderer....woohoo!</p>';
     }
 }
