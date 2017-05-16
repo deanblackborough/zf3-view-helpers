@@ -108,11 +108,12 @@ class Bootstrap4Jumbotron extends AbstractHelper
     private function render() : string
     {
         $html = '<div class="jumbotron' .
-            (($this->fluid === true) ? ' jumbotron-fluid' : null) . '">
-            <h1' .
+            (($this->fluid === true) ? ' jumbotron-fluid' : null) .
+            '">' .
+            (($this->fluid === true) ? '<div class="container">' : null) .
+            '<h1' .
             (($this->display_level !== null) ? ' class="display-' . $this->display_level . '"' : null) .
             '>' . $this->heading . '</h1>' .
-            (($this->fluid === true) ? '<div class="container">' : null) .
             $this->content .
             (($this->fluid === true) ? '</div>' : null) .
             '</div>';

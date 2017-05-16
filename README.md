@@ -8,8 +8,23 @@ A collection of Zend Framework 2/3 view helpers, primarily focused on Bootstrap 
 
 ### View helpers
 
-* Bootstrap 3 Jumbotron
-* Bootstrap 4 Jumbotron
+#### Bootstrap 4 Jumbotron
+
+Create a Bootstrap 4 jumbotron, heading and content can be set and optionally the display level class 
+for the heading can be set and the fluid class applied.
+
+##### Public methods:
+ 
+* headingDisplayLevel(integer[1-4]) - Set the display level class for the heading
+* fluid() - Add the jumbotron-fluid class
+
+#### Example
+
+``` 
+echo $this->bootstrap4JumbotronHelper($heading, $content)->
+    fluid()->
+    headingDisplayLevel(1);
+```
 
 ## Installation
 
