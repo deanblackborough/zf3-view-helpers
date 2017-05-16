@@ -6,25 +6,15 @@ namespace DBlackborough\Zf3ViewHelpers;
 use Zend\View\Helper\AbstractHelper;
 
 /**
- * Generate a Bootstrap 4 Jumbotron component
+ * Generate a Bootstrap 3 Jumbotron component
  *
  * @package DBlackborough\Zf3ViewHelpers
  * @author Dean Blackborough <dean@g3d-development.com>
  * @copyright Dean Blackborough
  * @license https://github.com/deanblackborough/zf3-view-helpers/blob/master/LICENSE
  */
-class Bootstrap4Jumbotron extends AbstractHelper
+class Bootstrap3Jumbotron extends AbstractHelper
 {
-    /**
-     * @var array Supported display levels for heading
-     */
-    private $supported_display_levels = [ 1, 2, 3, 4];
-
-    /**
-     * @var integer|null Set display level
-     */
-    private $display_level = null;
-
     /**
      * @var boolean Apply the fluid class?
      */
@@ -51,7 +41,7 @@ class Bootstrap4Jumbotron extends AbstractHelper
      * @param string $heading
      * @param string $content
      *
-     * @return \DBlackborough\Zf3ViewHelpers\Bootstrap4Jumbotron
+     * @return \DBlackborough\Zf3ViewHelpers\Bootstrap3Jumbotron
      */
     public function __invoke(string $heading, string $content)
     {
@@ -73,30 +63,13 @@ class Bootstrap4Jumbotron extends AbstractHelper
         $this->heading = null;
         $this->sub_heading = null;
         $this->content = null;
-        $this->display_level = null;
         $this->fluid = false;
-    }
-
-    /**
-     * Set the display level class for a heading title, display-1-4
-     *
-     * @param integer $level [1-4]
-     *
-     * @return \DBlackborough\Zf3ViewHelpers\Bootstrap4Jumbotron
-     */
-    public function headingDisplayLevel(int $level)
-    {
-        if (in_array($level, $this->supported_display_levels) === true) {
-            $this->display_level = $level;
-        }
-
-        return $this;
     }
 
     /**
      * Add the fluid class to make Jumbotron full width and without rounded corners
      *
-     * @return \DBlackborough\Zf3ViewHelpers\Bootstrap4Jumbotron
+     * @return \DBlackborough\Zf3ViewHelpers\Bootstrap3Jumbotron
      */
     public function fluid()
     {
@@ -110,7 +83,7 @@ class Bootstrap4Jumbotron extends AbstractHelper
      *
      * @param string $sub_heading
      *
-     * @return \DBlackborough\Zf3ViewHelpers\Bootstrap4Jumbotron
+     * @return \DBlackborough\Zf3ViewHelpers\Bootstrap3Jumbotron
      */
     public function subHeading($sub_heading)
     {
@@ -127,13 +100,9 @@ class Bootstrap4Jumbotron extends AbstractHelper
      */
     private function render() : string
     {
-        $html = '<div class="jumbotron' .
-            (($this->fluid === true) ? ' jumbotron-fluid' : null) .
-            '">' .
+        $html = '<div class="jumbotron">' .
             (($this->fluid === true) ? '<div class="container">' : null) .
-            '<h1' .
-            (($this->display_level !== null) ? ' class="display-' . $this->display_level . '"' : null) .
-            '>' . $this->heading .
+            '<h1>' . $this->heading .
             (($this->sub_heading !== null) ? '<small>' . $this->sub_heading . '</small>' : null) .
             '</h1>' . $this->content .
             (($this->fluid === true) ? '</div>' : null) .
