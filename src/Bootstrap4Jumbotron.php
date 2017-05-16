@@ -33,14 +33,14 @@ class Bootstrap4Jumbotron extends AbstractHelper
     private $content;
 
     /**
-     * Bootstrap4Jumbotron constructor.
+     * Entry point for view helper
      *
      * @param string $heading
      * @param string $content
      *
      * @return \DBlackborough\Zf3ViewHelpers\Bootstrap4Jumbotron
      */
-    public function __construct(string $heading, string $content)
+    public function __invoke(string $heading, string $content)
     {
         $this->heading = $heading;
         $this->content = $content;

@@ -7,7 +7,7 @@ use Zend\View\Helper\AbstractHelper;
 
 class TestHelper extends AbstractHelper
 {
-    public function __construct()
+    public function __invoke()
     {
         return $this;
     }
