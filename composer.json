@@ -7,7 +7,7 @@
         }
     },
     "homepage": "https://github.com/deanblackborough/zf3-view-helpers",
-    "keywords": [ "zf3", "view helpers" ],
+    "keywords": [ "zf3", "view helpers", "bootstrap", "zend" ],
     "authors": [
         {
             "name": "Dean Blackborough",
@@ -16,7 +16,7 @@
     ],
     "require": {
         "php": "^7.1",
-        "zendframework/zend-view": "*"
+        "zendframework/zend-view": "^2.9"
     },
     "require-dev": {
         "phpunit/phpunit": "^6"

@@ -5,6 +5,14 @@ namespace DBlackborough\Zf3ViewHelpers;
 
 use Zend\View\Helper\AbstractHelper;
 
+/**
+ * Generate a bootstrap 4 view helper
+ *
+ * @package DBlackborough\Zf3ViewHelpers
+ * @author Dean Blackborough <dean@g3d-development.com>
+ * @copyright Dean Blackborough
+ * @license https://github.com/deanblackborough/zf3-view-helpers/blob/master/LICENSE
+ */
 class Bootstrap4Jumbotron extends AbstractHelper
 {
     /**
@@ -42,10 +50,25 @@ class Bootstrap4Jumbotron extends AbstractHelper
      */
     public function __invoke(string $heading, string $content)
     {
+        $this->reset();
+
         $this->heading = $heading;
         $this->content = $content;
 
         return $this;
+    }
+
+    /**
+     * Reset properties in case the view helper is called multiple times
+     *
+     * @return void
+     */
+    private function reset() : void
+    {
+        $this->heading = null;
+        $this->content = null;
+        $this->display_level = null;
+        $this->fluid = false;
     }
 
     /**
@@ -76,6 +99,12 @@ class Bootstrap4Jumbotron extends AbstractHelper
         return $this;
     }
 
+    /**
+     * Worker method for the view helper, generates the HTML, private so that we
+     * can echo the view helper directly
+     *
+     * @return string
+     */
     private function render() : string
     {
         $html = '<div class="jumbotron' .
@@ -83,12 +112,19 @@ class Bootstrap4Jumbotron extends AbstractHelper
             <h1' .
             (($this->display_level !== null) ? ' class="display-' . $this->display_level . '"' : null) .
             '>' . $this->heading . '</h1>' .
+            (($this->fluid === true) ? '<div class="container">' : null) .
             $this->content .
+            (($this->fluid === true) ? '</div>' : null) .
             '</div>';
 
         return $html;
     }
 
+    /**
+     * Override the toString method to allow echo/print of the view helper directly
+     *
+     * @return string
+     */
     public function __toString() : string
     {
         return $this->render();
