@@ -51,11 +51,11 @@ class Bootstrap4Jumbotron extends AbstractHelper
     /**
      * Set the display level setting for a heading title, 1-4
      *
-     * @param int $level
+     * @param integer $level
      *
      * @return \DBlackborough\Zf3ViewHelpers\Bootstrap4Jumbotron
      */
-    public function displayHeadingLevel(integer $level)
+    public function headingDisplayLevel(int $level)
     {
         if (in_array($level, $this->supported_display_levels) === true) {
             $this->display_level = $level;
