@@ -6,7 +6,13 @@ namespace DBlackborough\Zf3ViewHelpers;
 use Zend\View\Helper\AbstractHelper;
 
 /**
- * Generate a Bootstrap 4 button
+ * Generate a Bootstrap 4 button, defaults to creating an 'a' tag, use the 'set mode to' methods
+ * to switch to button or input
+ *
+ * @todo Set mode to button
+ * @todo Set mode to input
+ * @todo Add outline styles
+ * @todo Add disabled state
  *
  * @package DBlackborough\Zf3ViewHelpers
  * @author Dean Blackborough <dean@g3d-development.com>
@@ -51,6 +57,16 @@ class Bootstrap4Button extends AbstractHelper
      * @var boolean Add the active class
      */
     private $active;
+
+    /**
+     * @var string Link URI/URL
+     */
+    private $link;
+
+    /**
+     * @var string Render mode, wither link, button or input, defaults to link
+     */
+    private $mode;
 
     /**
      * Entry point for the view helper
@@ -137,6 +153,34 @@ class Bootstrap4Button extends AbstractHelper
     }
 
     /**
+     * Set the link for the button, only usable when in the default mode, anchor tag, ignored
+     * in button and input mode
+     *
+     * @param string $link
+     *
+     * @return \DBlackborough\Zf3ViewHelpers\Bootstrap4Button
+     */
+    public function link($link)
+    {
+        $this->link = $link;
+
+        return $this;
+    }
+
+    /**
+     * Switch to button mode, instead of generating an anchor tag the viuew helper will generate a
+     * button
+     *
+     * @return \DBlackborough\Zf3ViewHelpers\Bootstrap4Button
+     */
+    public function setModeButton()
+    {
+        $this->mode = 'button';
+
+        return $this;
+    }
+
+    /**
      * Reset all properties in case the view helper is called multiple times within a script
      *
      * @return void
@@ -149,6 +193,8 @@ class Bootstrap4Button extends AbstractHelper
         $this->small = false;
         $this->block = false;
         $this->active = false;
+        $this->link = null;
+        $this->mode = 'link';
     }
 
     /**
@@ -160,30 +206,42 @@ class Bootstrap4Button extends AbstractHelper
     private function render() : string
     {
         $html = '<a href="#" class="btn';
-
-        if ($this->style != null) {
-            $html .= ' btn-' . $this->style;
-        }
-
-        if ($this->large === true) {
-            $html .= ' btn-lg';
-        }
-
-        if ($this->small === true) {
-            $html .= ' btn-sm';
-        }
-
-        if ($this->block === true) {
-            $html .= ' btn-block';
-        }
-
-        if ($this->active === true) {
-            $html .= ' active';
-        }
-
+        $html .= $this->classes();
         $html .= '" role="button">' . $this->label . '</a>';
 
         return $html;
+    }
+
+    /**
+     * Generate the classes for the button based on the options set
+     *
+     * @return string
+     */
+    private function classes() : string
+    {
+        $classes = '';
+
+        if ($this->style != null) {
+            $classes .= ' btn-' . $this->style;
+        }
+
+        if ($this->large === true) {
+            $classes .= ' btn-lg';
+        }
+
+        if ($this->small === true) {
+            $classes .= ' btn-sm';
+        }
+
+        if ($this->block === true) {
+            $classes .= ' btn-block';
+        }
+
+        if ($this->active === true) {
+            $classes .= ' active';
+        }
+
+        return $classes;
     }
 
     /**
