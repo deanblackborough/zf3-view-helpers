@@ -112,7 +112,7 @@ class Bootstrap4Jumbotron extends AbstractHelper
      *
      * @return \DBlackborough\Zf3ViewHelpers\Bootstrap4Jumbotron
      */
-    public function subHeading($sub_heading)
+    public function subHeading(string $sub_heading)
     {
         $this->sub_heading = $sub_heading;
 
