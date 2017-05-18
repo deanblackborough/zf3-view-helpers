@@ -51,9 +51,9 @@ class Bootstrap4Jumbotron extends AbstractHelper
      * @param string $heading
      * @param string $content
      *
-     * @return \DBlackborough\Zf3ViewHelpers\Bootstrap4Jumbotron
+     * @return Bootstrap4Jumbotron
      */
-    public function __invoke(string $heading, string $content)
+    public function __invoke(string $heading, string $content) : Bootstrap4Jumbotron
     {
         $this->reset();
 
@@ -82,9 +82,9 @@ class Bootstrap4Jumbotron extends AbstractHelper
      *
      * @param integer $level [1-4]
      *
-     * @return \DBlackborough\Zf3ViewHelpers\Bootstrap4Jumbotron
+     * @return Bootstrap4Jumbotron
      */
-    public function headingDisplayLevel(int $level)
+    public function headingDisplayLevel(int $level) : Bootstrap4Jumbotron
     {
         if (in_array($level, $this->supported_display_levels) === true) {
             $this->display_level = $level;
@@ -96,9 +96,9 @@ class Bootstrap4Jumbotron extends AbstractHelper
     /**
      * Add the fluid class to make Jumbotron full width and without rounded corners
      *
-     * @return \DBlackborough\Zf3ViewHelpers\Bootstrap4Jumbotron
+     * @return Bootstrap4Jumbotron
      */
-    public function fluid()
+    public function fluid() : Bootstrap4Jumbotron
     {
         $this->fluid = true;
 
@@ -110,9 +110,9 @@ class Bootstrap4Jumbotron extends AbstractHelper
      *
      * @param string $sub_heading
      *
-     * @return \DBlackborough\Zf3ViewHelpers\Bootstrap4Jumbotron
+     * @return Bootstrap4Jumbotron
      */
-    public function subHeading(string $sub_heading)
+    public function subHeading(string $sub_heading) : Bootstrap4Jumbotron
     {
         $this->sub_heading = $sub_heading;
 

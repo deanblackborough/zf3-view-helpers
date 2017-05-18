@@ -41,9 +41,9 @@ class Bootstrap3Jumbotron extends AbstractHelper
      * @param string $heading
      * @param string $content
      *
-     * @return \DBlackborough\Zf3ViewHelpers\Bootstrap3Jumbotron
+     * @return Bootstrap3Jumbotron
      */
-    public function __invoke(string $heading, string $content)
+    public function __invoke(string $heading, string $content) : Bootstrap3Jumbotron
     {
         $this->reset();
 
@@ -69,9 +69,9 @@ class Bootstrap3Jumbotron extends AbstractHelper
     /**
      * Add the fluid class to make Jumbotron full width and without rounded corners
      *
-     * @return \DBlackborough\Zf3ViewHelpers\Bootstrap3Jumbotron
+     * @return Bootstrap3Jumbotron
      */
-    public function fluid()
+    public function fluid() : Bootstrap3Jumbotron
     {
         $this->fluid = true;
 
@@ -83,9 +83,9 @@ class Bootstrap3Jumbotron extends AbstractHelper
      *
      * @param string $sub_heading
      *
-     * @return \DBlackborough\Zf3ViewHelpers\Bootstrap3Jumbotron
+     * @return Bootstrap3Jumbotron
      */
-    public function subHeading(string $sub_heading)
+    public function subHeading(string $sub_heading) : Bootstrap3Jumbotron
     {
         $this->sub_heading = $sub_heading;
 
