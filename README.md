@@ -2,8 +2,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/deanblackborough/zf3-view-helpers/blob/master/LICENSE)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.1-8892BF.svg)](https://php.net/)
 
-
-#ZF3 view helpers
+# ZF3 view helpers
 
 A bunch of view helpers that I use in my apps.
 
@@ -13,6 +12,7 @@ A collection of Zend Framework 2/3 view helpers, primarily focused on Bootstrap 
  
 * Bootstrap 3 Jumbotron component
 * Bootstrap 4 Jumbotron component
+* Bootstrap 4 Button component
 
 ### The view helpers
 
@@ -29,7 +29,7 @@ whether or not the jumbotron is fluid.
 ##### Example
 
 ``` 
-echo $this->bootstrap3JumbotronHelper($heading, $content)->
+echo $this->bootstrap3Jumbotron($heading, $content)->
     subHeading($sub_heading)->
     fluid();
 ```
@@ -48,10 +48,37 @@ for the heading, a sub heading or whether or not the fluid class applied.
 ##### Example
 
 ``` 
-echo $this->bootstrap4JumbotronHelper($heading, $content)->
+echo $this->bootstrap4Jumbotron($heading, $content)->
     subHeading($sub_heading)->
     fluid()->
     headingDisplayLevel(1);
+```
+
+#### Bootstrap 4 Button
+
+Create a Bootstrap 4 button
+
+##### Public methods:
+ 
+* active() - Set button as active
+* block() - Add display block style
+* disabled() - Set button as disabled
+* large() - Add large class
+* link() - Add URI/URL for default button type
+* setModeButton - Render as a button, not an anchor
+* setModeInput - Render as an input, not an anchor
+* setOutlineStyle() - Set btn-outline-* style
+* setStyle() - Set btn-* style
+* small() - Add small class
+
+##### Example
+
+``` 
+echo $this->bootstrap4Button($label)->
+    setStyle('primary')->
+    block()->
+    large()->
+    link($uri);
 ```
 
 ## Installation
@@ -67,11 +94,13 @@ Add entries to the view_helper index in your module config array, example below.
 'view_helpers' => [
         'factories' => [
             Zf3ViewHelpers\Bootstrap3Jumbotron::class => InvokableFactory::class,
-            Zf3ViewHelpers\Bootstrap4Jumbotron::class => InvokableFactory::class
+            Zf3ViewHelpers\Bootstrap4Jumbotron::class => InvokableFactory::class,
+            Zf3ViewHelpers\Bootstrap4JButton::class => InvokableFactory::class
         ],
         'aliases' => [
-            'bootstrap3JumbotronHelper' => Zf3ViewHelpers\Bootstrap3Jumbotron::class,
-            'bootstrap4JumbotronHelper' => Zf3ViewHelpers\Bootstrap4Jumbotron::class
+            'bootstrap3Jumbotron' => Zf3ViewHelpers\Bootstrap3Jumbotron::class,
+            'bootstrap4Jumbotron' => Zf3ViewHelpers\Bootstrap4Jumbotron::class,
+            'bootstrap4Button' => Zf3ViewHelpers\Bootstrap4Button::class
         ]
     ]
 ```

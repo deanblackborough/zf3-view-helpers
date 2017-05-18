@@ -336,7 +336,7 @@ class Bootstrap4Button extends AbstractHelper
         }
 
         if ($this->outline_style !== null) {
-            $classes .= 'btn-outline-' . $this->outline_style;
+            $classes .= ' btn-outline-' . $this->outline_style;
         }
 
         if ($this->large === true) {
