@@ -9,9 +9,7 @@ use Zend\View\Helper\AbstractHelper;
  * Generate a Bootstrap 4 button, defaults to creating an 'a' tag, use the 'set mode to' methods
  * to switch to button or input
  *
- * @todo Set mode to button
- * @todo Set mode to input
- * @todo Add disabled state
+  * @todo Add custom class(es)
  *
  * @package DBlackborough\Zf3ViewHelpers
  * @author Dean Blackborough <dean@g3d-development.com>
@@ -68,9 +66,19 @@ class Bootstrap4Button extends AbstractHelper
     private $link;
 
     /**
+     * @var string Add disabled option
+     */
+    private $disabled;
+
+    /**
      * @var string Render mode, wither link, button or input, defaults to link
      */
     private $mode;
+
+    /**
+     * @var string Input type if setModeInput called
+     */
+    private $input_type;
 
     /**
      * Entry point for the view helper
@@ -194,7 +202,19 @@ class Bootstrap4Button extends AbstractHelper
     }
 
     /**
-     * Switch to button mode, instead of generating an anchor tag the viuew helper will generate a
+     * Set the disabled option
+     *
+     * @return Bootstrap4Button
+     */
+    public function disabled() : Bootstrap4Button
+    {
+        $this->disabled = true;
+
+        return $this;
+    }
+
+    /**
+     * Switch to button mode, instead of generating an anchor tag the view helper will generate a
      * button
      *
      * @return Bootstrap4Button
@@ -202,6 +222,26 @@ class Bootstrap4Button extends AbstractHelper
     public function setModeButton() : Bootstrap4Button
     {
         $this->mode = 'button';
+
+        return $this;
+    }
+
+    /**
+     * Switch to input mode, instead of generating an anchor tag the view helper will generate an
+     * input of the requested type
+     *
+     * @param string $type Input type, button, submit or reset, defaults to button if invalid type
+     *
+     * @return Bootstrap4Button
+     */
+    public function setModeInput($type) : Bootstrap4Button
+    {
+        $this->mode = 'input';
+        if (in_array($type, array('button', 'submit', 'reset')) === true) {
+            $this->input_type = $type;
+        } else {
+            $this->input_type = 'button';
+        }
 
         return $this;
     }
@@ -221,7 +261,9 @@ class Bootstrap4Button extends AbstractHelper
         $this->block = false;
         $this->active = false;
         $this->link = null;
+        $this->disabled = false;
         $this->mode = 'link';
+        $this->input_type = null;
     }
 
     /**
@@ -232,9 +274,26 @@ class Bootstrap4Button extends AbstractHelper
      */
     private function render() : string
     {
-        $html = '<a href="' . (($this->link !== null) ? $this->link : '#') .'" class="btn';
-        $html .= $this->classes();
-        $html .= '" role="button">' . $this->label . '</a>';
+        switch ($this->mode) {
+            case 'button':
+                $html = '<button class="btn' . $this->classes() . '" type="submit"' .
+                    (($this->disabled === true) ? ' disabled' : null) .
+                    '>' . $this->label . '</button>';
+                break;
+
+            case 'input':
+                $html = '<input class="btn' . $this->classes() . '" type="' .
+                    $this->input_type . '" value="' . $this->label . '" ' .
+                    (($this->disabled === true) ? ' disabled' : null) . '/>';
+                break;
+
+            default:
+                $html = '<a href="' . (($this->link !== null) ? $this->link : '#') .
+                    '" class="btn' . $this->classes() .
+                    (($this->disabled === true) ? ' disabled' : null) .
+                    '" role="button">' . $this->label . '</a>';
+                break;
+        }
 
         return $html;
     }
