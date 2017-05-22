@@ -6,16 +6,15 @@ namespace DBlackborough\Zf3ViewHelpers;
 use Zend\View\Helper\AbstractHelper;
 
 /**
- * Generate a Bootstrap 4 button, defaults to creating an 'a' tag, use the 'set mode to' methods
+ * Generate a Bootstrap 3 button, defaults to creating an 'a' tag, use the 'set mode to' methods
  * to switch to button or input
- *
  *
  * @package DBlackborough\Zf3ViewHelpers
  * @author Dean Blackborough <dean@g3d-development.com>
  * @copyright Dean Blackborough
  * @license https://github.com/deanblackborough/zf3-view-helpers/blob/master/LICENSE
  */
-class Bootstrap4Button extends AbstractHelper
+class Bootstrap3Button extends AbstractHelper
 {
     /**
      * @var string Button label
@@ -26,11 +25,6 @@ class Bootstrap4Button extends AbstractHelper
      * @var string Button style
      */
     private $style;
-
-    /**
-     * @var string Button outline style
-     */
-    private $outline_style;
 
     /**
      * @var array Bootstrap styles
@@ -54,6 +48,11 @@ class Bootstrap4Button extends AbstractHelper
      * @var boolean Add the small style
      */
     private $small;
+
+    /**
+     * @var boolean Add the extra small style
+     */
+    private $extra_small;
 
     /**
      * @var boolean Add the block style
@@ -95,9 +94,9 @@ class Bootstrap4Button extends AbstractHelper
      *
      * @param string $label
      *
-     * @return Bootstrap4Button
+     * @return Bootstrap3Button
      */
-    public function __invoke(string $label): Bootstrap4Button
+    public function __invoke(string $label): Bootstrap3Button
     {
         $this->reset();
 
@@ -113,9 +112,9 @@ class Bootstrap4Button extends AbstractHelper
      *
      * @param string $style
      *
-     * @return Bootstrap4Button
+     * @return Bootstrap3Button
      */
-    public function setStyle(string $style): Bootstrap4Button
+    public function setStyle(string $style): Bootstrap3Button
     {
         if (in_array($style, $this->supported_styles) === true) {
             $this->style = $style;
@@ -126,35 +125,12 @@ class Bootstrap4Button extends AbstractHelper
         return $this;
     }
 
-    /**
-     * Set the outline style for the button, one of the following, primary, secondary, success,
-     * info, warning or danger. If an incorrect style is passed in we set the style to
-     * btn-outline-primary
-     *
-     * @param string $style
-     *
-     * @return Bootstrap4Button
-     */
-    public function setOutlineStyle(string $style): Bootstrap4Button
-    {
-        if (in_array($style, $this->supported_styles) === true &&
-            $style !== 'link'
-        ) {
-
-            $this->outline_style = $style;
-        } else {
-            $this->outline_style = 'primary';
-        }
-
-        return $this;
-    }
-
-    /**
+     /**
      * Size the button - large
      *
-     * @return Bootstrap4Button
+     * @return Bootstrap3Button
      */
-    public function large(): Bootstrap4Button
+    public function large(): Bootstrap3Button
     {
         $this->large = true;
 
@@ -164,9 +140,9 @@ class Bootstrap4Button extends AbstractHelper
     /**
      * Size the button - small
      *
-     * @return Bootstrap4Button
+     * @return Bootstrap3Button
      */
-    public function small(): Bootstrap4Button
+    public function small(): Bootstrap3Button
     {
         $this->small = true;
 
@@ -174,11 +150,23 @@ class Bootstrap4Button extends AbstractHelper
     }
 
     /**
+     * Size the button - extra small
+     *
+     * @return Bootstrap3Button
+     */
+    public function extraSmall(): Bootstrap3Button
+    {
+        $this->extra_small = true;
+
+        return $this;
+    }
+
+    /**
      * Block level button, add block class
      *
-     * @return Bootstrap4Button
+     * @return Bootstrap3Button
      */
-    public function block(): Bootstrap4Button
+    public function block(): Bootstrap3Button
     {
         $this->block = true;
 
@@ -188,9 +176,9 @@ class Bootstrap4Button extends AbstractHelper
     /**
      * Set the button as active
      *
-     * @return Bootstrap4Button
+     * @return Bootstrap3Button
      */
-    public function active(): Bootstrap4Button
+    public function active(): Bootstrap3Button
     {
         $this->active = true;
 
@@ -203,9 +191,9 @@ class Bootstrap4Button extends AbstractHelper
      *
      * @param string $link
      *
-     * @return Bootstrap4Button
+     * @return Bootstrap3Button
      */
-    public function link($link): Bootstrap4Button
+    public function link($link): Bootstrap3Button
     {
         $this->link = $link;
 
@@ -215,9 +203,9 @@ class Bootstrap4Button extends AbstractHelper
     /**
      * Set the disabled option
      *
-     * @return Bootstrap4Button
+     * @return Bootstrap3Button
      */
-    public function disabled(): Bootstrap4Button
+    public function disabled(): Bootstrap3Button
     {
         $this->disabled = true;
 
@@ -228,9 +216,9 @@ class Bootstrap4Button extends AbstractHelper
      * Switch to button mode, instead of generating an anchor tag the view helper will generate a
      * button
      *
-     * @return Bootstrap4Button
+     * @return Bootstrap3Button
      */
-    public function setModeButton(): Bootstrap4Button
+    public function setModeButton(): Bootstrap3Button
     {
         $this->mode = 'button';
 
@@ -243,9 +231,9 @@ class Bootstrap4Button extends AbstractHelper
      *
      * @param string $type Input type, button, submit or reset, defaults to button if invalid type
      *
-     * @return Bootstrap4Button
+     * @return Bootstrap3Button
      */
-    public function setModeInput($type): Bootstrap4Button
+    public function setModeInput($type): Bootstrap3Button
     {
         $this->mode = 'input';
         if (in_array($type, array('button', 'submit', 'reset')) === true) {
@@ -262,9 +250,9 @@ class Bootstrap4Button extends AbstractHelper
      *
      * @param string $class
      *
-     * @return Bootstrap4Button
+     * @return Bootstrap3Button
      */
-    public function customClass($class): Bootstrap4Button
+    public function customClass($class): Bootstrap3Button
     {
         $this->custom_classes[] = $class;
     }
@@ -278,9 +266,9 @@ class Bootstrap4Button extends AbstractHelper
     {
         $this->label = null;
         $this->style = null;
-        $this->outline_style = null;
         $this->large = false;
         $this->small = false;
+        $this->extra_small = false;
         $this->block = false;
         $this->active = false;
         $this->link = null;
@@ -335,16 +323,16 @@ class Bootstrap4Button extends AbstractHelper
             $classes .= ' btn-' . $this->style;
         }
 
-        if ($this->outline_style !== null) {
-            $classes .= ' btn-outline-' . $this->outline_style;
-        }
-
         if ($this->large === true) {
             $classes .= ' btn-lg';
         }
 
         if ($this->small === true) {
             $classes .= ' btn-sm';
+        }
+
+        if ($this->extra_small === true) {
+            $classes .= ' btn-xs';
         }
 
         if ($this->block === true) {
