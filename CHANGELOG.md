@@ -2,6 +2,13 @@
 
 Full changelog for ZF3 view helpers library.
 
+## v0.30 - Badges and labels - 2017-05-22
+
+* Added Bootstrap 3 badge view helper
+* Added Bootstrap 3 label view helper
+* Added Bootstrap 4 badge view helper
+* Minor fixes
+
 ## v0.25 - Buttons - 2017-05-22
 
 * Added Bootstrap 3 button view helper

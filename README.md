@@ -10,12 +10,17 @@ A bunch of view helpers that I use in my apps.
 
 A collection of Zend Framework 2/3 view helpers, primarily focused on Bootstrap 3 and 4.
  
-* Bootstrap 3 Jumbotron component
-* Bootstrap 4 Jumbotron component
+* Bootstrap 3 Badge component
+* Bootstrap 4 Badge component
 * Bootstrap 3 Button component
 * Bootstrap 4 Button component
+* Bootstrap 3 Jumbotron component
+* Bootstrap 4 Jumbotron component
+* Bootstrap 3 Label component
 
 ### The view helpers
+
+Below is an overview of the more complex view helpers.
 
 #### Bootstrap 3 Jumbotron
 
@@ -118,7 +123,9 @@ alternatively include the classes in src/ in your library.
 
 ## Usage
 
-Add entries to the view_helper index in your module config array, example below.
+Add entries to the view_helper index in your module config array, the examples below 
+adds the Jumbotron and Button view helpers, repeat for all the view helpers you would like 
+to use in your project.
  
 ```
 'view_helpers' => [

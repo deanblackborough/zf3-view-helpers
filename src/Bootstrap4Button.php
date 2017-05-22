@@ -267,6 +267,8 @@ class Bootstrap4Button extends AbstractHelper
     public function customClass($class): Bootstrap4Button
     {
         $this->custom_classes[] = $class;
+
+        return $this;
     }
 
     /**
