@@ -30,8 +30,8 @@ class Bootstrap3Button extends AbstractHelper
      * @var array Bootstrap styles
      */
     private $supported_styles = [
+        'default',
         'primary',
-        'secondary',
         'success',
         'info',
         'warning',
@@ -106,9 +106,9 @@ class Bootstrap3Button extends AbstractHelper
     }
 
     /**
-     * Set the style for the button, one of the following, primary, secondary, success,
+     * Set the style for the button, one of the following, default, primary, success,
      * info, warning, danger or link. If an incorrect style is passed in we set the style to
-     * btn-primary
+     * btn-default
      *
      * @param string $style
      *
@@ -119,7 +119,7 @@ class Bootstrap3Button extends AbstractHelper
         if (in_array($style, $this->supported_styles) === true) {
             $this->style = $style;
         } else {
-            $this->style = 'primary';
+            $this->style = 'default';
         }
 
         return $this;
