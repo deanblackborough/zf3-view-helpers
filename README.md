@@ -12,6 +12,7 @@ A collection of Zend Framework 2/3 view helpers, primarily focused on Bootstrap 
  
 * Bootstrap 3 Jumbotron component
 * Bootstrap 4 Jumbotron component
+* Bootstrap 3 Button component
 * Bootstrap 4 Button component
 
 ### The view helpers
@@ -54,6 +55,34 @@ echo $this->bootstrap4Jumbotron($heading, $content)->
     headingDisplayLevel(1);
 ```
 
+#### Bootstrap 3 Button
+
+Create a Bootstrap 3 button
+
+##### Public methods:
+ 
+* active() - Set button as active
+* block() - Add display block style
+* disabled() - Set button as disabled
+* large() - Add large class
+* link() - Add URI/URL for default button type
+* setModeButton - Render as a button, not an anchor
+* setModeInput - Render as an input, not an anchor
+* setStyle() - Set btn-* style
+* small() - Add small class
+* customClass - Add a custom class
+* extraSmall - Add extra small class
+
+##### Example
+
+``` 
+echo $this->bootstrap3Button($label)->
+    setStyle('primary')->
+    block()->
+    large()->
+    link($uri);
+```
+
 #### Bootstrap 4 Button
 
 Create a Bootstrap 4 button
@@ -70,6 +99,7 @@ Create a Bootstrap 4 button
 * setOutlineStyle() - Set btn-outline-* style
 * setStyle() - Set btn-* style
 * small() - Add small class
+* customClass - Add a custom class
 
 ##### Example
 
@@ -95,11 +125,13 @@ Add entries to the view_helper index in your module config array, example below.
         'factories' => [
             Zf3ViewHelpers\Bootstrap3Jumbotron::class => InvokableFactory::class,
             Zf3ViewHelpers\Bootstrap4Jumbotron::class => InvokableFactory::class,
-            Zf3ViewHelpers\Bootstrap4JButton::class => InvokableFactory::class
+            Zf3ViewHelpers\Bootstrap3Button::class => InvokableFactory::class,
+            Zf3ViewHelpers\Bootstrap4Button::class => InvokableFactory::class
         ],
         'aliases' => [
             'bootstrap3Jumbotron' => Zf3ViewHelpers\Bootstrap3Jumbotron::class,
             'bootstrap4Jumbotron' => Zf3ViewHelpers\Bootstrap4Jumbotron::class,
+            'bootstrap3Button' => Zf3ViewHelpers\Bootstrap4Button::class,
             'bootstrap4Button' => Zf3ViewHelpers\Bootstrap4Button::class
         ]
     ]

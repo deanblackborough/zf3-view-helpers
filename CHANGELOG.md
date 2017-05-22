@@ -2,6 +2,11 @@
 
 Full changelog for ZF3 view helpers library.
 
+## v0.25 - Buttons - 2017-05-22
+
+* Added Bootstrap 3 button view helper
+* customClass method was incorrectly private
+
 ## v0.20 - Buttons - 2017-05-19
 
 * Added Bootstrap 4 button view helper.
