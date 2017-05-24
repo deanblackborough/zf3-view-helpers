@@ -2,6 +2,10 @@
 
 Full changelog for ZF3 view helpers library.
 
+## v0.40 - Navbar - 2017-05-24
+
+* Added a Bootstrap 4 navbar view helper
+
 ## v0.30 - Badges and labels - 2017-05-22
 
 * Added Bootstrap 3 badge view helper

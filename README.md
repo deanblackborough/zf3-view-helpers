@@ -17,12 +17,13 @@ A collection of Zend Framework 2/3 view helpers, primarily focused on Bootstrap 
 * Bootstrap 3 Jumbotron component
 * Bootstrap 4 Jumbotron component
 * Bootstrap 3 Label component
+* Bootstrap 4 Navbar component (lite)
 
-### The view helpers
+## The view helpers
 
 Below is an overview of the more complex view helpers.
 
-#### Bootstrap 3 Jumbotron
+### Bootstrap 3 Jumbotron
 
 Create a Bootstrap 3 jumbotron, heading and content can be set and optionally a sub heading and 
 whether or not the jumbotron is fluid.
@@ -40,7 +41,7 @@ echo $this->bootstrap3Jumbotron($heading, $content)->
     fluid();
 ```
 
-#### Bootstrap 4 Jumbotron
+### Bootstrap 4 Jumbotron
 
 Create a Bootstrap 4 jumbotron, heading and content can be set and optionally the display level class 
 for the heading, a sub heading or whether or not the fluid class applied.
@@ -60,7 +61,7 @@ echo $this->bootstrap4Jumbotron($heading, $content)->
     headingDisplayLevel(1);
 ```
 
-#### Bootstrap 3 Button
+### Bootstrap 3 Button
 
 Create a Bootstrap 3 button
 
@@ -88,7 +89,7 @@ echo $this->bootstrap3Button($label)->
     link($uri);
 ```
 
-#### Bootstrap 4 Button
+### Bootstrap 4 Button
 
 Create a Bootstrap 4 button
 
@@ -99,12 +100,12 @@ Create a Bootstrap 4 button
 * disabled() - Set button as disabled
 * large() - Add large class
 * link() - Add URI/URL for default button type
-* setModeButton - Render as a button, not an anchor
-* setModeInput - Render as an input, not an anchor
+* setModeButton() - Render as a button, not an anchor
+* setModeInput() - Render as an input, not an anchor
 * setOutlineStyle() - Set btn-outline-* style
 * setStyle() - Set btn-* style
 * small() - Add small class
-* customClass - Add a custom class
+* customClass() - Add a custom class
 
 ##### Example
 
@@ -114,6 +115,28 @@ echo $this->bootstrap4Button($label)->
     block()->
     large()->
     link($uri);
+```
+
+### Bootstrap 4 Navbar (lite version)
+
+Create a navbar component
+
+##### Public methods 
+
+* addBrand() - Add a brand an option uri
+* addNavigation() - Pass in a navigation array
+* bgColor() - Set a custom background color for the navbar
+* bgStyle() - Set a class for the navbar
+* inverseScheme() - Add the navbar-inverse style
+* lightScheme() - Add the navbar-light style
+
+#### Example
+
+```
+echo $this->bootstrap4NavbarLite()->
+    addBrand('Dlayer')->
+    bgStyle('bg-faded')->
+    addNavigation([ ['uri' => '#', 'label' => 'Item 1', 'active' => false ] ]); ?>
 ```
 
 ## Installation
