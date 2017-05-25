@@ -158,7 +158,7 @@ class Bootstrap4NavbarLite extends AbstractHelper
      */
     public function bgColor(string $hex) : Bootstrap4NavbarLite
     {
-        $this->bg_color = 'style="background-color:' . $this->view->escapeAttr($hex) . ';"';
+        $this->bg_color = 'style="background-color:' . $this->view->escapeHtml($hex) . ';"';
 
         return $this;
     }

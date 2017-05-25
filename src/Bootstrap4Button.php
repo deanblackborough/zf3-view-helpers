@@ -362,7 +362,7 @@ class Bootstrap4Button extends AbstractHelper
             $classes .= ' ' . implode(' ', $this->custom_classes);
         }
 
-        return $this->view->escapeAttr($classes);
+        return $this->view->escapeHtml($classes);
     }
 
     /**

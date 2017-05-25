@@ -2,6 +2,10 @@
 
 Full changelog for ZF3 view helpers library.
 
+## v0.40.1 Escape - 2017-05-26
+
+* View helpers were not calling the escape helpers
+
 ## v0.40 - Navbar - 2017-05-24
 
 * Added a Bootstrap 4 navbar view helper
