@@ -93,8 +93,10 @@ class Bootstrap4NavbarLite extends AbstractHelper
                 array_key_exists('label', $nav) === true) {
 
                 $html .= '
-                    <li class="nav-item' . (($nav['active'] === true) ? ' active' : null) . '">
-                        <a class="nav-link" href="' . $nav['uri'] . '">' . $nav['label'] . '</span></a>
+                    <li class="nav-item' .
+                        (($nav['active'] === true) ? ' active' : null) . '">
+                        <a class="nav-link" href="' . $this->view->escapeUrl($nav['uri']) .
+                        '">' . $this->view->escapeHtml($this->view->$nav['label']) . '</span></a>
                     </li>';
             } else {
                 $html .= '<!-- Failed to add navigation item, index(es) missing -->';
@@ -156,7 +158,7 @@ class Bootstrap4NavbarLite extends AbstractHelper
      */
     public function bgColor(string $hex) : Bootstrap4NavbarLite
     {
-        $this->bg_color = 'style="background-color:' . $hex . ';"';
+        $this->bg_color = 'style="background-color:' . $this->view->escapeAttr($hex) . ';"';
 
         return $this;
     }
@@ -185,9 +187,12 @@ class Bootstrap4NavbarLite extends AbstractHelper
     private function brand() : string
     {
         if ($this->brand_uri === null) {
-            return '<h1 class="navbar-brand mb-0">' . $this->brand_label . '</h1>';
+            return '<h1 class="navbar-brand mb-0">' .
+                $this->view->escapeHtml($this->brand_label) . '</h1>';
         } else {
-            return '<a class="navbar-brand" href="' . $this->brand_uri . '">' . $this->brand_label . '</a>';
+            return '<a class="navbar-brand" href="' .
+                $this->view->escapeUrl($this->brand_uri) . '">' .
+                $this->view->escapeHtml($this->brand_label) . '</a>';
         }
     }
 
