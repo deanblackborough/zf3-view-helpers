@@ -133,8 +133,9 @@ class Bootstrap4Jumbotron extends AbstractHelper
             (($this->fluid === true) ? '<div class="container">' : null) .
             '<h1' .
             (($this->display_level !== null) ? ' class="display-' . $this->display_level . '"' : null) .
-            '>' . $this->heading .
-            (($this->sub_heading !== null) ? '<small>' . $this->sub_heading . '</small>' : null) .
+            '>' . $this->view->escapeHtml($this->heading) .
+            (($this->sub_heading !== null) ? '<small>' .
+            $this->view->escapeHtml($this->sub_heading) . '</small>' : null) .
             '</h1>' . $this->content .
             (($this->fluid === true) ? '</div>' : null) .
             '</div>';

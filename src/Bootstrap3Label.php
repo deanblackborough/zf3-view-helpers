@@ -93,7 +93,7 @@ class Bootstrap3Label extends AbstractHelper
     private function render(): string
     {
         return '<span class="label' . $this->classes() . '">' .
-            $this->label . '</span>';
+            $this->view->escapeHtml($this->label) . '</span>';
     }
 
     /**

@@ -304,12 +304,13 @@ class Bootstrap4Button extends AbstractHelper
             case 'button':
                 $html = '<button class="btn' . $this->classes() . '" type="submit" ' .
                     (($this->disabled === true) ? 'disabled ' : null) .
-                    '>' . $this->label . '</button>';
+                    '>' . $this->view->escapeHtml($this->label) . '</button>';
                 break;
 
             case 'input':
                 $html = '<input class="btn' . $this->classes() . '" type="' .
-                    $this->input_type . '" value="' . $this->label . '" ' .
+                    $this->input_type . '" value="' .
+                    $this->view->escapeHtml($this->label) . '" ' .
                     (($this->disabled === true) ? ' disabled ' : null) . '/>';
                 break;
 
@@ -317,7 +318,7 @@ class Bootstrap4Button extends AbstractHelper
                 $html = '<a href="' . (($this->link !== null) ? $this->link : '#') .
                     '" class="btn' . $this->classes() .
                     (($this->disabled === true) ? ' disabled' : null) .
-                    '" role="button">' . $this->label . '</a>';
+                    '" role="button">' . $this->view->escapeHtml($this->label) . '</a>';
                 break;
         }
 
@@ -361,7 +362,7 @@ class Bootstrap4Button extends AbstractHelper
             $classes .= ' ' . implode(' ', $this->custom_classes);
         }
 
-        return $classes;
+        return $this->view->escapeHtml($classes);
     }
 
     /**
