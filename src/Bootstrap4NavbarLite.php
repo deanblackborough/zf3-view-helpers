@@ -96,7 +96,7 @@ class Bootstrap4NavbarLite extends AbstractHelper
                     <li class="nav-item' .
                         (($nav['active'] === true) ? ' active' : null) . '">
                         <a class="nav-link" href="' . $this->view->escapeUrl($nav['uri']) .
-                        '">' . $this->view->escapeHtml($this->view->$nav['label']) . '</span></a>
+                        '">' . $this->view->escapeHtml($nav['label']) . '</span></a>
                     </li>';
             } else {
                 $html .= '<!-- Failed to add navigation item, index(es) missing -->';
