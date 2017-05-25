@@ -105,7 +105,7 @@ class Bootstrap3Jumbotron extends AbstractHelper
             '<h1>' . $this->view->escapeHtml($this->heading) .
             (($this->sub_heading !== null) ? '<small>' .
             $this->view->escapeHtml($this->sub_heading) . '</small>' : null) .
-            '</h1>' . $this->view->escapeHtml($this->content) .
+            '</h1>' . $this->content .
             (($this->fluid === true) ? '</div>' : null) .
             '</div>';
 

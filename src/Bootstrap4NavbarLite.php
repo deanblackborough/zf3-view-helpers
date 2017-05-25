@@ -95,7 +95,7 @@ class Bootstrap4NavbarLite extends AbstractHelper
                 $html .= '
                     <li class="nav-item' .
                         (($nav['active'] === true) ? ' active' : null) . '">
-                        <a class="nav-link" href="' . $this->view->escapeUrl($nav['uri']) .
+                        <a class="nav-link" href="' . $nav['uri'] .
                         '">' . $this->view->escapeHtml($nav['label']) . '</span></a>
                     </li>';
             } else {
@@ -191,7 +191,7 @@ class Bootstrap4NavbarLite extends AbstractHelper
                 $this->view->escapeHtml($this->brand_label) . '</h1>';
         } else {
             return '<a class="navbar-brand" href="' .
-                $this->view->escapeUrl($this->brand_uri) . '">' .
+                $this->brand_uri . '">' .
                 $this->view->escapeHtml($this->brand_label) . '</a>';
         }
     }
