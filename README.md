@@ -19,6 +19,16 @@ A collection of Zend Framework 2/3 view helpers, primarily focused on Bootstrap 
 * Bootstrap 3 Label component
 * Bootstrap 4 Navbar component (lite)
 
+## Code completion
+
+This package requires my sister package https://github.com/deanblackborough/zf3-view-helpers-code-completion 
+which can be used to provide code completion for all the view helpers as well as the default Zend 
+ view helpers.
+ 
+Override $this in your views.
+
+```/** @var $this DBlackborough\Zf3ViewHelpersCC\CustomAndZend */```
+
 ## The view helpers
 
 Below is an overview of the more complex view helpers.

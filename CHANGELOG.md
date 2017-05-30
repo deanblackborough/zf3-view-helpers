@@ -2,7 +2,19 @@
 
 Full changelog for ZF3 view helpers library.
 
-## v0.40.1 Escape - 2017-05-26
+## v0.40.3 - Readme - 2017-05-30
+
+* Updated readme with details on code completion package
+
+## v0.40.2 - Dependency - 2017-05-30
+
+* Code completion package is now a dependency
+
+## v0.40.2 - Dependency - 2017-05-30
+
+* Code completion package is now a dependency
+
+## v0.40.1 - Escape - 2017-05-26
 
 * View helpers were not calling the escape helpers
 
