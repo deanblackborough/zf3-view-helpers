@@ -23,7 +23,27 @@ class Bootstrap4ProgressBar extends AbstractHelper
     /**
      * @var string Assigned an alternate background colour
      */
-    private $bg_style;
+    private $color;
+
+    /**
+     * @var boolean Enabled the striped style
+     */
+    private $striped;
+
+    /**
+     * @var boolean Animate the progress bar style
+     */
+    private $animate;
+
+    /**
+     * @var string Label for progress bar
+     */
+    private $label;
+
+    /**
+     * @var integer Height of progress bar in pixels
+     */
+    private $height;
 
     /**
      * @var array Bootstrap styles
@@ -52,20 +72,64 @@ class Bootstrap4ProgressBar extends AbstractHelper
     }
 
     /**
-     * Set the background style for the progress bad, one of the following, success, info,
+     * Set the background color for the progress bar, one of the following, success, info,
      * warning or danger. If an incorrect style is passed in we don't apply the class.
      *
-     * @param string $style
+     * @param string $color
      *
      * @return Bootstrap4ProgressBar
      */
-    public function setBackgroundStyle(string $style): Bootstrap4ProgressBar
+    public function color(string $color): Bootstrap4ProgressBar
     {
-        if (in_array($style, $this->supported_styles) === true) {
-            $this->bg_style = $style;
+        if (in_array($color, $this->supported_styles) === true) {
+            $this->color = $color;
         }
 
         return $this;
+    }
+
+    /**
+     * Enable the striped style for the progress bar background
+     *
+     * @return Bootstrap4ProgressBar
+     */
+    public function striped() : Bootstrap4ProgressBar
+    {
+        $this->striped = true;
+    }
+
+    /**
+     * Animate the striped background style
+     *
+     * @return Bootstrap4ProgressBar
+     */
+    public function animate() : Bootstrap4ProgressBar
+    {
+        $this->animate = true;
+    }
+
+    /**
+     * Set the label for the progress bar
+     *
+     * @param string $label
+     *
+     * @return Bootstrap4ProgressBar
+     */
+    public function label(string $label) : Bootstrap4ProgressBar
+    {
+        $this->label = $label;
+    }
+
+    /**
+     * Set the height of the progress bar
+     *
+     * @param integer $height
+     *
+     * @return Bootstrap4ProgressBar
+     */
+    public function height(int $height) : Bootstrap4ProgressBar
+    {
+        $this->label = $height;
     }
 
     /**
@@ -76,7 +140,11 @@ class Bootstrap4ProgressBar extends AbstractHelper
     private function reset(): void
     {
         $this->value = 0;
-        $this->bg_style = null;
+        $this->color = null;
+        $this->striped = false;
+        $this->animate = false;
+        $this->label = null;
+        $this->height = null;
     }
 
     /**
@@ -89,7 +157,11 @@ class Bootstrap4ProgressBar extends AbstractHelper
         $styles = '';
 
         if ($this->value > 0) {
-            $styles .= $this->value . '%;';
+            $styles .= ' width: ' . $this->value . '%;';
+        }
+
+        if ($this->height !== null && $this->height > 0) {
+            $styles .= ' height: ' . $this->height . 'px;';
         }
 
         return $styles;
@@ -104,8 +176,16 @@ class Bootstrap4ProgressBar extends AbstractHelper
     {
         $classes = null;
 
-        if ($this->bg_style !== null) {
-            $classes .= ' bg-' . $this->bg_style;
+        if ($this->color !== null) {
+            $classes .= ' bg-' . $this->color;
+        }
+
+        if ($this->striped === true) {
+            $classes .= ' progress-bar-striped';
+        }
+
+        if ($this->animate === true) {
+            $classes .= ' progress-bar-animated';
         }
 
         return $classes;
@@ -119,15 +199,16 @@ class Bootstrap4ProgressBar extends AbstractHelper
      */
     private function render(): string
     {
-        $style = $this->styles();
-        if (strlen($style) > 0) {
-            $style = 'style="' . $style . '"';
+        $styles = $this->styles();
+        if (strlen($styles) > 0) {
+            $styles = 'style="' . trim($styles) . '"';
         }
 
         return '
             <div class="progress">
-                <div class="progress-bar' . $this->classes() . '" role="progressbar" ' . $style .
-                ' aria-valuenow="' . $this->value . '" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar' . $this->classes() . '" role="progressbar" ' . $styles .
+                ' aria-valuenow="' . $this->value . '" aria-valuemin="0" aria-valuemax="100">' .
+                ($this->label !== null) ? $this->label : null . '</div>
             </div>';
     }
 
