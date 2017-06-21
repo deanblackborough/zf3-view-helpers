@@ -21,6 +21,21 @@ class Bootstrap4ProgressBar extends AbstractHelper
     private $value;
 
     /**
+     * @var string Assigned an alternate background colour
+     */
+    private $bg_style;
+
+    /**
+     * @var array Bootstrap styles
+     */
+    private $supported_styles = [
+        'success',
+        'info',
+        'warning',
+        'danger',
+    ];
+
+    /**
      * Entry point for the view helper
      *
      * @param integer $value Current progress bar value
@@ -37,6 +52,23 @@ class Bootstrap4ProgressBar extends AbstractHelper
     }
 
     /**
+     * Set the background style for the progress bad, one of the following, success, info,
+     * warning or danger. If an incorrect style is passed in we don't apply the class.
+     *
+     * @param string $style
+     *
+     * @return Bootstrap4ProgressBar
+     */
+    public function setBackgroundStyle(string $style): Bootstrap4ProgressBar
+    {
+        if (in_array($style, $this->supported_styles) === true) {
+            $this->bg_style = $style;
+        }
+
+        return $this;
+    }
+
+    /**
      * Reset all properties in case the view helper is called multiple times within a script
      *
      * @return void
@@ -44,6 +76,7 @@ class Bootstrap4ProgressBar extends AbstractHelper
     private function reset(): void
     {
         $this->value = 0;
+        $this->bg_style = null;
     }
 
     /**
@@ -51,15 +84,31 @@ class Bootstrap4ProgressBar extends AbstractHelper
      *
      * @return string
      */
-    private function style() : string
+    private function styles() : string
     {
-        $style = '';
+        $styles = '';
 
         if ($this->value > 0) {
-            $style .= $this->value . '%;';
+            $styles .= $this->value . '%;';
         }
 
-        return $style;
+        return $styles;
+    }
+
+    /**
+     * Generate the additional classes
+     *
+     * @return string
+     */
+    private function classes() : string
+    {
+        $classes = null;
+
+        if ($this->bg_style !== null) {
+            $classes .= ' bg-' . $this->bg_style;
+        }
+
+        return $classes;
     }
 
     /**
@@ -70,15 +119,15 @@ class Bootstrap4ProgressBar extends AbstractHelper
      */
     private function render(): string
     {
-        $style = $this->style();
+        $style = $this->styles();
         if (strlen($style) > 0) {
             $style = 'style="' . $style . '"';
         }
 
         return '
             <div class="progress">
-                <div class="progress-bar" role="progressbar" ' . $style . ' aria-valuenow="' . $this->value .
-            '" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar' . $this->classes() . '" role="progressbar" ' . $style .
+                ' aria-valuenow="' . $this->value . '" aria-valuemin="0" aria-valuemax="100"></div>
             </div>';
     }
 
