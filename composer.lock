@@ -4,54 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c18deb80ecd6e3e6eb7d7161265665b6",
+    "content-hash": "8392001ed664696fa809a4b4a2d4cf56",
     "packages": [
-        {
-            "name": "deanblackborough/zf3-view-helpers-code-completion",
-            "version": "v1.02",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/deanblackborough/zf3-view-helpers-code-completion.git",
-                "reference": "ac3008d7f5b1cf56b8bdf9a30a18deee5a99654e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/deanblackborough/zf3-view-helpers-code-completion/zipball/ac3008d7f5b1cf56b8bdf9a30a18deee5a99654e",
-                "reference": "ac3008d7f5b1cf56b8bdf9a30a18deee5a99654e",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1",
-                "zendframework/zend-view": "^2.9"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "DBlackborough\\Zf3ViewHelpersCC\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dean Blackborough",
-                    "email": "dean@g3d-development.com"
-                }
-            ],
-            "description": "Helper classes to provide code completion for Zend view helpers and my custom view helpers",
-            "homepage": "https://github.com/deanblackborough/zf3-view-helpers-code-completion",
-            "keywords": [
-                "bootstrap",
-                "code completion",
-                "phpstorm",
-                "view helpers",
-                "zend",
-                "zf3"
-            ],
-            "time": "2017-05-30T20:16:25+00:00"
-        },
         {
             "name": "zendframework/zend-eventmanager",
             "version": "3.1.0",
@@ -284,6 +238,52 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "deanblackborough/zf3-view-helpers-code-completion",
+            "version": "v1.02",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/deanblackborough/zf3-view-helpers-code-completion.git",
+                "reference": "ac3008d7f5b1cf56b8bdf9a30a18deee5a99654e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/deanblackborough/zf3-view-helpers-code-completion/zipball/ac3008d7f5b1cf56b8bdf9a30a18deee5a99654e",
+                "reference": "ac3008d7f5b1cf56b8bdf9a30a18deee5a99654e",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1",
+                "zendframework/zend-view": "^2.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DBlackborough\\Zf3ViewHelpersCC\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dean Blackborough",
+                    "email": "dean@g3d-development.com"
+                }
+            ],
+            "description": "Helper classes to provide code completion for Zend view helpers and my custom view helpers",
+            "homepage": "https://github.com/deanblackborough/zf3-view-helpers-code-completion",
+            "keywords": [
+                "bootstrap",
+                "code completion",
+                "phpstorm",
+                "view helpers",
+                "zend",
+                "zf3"
+            ],
+            "time": "2017-05-30T20:16:25+00:00"
+        },
         {
             "name": "doctrine/instantiator",
             "version": "1.0.5",
