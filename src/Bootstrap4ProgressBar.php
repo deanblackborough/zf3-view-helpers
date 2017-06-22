@@ -96,6 +96,8 @@ class Bootstrap4ProgressBar extends AbstractHelper
     public function striped() : Bootstrap4ProgressBar
     {
         $this->striped = true;
+
+        return $this;
     }
 
     /**
@@ -106,6 +108,8 @@ class Bootstrap4ProgressBar extends AbstractHelper
     public function animate() : Bootstrap4ProgressBar
     {
         $this->animate = true;
+
+        return $this;
     }
 
     /**
@@ -118,6 +122,8 @@ class Bootstrap4ProgressBar extends AbstractHelper
     public function label(string $label) : Bootstrap4ProgressBar
     {
         $this->label = $label;
+
+        return $this;
     }
 
     /**
@@ -130,6 +136,8 @@ class Bootstrap4ProgressBar extends AbstractHelper
     public function height(int $height) : Bootstrap4ProgressBar
     {
         $this->label = $height;
+
+        return $this;
     }
 
     /**
@@ -174,7 +182,7 @@ class Bootstrap4ProgressBar extends AbstractHelper
      */
     private function classes() : string
     {
-        $classes = null;
+        $classes = '';
 
         if ($this->color !== null) {
             $classes .= ' bg-' . $this->color;
@@ -197,7 +205,7 @@ class Bootstrap4ProgressBar extends AbstractHelper
      *
      * @return string
      */
-    private function render(): string
+    private function render() : string
     {
         $styles = $this->styles();
         if (strlen($styles) > 0) {
@@ -208,7 +216,7 @@ class Bootstrap4ProgressBar extends AbstractHelper
             <div class="progress">
                 <div class="progress-bar' . $this->classes() . '" role="progressbar" ' . $styles .
                 ' aria-valuenow="' . $this->value . '" aria-valuemin="0" aria-valuemax="100">' .
-                ($this->label !== null) ? $this->label : null . '</div>
+                (($this->label !== null) ? $this->label : null) . '</div>
             </div>';
     }
 
@@ -218,7 +226,7 @@ class Bootstrap4ProgressBar extends AbstractHelper
      *
      * @return string
      */
-    public function __toString(): string
+    public function __toString() : string
     {
         return $this->render();
     }
