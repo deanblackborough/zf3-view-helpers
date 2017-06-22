@@ -135,7 +135,7 @@ class Bootstrap4ProgressBar extends AbstractHelper
      */
     public function height(int $height) : Bootstrap4ProgressBar
     {
-        $this->label = $height;
+        $this->height = $height;
 
         return $this;
     }

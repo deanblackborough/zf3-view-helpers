@@ -9,4 +9,5 @@ echo $view_helper->__invoke(25)
     ->color('info')
     ->animate()
     ->striped()
-    ->label('25%');
+    ->label('25%')
+    ->height(10);
