@@ -166,15 +166,17 @@ class Bootstrap4ProgressBarMultiple extends AbstractHelper
     /**
      * Generate the style attributes for the progress bar
      *
+     * @param integer $value
+     *
      * @return string
      */
-    private function styles() : string
+    private function styles(int $value) : string
     {
         $styles = '';
 
-        /*if ($this->value > 0) {
-            $styles .= ' width: ' . $this->value . '%;';
-        }*/
+        if ($value > 0) {
+            $styles .= ' width: ' . $value . '%;';
+        }
 
         if ($this->height !== null && $this->height > 0) {
             $styles .= ' height: ' . $this->height . 'px;';
@@ -186,15 +188,17 @@ class Bootstrap4ProgressBarMultiple extends AbstractHelper
     /**
      * Generate the additional classes
      *
+     * @param string $color
+     *
      * @return string
      */
-    private function classes() : string
+    private function classes(string $color) : string
     {
         $classes = '';
 
-        /*if ($this->color !== null) {
-            $classes .= ' bg-' . $this->color;
-        }*/
+        if ($color !== null) {
+            $classes .= ' bg-' . $color;
+        }
 
         if ($this->striped === true) {
             $classes .= ' progress-bar-striped';
@@ -215,17 +219,22 @@ class Bootstrap4ProgressBarMultiple extends AbstractHelper
      */
     private function render() : string
     {
-        $styles = $this->styles();
-        if (strlen($styles) > 0) {
-            $styles = 'style="' . $this->escapeHtmlAttr(trim($styles)) . '"';
+        $html = '<div class="progress">';
+
+        foreach ($this->values as $k => $value) {
+            $styles = $this->styles($value);
+            if (strlen($styles) > 0) {
+                $styles = 'style="' . $this->escapeHtmlAttr(trim($styles)) . '"';
+            }
+
+            $html .= '<div class="progress-bar' . $this->classes($this->colors[$k]) . '" role="progressbar" ' .
+                $styles . ' aria-valuenow="' . $this->value . '" aria-valuemin="0" aria-valuemax="100">' .
+                (($this->label !== null) ? $this->view->escapeHtml($this->label) : null) . '</div>' . PHP_EOL;
         }
 
-        return '
-            <div class="progress">
-                <div class="progress-bar' . $this->classes() . '" role="progressbar" ' . $styles .
-            ' aria-valuenow="' . $this->value . '" aria-valuemin="0" aria-valuemax="100">' .
-            (($this->label !== null) ? $this->view->escapeHtml($this->label) : null) . '</div>
-            </div>';
+        $html .= '</div>';
+
+        return $html;
     }
 
     /**
