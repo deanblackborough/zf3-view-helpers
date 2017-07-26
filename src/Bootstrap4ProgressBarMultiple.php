@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace DBlackborough\Zf3ViewHelpers;
 
+use PHPUnit\Runner\Exception;
 use Zend\View\Helper\AbstractHelper;
 
 /**
@@ -13,17 +14,17 @@ use Zend\View\Helper\AbstractHelper;
  * @copyright Dean Blackborough
  * @license https://github.com/deanblackborough/zf3-view-helpers/blob/master/LICENSE
  */
-class Bootstrap4ProgressBar extends AbstractHelper
+class Bootstrap4ProgressBarMultiple extends AbstractHelper
 {
     /**
-     * @var integer Current progress bar value
+     * @var array Progress bar values
      */
-    private $value;
+    private $values;
 
     /**
-     * @var string Assigned an alternate background colour
+     * @var array Background colours for progress bars
      */
-    private $color;
+    private $colors;
 
     /**
      * @var boolean Enabled the striped style
@@ -58,31 +59,38 @@ class Bootstrap4ProgressBar extends AbstractHelper
     /**
      * Entry point for the view helper
      *
-     * @param integer $value Current progress bar value
+     * @param array $values Progress bar values, array of integers
      *
-     * @return Bootstrap4ProgressBar
+     * @return Bootstrap4ProgressBarMultiple
      */
-    public function __invoke(int $value): Bootstrap4ProgressBar
+    public function __invoke(array $values): Bootstrap4ProgressBarMultiple
     {
         $this->reset();
 
-        $this->value = $value;
+        $this->values = $values;
 
         return $this;
     }
 
     /**
-     * Set the background color for the progress bar, one of the following, success, info,
-     * warning or danger. If an incorrect style is passed in we don't apply the class.
+     * Set the background colors for the progress bar, each value in the array needs to be one of the
+     * following, success, info, warning or danger. If an incorrect style is passed in we don't apply the
+     * class. The number of entries in the array needs to match the number of progress bar values
      *
-     * @param string $color
+     * @param array $colors
      *
-     * @return Bootstrap4ProgressBar
+     * @return Bootstrap4ProgressBarMultiple
      */
-    public function color(string $color): Bootstrap4ProgressBar
+    public function color(array $colors): Bootstrap4ProgressBarMultiple
     {
-        if (in_array($color, $this->supported_styles) === true) {
-            $this->color = $color;
+        if (count($colors) !== count($this->values)) {
+            throw new Exception('Number of progress bar colours needs to match the number or progress bar values');
+        }
+
+        foreach ($colors as $color) {
+            if (in_array($color, $this->supported_styles) === true) {
+                $this->colors[] = $color;
+            }
         }
 
         return $this;
@@ -91,9 +99,9 @@ class Bootstrap4ProgressBar extends AbstractHelper
     /**
      * Enable the striped style for the progress bar background
      *
-     * @return Bootstrap4ProgressBar
+     * @return Bootstrap4ProgressBarMultiple
      */
-    public function striped() : Bootstrap4ProgressBar
+    public function striped() : Bootstrap4ProgressBarMultiple
     {
         $this->striped = true;
 
@@ -103,9 +111,9 @@ class Bootstrap4ProgressBar extends AbstractHelper
     /**
      * Animate the striped background style
      *
-     * @return Bootstrap4ProgressBar
+     * @return Bootstrap4ProgressBarMultiple
      */
-    public function animate() : Bootstrap4ProgressBar
+    public function animate() : Bootstrap4ProgressBarMultiple
     {
         $this->animate = true;
 
@@ -117,9 +125,9 @@ class Bootstrap4ProgressBar extends AbstractHelper
      *
      * @param string $label
      *
-     * @return Bootstrap4ProgressBar
+     * @return Bootstrap4ProgressBarMultiple
      */
-    public function label(string $label) : Bootstrap4ProgressBar
+    public function label(string $label) : Bootstrap4ProgressBarMultiple
     {
         $this->label = $label;
 
@@ -131,9 +139,9 @@ class Bootstrap4ProgressBar extends AbstractHelper
      *
      * @param integer $height
      *
-     * @return Bootstrap4ProgressBar
+     * @return Bootstrap4ProgressBarMultiple
      */
-    public function height(int $height) : Bootstrap4ProgressBar
+    public function height(int $height) : Bootstrap4ProgressBarMultiple
     {
         $this->height = $height;
 
@@ -147,8 +155,8 @@ class Bootstrap4ProgressBar extends AbstractHelper
      */
     private function reset(): void
     {
-        $this->value = 0;
-        $this->color = null;
+        $this->values = [];
+        $this->colors = [];
         $this->striped = false;
         $this->animate = false;
         $this->label = null;
@@ -158,14 +166,16 @@ class Bootstrap4ProgressBar extends AbstractHelper
     /**
      * Generate the style attributes for the progress bar
      *
+     * @param integer $value
+     *
      * @return string
      */
-    private function styles() : string
+    private function styles(int $value) : string
     {
         $styles = '';
 
-        if ($this->value > 0) {
-            $styles .= ' width: ' . $this->value . '%;';
+        if ($value > 0) {
+            $styles .= ' width: ' . $value . '%;';
         }
 
         if ($this->height !== null && $this->height > 0) {
@@ -178,14 +188,16 @@ class Bootstrap4ProgressBar extends AbstractHelper
     /**
      * Generate the additional classes
      *
+     * @param string $color
+     *
      * @return string
      */
-    private function classes() : string
+    private function classes(string $color) : string
     {
         $classes = '';
 
-        if ($this->color !== null) {
-            $classes .= ' bg-' . $this->color;
+        if ($color !== null) {
+            $classes .= ' bg-' . $color;
         }
 
         if ($this->striped === true) {
@@ -207,17 +219,22 @@ class Bootstrap4ProgressBar extends AbstractHelper
      */
     private function render() : string
     {
-        $styles = $this->styles();
-        if (strlen($styles) > 0) {
-            $styles = 'style="' . $this->view->escapeHtmlAttr(trim($styles)) . '"';
+        $html = '<div class="progress">';
+
+        foreach ($this->values as $k => $value) {
+            $styles = $this->styles($value);
+            if (strlen($styles) > 0) {
+                $styles = 'style="' . $this->view->escapeHtmlAttr(trim($styles)) . '"';
+            }
+
+            $html .= '<div class="progress-bar' . $this->classes($this->colors[$k]) . '" role="progressbar" ' .
+                $styles . ' aria-valuenow="' . $value . '" aria-valuemin="0" aria-valuemax="100">' .
+                (($this->label !== null) ? $this->view->escapeHtml($this->label) : null) . '</div>' . PHP_EOL;
         }
 
-        return '
-            <div class="progress">
-                <div class="progress-bar' . $this->classes() . '" role="progressbar" ' . $styles .
-                ' aria-valuenow="' . $this->value . '" aria-valuemin="0" aria-valuemax="100">' .
-                (($this->label !== null) ? $this->view->escapeHtml($this->label) : null) . '</div>
-            </div>';
+        $html .= '</div>';
+
+        return $html;
     }
 
     /**
