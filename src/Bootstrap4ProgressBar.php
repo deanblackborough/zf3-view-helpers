@@ -196,7 +196,7 @@ class Bootstrap4ProgressBar extends AbstractHelper
             $classes .= ' progress-bar-animated';
         }
 
-        return $this->escapeHtmlAttr($classes);
+        return $this->view->escapeHtmlAttr($classes);
     }
 
     /**
@@ -209,7 +209,7 @@ class Bootstrap4ProgressBar extends AbstractHelper
     {
         $styles = $this->styles();
         if (strlen($styles) > 0) {
-            $styles = 'style="' . $this->escapeHtmlAttr(trim($styles)) . '"';
+            $styles = 'style="' . $this->view->escapeHtmlAttr(trim($styles)) . '"';
         }
 
         return '

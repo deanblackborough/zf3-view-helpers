@@ -8,7 +8,7 @@ A bunch of view helpers that I use in my apps.
 
 ## Description
 
-A collection of Zend Framework 2/3 view helpers, primarily focused on Bootstrap 3 and 4.
+A collection of Zend Framework 3 view helpers, primarily focused on Bootstrap 3 and 4.
  
 * Bootstrap 3 Badge component
 * Bootstrap 4 Badge component
@@ -19,6 +19,7 @@ A collection of Zend Framework 2/3 view helpers, primarily focused on Bootstrap 
 * Bootstrap 3 Label component
 * Bootstrap 4 Navbar component (lite)
 * Bootstrap 4 progress bar component
+* Bootstrap 4 multiple progress bar component
 
 ## Code completion
 
@@ -167,6 +168,27 @@ Create a progress bar
 ```
 echo $this->bootstrap4ProgressBar(25)->
     color('info')->
+    striped()->
+    animate(); ?>
+```
+
+### Bootstrap 4 multiple progress bar
+
+Create a progress bar with multiple bars
+
+##### Public methods 
+
+* animate() - Animate the striped background style
+* colors() - Set the background colors for the progress bar
+* height() - Set the height of the progress bar
+* label() - Set the label for the progress bar
+* striped() - Enable the striped style for the progress bar background
+
+#### Example
+
+```
+echo $this->bootstrap4ProgressBar([25, 15])->
+    colors(['info', 'warning'])->
     striped()->
     animate(); ?>
 ```

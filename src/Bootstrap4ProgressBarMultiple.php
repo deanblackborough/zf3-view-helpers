@@ -208,7 +208,7 @@ class Bootstrap4ProgressBarMultiple extends AbstractHelper
             $classes .= ' progress-bar-animated';
         }
 
-        return $this->escapeHtmlAttr($classes);
+        return $this->view->escapeHtmlAttr($classes);
     }
 
     /**
@@ -224,11 +224,11 @@ class Bootstrap4ProgressBarMultiple extends AbstractHelper
         foreach ($this->values as $k => $value) {
             $styles = $this->styles($value);
             if (strlen($styles) > 0) {
-                $styles = 'style="' . $this->escapeHtmlAttr(trim($styles)) . '"';
+                $styles = 'style="' . $this->view->escapeHtmlAttr(trim($styles)) . '"';
             }
 
             $html .= '<div class="progress-bar' . $this->classes($this->colors[$k]) . '" role="progressbar" ' .
-                $styles . ' aria-valuenow="' . $this->value . '" aria-valuemin="0" aria-valuemax="100">' .
+                $styles . ' aria-valuenow="' . $value . '" aria-valuemin="0" aria-valuemax="100">' .
                 (($this->label !== null) ? $this->view->escapeHtml($this->label) : null) . '</div>' . PHP_EOL;
         }
 
