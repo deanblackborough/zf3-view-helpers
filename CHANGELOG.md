@@ -2,6 +2,10 @@
 
 Full changelog for ZF3 view helpers library.
 
+## v0.51 - Progress bar - 2017-08-14
+
+* Added Bootstrap 3 progress bar view helper.
+
 ## v0.50 - Progress bar - 2017-07-26
 
 * Added progress bar and multiple progress bar Bootstrap 4 view helpers.
