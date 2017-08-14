@@ -18,6 +18,7 @@ A collection of Zend Framework 3 view helpers, primarily focused on Bootstrap 3 
 * Bootstrap 4 Jumbotron component
 * Bootstrap 3 Label component
 * Bootstrap 4 Navbar component (lite)
+* Bootstrap 3 progress bar component
 * Bootstrap 4 progress bar component
 * Bootstrap 4 multiple progress bar component
 
@@ -149,6 +150,26 @@ echo $this->bootstrap4NavbarLite()->
     addBrand('Dlayer')->
     bgStyle('bg-faded')->
     addNavigation([ ['uri' => '#', 'label' => 'Item 1', 'active' => false ] ]); ?>
+```
+
+### Bootstrap 3 progress bar
+
+Create a progress bar
+
+##### Public methods 
+
+* animate() - Animate the striped background style
+* color() - Set the background color for the progress bar
+* label() - Set the label for the progress bar
+* striped() - Enable the striped style for the progress bar background
+
+#### Example
+
+```
+echo $this->bootstrap3ProgressBar(25)->
+    color('info')->
+    striped()->
+    animate(); ?>
 ```
 
 ### Bootstrap 4 progress bar

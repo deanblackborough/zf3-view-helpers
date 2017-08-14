@@ -6,14 +6,14 @@ namespace DBlackborough\Zf3ViewHelpers;
 use Zend\View\Helper\AbstractHelper;
 
 /**
- * Generate a Bootstrap 4 progress bar
+ * Generate a Bootstrap 3 progress bar
  *
  * @package DBlackborough\Zf3ViewHelpers
  * @author Dean Blackborough <dean@g3d-development.com>
  * @copyright Dean Blackborough
  * @license https://github.com/deanblackborough/zf3-view-helpers/blob/master/LICENSE
  */
-class Bootstrap4ProgressBar extends AbstractHelper
+class Bootstrap3ProgressBar extends AbstractHelper
 {
     /**
      * @var integer Current progress bar value
@@ -41,11 +41,6 @@ class Bootstrap4ProgressBar extends AbstractHelper
     private $label;
 
     /**
-     * @var integer Height of progress bar in pixels
-     */
-    private $height;
-
-    /**
      * @var array Bootstrap styles
      */
     private $supported_styles = [
@@ -60,9 +55,9 @@ class Bootstrap4ProgressBar extends AbstractHelper
      *
      * @param integer $value Current progress bar value
      *
-     * @return Bootstrap4ProgressBar
+     * @return Bootstrap3ProgressBar
      */
-    public function __invoke(int $value): Bootstrap4ProgressBar
+    public function __invoke(int $value): Bootstrap3ProgressBar
     {
         $this->reset();
 
@@ -77,9 +72,9 @@ class Bootstrap4ProgressBar extends AbstractHelper
      *
      * @param string $color
      *
-     * @return Bootstrap4ProgressBar
+     * @return Bootstrap3ProgressBar
      */
-    public function color(string $color): Bootstrap4ProgressBar
+    public function color(string $color): Bootstrap3ProgressBar
     {
         if (in_array($color, $this->supported_styles) === true) {
             $this->color = $color;
@@ -91,9 +86,9 @@ class Bootstrap4ProgressBar extends AbstractHelper
     /**
      * Enable the striped style for the progress bar background
      *
-     * @return Bootstrap4ProgressBar
+     * @return Bootstrap3ProgressBar
      */
-    public function striped() : Bootstrap4ProgressBar
+    public function striped() : Bootstrap3ProgressBar
     {
         $this->striped = true;
 
@@ -103,9 +98,9 @@ class Bootstrap4ProgressBar extends AbstractHelper
     /**
      * Animate the striped background style
      *
-     * @return Bootstrap4ProgressBar
+     * @return Bootstrap3ProgressBar
      */
-    public function animate() : Bootstrap4ProgressBar
+    public function animate() : Bootstrap3ProgressBar
     {
         $this->animate = true;
 
@@ -117,25 +112,11 @@ class Bootstrap4ProgressBar extends AbstractHelper
      *
      * @param string $label
      *
-     * @return Bootstrap4ProgressBar
+     * @return Bootstrap3ProgressBar
      */
-    public function label(string $label) : Bootstrap4ProgressBar
+    public function label(string $label) : Bootstrap3ProgressBar
     {
         $this->label = $label;
-
-        return $this;
-    }
-
-    /**
-     * Set the height of the progress bar
-     *
-     * @param integer $height
-     *
-     * @return Bootstrap4ProgressBar
-     */
-    public function height(int $height) : Bootstrap4ProgressBar
-    {
-        $this->height = $height;
 
         return $this;
     }
@@ -152,7 +133,6 @@ class Bootstrap4ProgressBar extends AbstractHelper
         $this->striped = false;
         $this->animate = false;
         $this->label = null;
-        $this->height = null;
     }
 
     /**
@@ -168,10 +148,6 @@ class Bootstrap4ProgressBar extends AbstractHelper
             $styles .= ' width: ' . $this->value . '%;';
         }
 
-        if ($this->height !== null && $this->height > 0) {
-            $styles .= ' height: ' . $this->height . 'px;';
-        }
-
         return $styles;
     }
 
@@ -185,7 +161,7 @@ class Bootstrap4ProgressBar extends AbstractHelper
         $classes = '';
 
         if ($this->color !== null) {
-            $classes .= ' bg-' . $this->color;
+            $classes .= ' progress-bar-' . $this->color;
         }
 
         if ($this->striped === true) {
@@ -215,8 +191,8 @@ class Bootstrap4ProgressBar extends AbstractHelper
         return '
             <div class="progress">
                 <div class="progress-bar' . $this->classes() . '" role="progressbar" ' . $styles .
-                ' aria-valuenow="' . $this->value . '" aria-valuemin="0" aria-valuemax="100">' .
-                (($this->label !== null) ? $this->view->escapeHtml($this->label) : null) . '</div>
+            ' aria-valuenow="' . $this->value . '" aria-valuemin="0" aria-valuemax="100">' .
+            (($this->label !== null) ? $this->view->escapeHtml($this->label) : null) . '</div>
             </div>';
     }
 

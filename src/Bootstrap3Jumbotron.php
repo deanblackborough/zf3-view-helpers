@@ -93,7 +93,7 @@ class Bootstrap3Jumbotron extends AbstractHelper
     }
 
     /**
-     * Worker method for the view helper, generates the HTML, the method id private so that we
+     * Worker method for the view helper, generates the HTML, the method is private so that we
      * can echo/print the view helper directly
      *
      * @return string
