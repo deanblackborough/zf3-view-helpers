@@ -118,7 +118,7 @@ class Bootstrap4Card extends AbstractHelper
      *
      * @return Bootstrap4Card
      */
-    public function setCustomClass($class, $element) : Bootstrap4Card
+    public function setCustomClass(string $class, string $element) : Bootstrap4Card
     {
         // Not yet implemented
 
@@ -133,10 +133,52 @@ class Bootstrap4Card extends AbstractHelper
      *
      * @return Bootstrap4Card
      */
-    public function setCustomAttr($class, $element) : Bootstrap4Card
+    public function setCustomAttr(string $class, string $element) : Bootstrap4Card
     {
         // Not yet implemented
 
+        return $this;
+    }
+
+    /**
+     * Set the body content for the card
+     *
+     * @param string $content
+     *
+     * @return Bootstrap4Card
+     */
+    public function setBody(string $content) : Bootstrap4Card
+    {
+        // Not yet implemented
+
+        return $this;
+    }
+
+    /**
+     * Set optional header content for card
+     *
+     * @param string $content
+     *
+     * @return Bootstrap4Card
+     */
+    public function setHeader(string $content) : Bootstrap4Card
+    {
+        // Not yet implemented
+
+        return $this;
+    }
+
+    /**
+     * Set optional footer content for card
+     *
+     * @param string $content
+     *
+     * @return Bootstrap4Card
+     */
+    public function setFooter(string $content) : Bootstrap4Card
+    {
+        // Not yet implemented
+        
         return $this;
     }
 
