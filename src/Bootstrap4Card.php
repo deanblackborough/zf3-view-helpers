@@ -64,7 +64,7 @@ class Bootstrap4Card extends AbstractHelper
      *
      * @return string
      */
-    private function card_classes() : string
+    private function cardClasses() : string
     {
         $class = 'card';
         if ($this->width_class !== null) {
@@ -79,7 +79,7 @@ class Bootstrap4Card extends AbstractHelper
      *
      * @return null|string
      */
-    private function card_attr() : string
+    private function cardAttr() : string
     {
         $attr = null;
 
@@ -98,9 +98,9 @@ class Bootstrap4Card extends AbstractHelper
      */
     private function render(): string
     {
-        $html = '<div class="' . $this->card_classes() . '"';
+        $html = '<div class="' . $this->cardClasses() . '"';
 
-        $attr = $this->card_attr();
+        $attr = $this->cardAttr();
         if ($attr !== null) {
             $html .= ' style="' . $attr . '"';
         }
