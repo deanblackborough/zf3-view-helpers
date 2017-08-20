@@ -178,7 +178,19 @@ class Bootstrap4Card extends AbstractHelper
     public function setFooter(string $content) : Bootstrap4Card
     {
         // Not yet implemented
-        
+
+        return $this;
+    }
+
+    /**
+     * Set optional image
+     *
+     * @return Bootstrap4Card
+     */
+    public function setImage() : Bootstrap4Card
+    {
+        // Not yet implemented
+
         return $this;
     }
 
