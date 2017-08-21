@@ -26,6 +26,21 @@ class Bootstrap4Card extends AbstractHelper
     private $width_attr;
 
     /**
+     * @var string Body content
+     */
+    private $body;
+
+    /**
+     * @var string Header content
+     */
+    private $header;
+
+    /**
+     * @var string Footer content
+     */
+    private $footer;
+
+    /**
      * Entry point for the view helper
      *
      * @param string $width_class Optional card width class
@@ -57,6 +72,10 @@ class Bootstrap4Card extends AbstractHelper
     {
         $this->width_class = null;
         $this->width_attr = null;
+
+        $this->body = null;
+        $this->header = null;
+        $this->footer = null;
     }
 
     /**
@@ -91,6 +110,26 @@ class Bootstrap4Card extends AbstractHelper
     }
 
     /**
+     * Generate the card body
+     *
+     * @return string
+     */
+    private function cardBody() : string
+    {
+        $html = '<div class="card-body">';
+
+        if ($this->body !== null) {
+            $html .= $this->body;
+        } else {
+            $html .= '<p>No card body content defined</p>';
+        }
+
+        $html .= '</div>';
+
+        return $html;
+    }
+
+    /**
      * Worker method for the view helper, generates the HTML, the method is private so that we
      * can echo/print the view helper directly
      *
@@ -105,7 +144,7 @@ class Bootstrap4Card extends AbstractHelper
             $html .= ' style="' . $attr . '"';
         }
 
-        $html .= '>' . '' . '</div>';
+        $html .= '>' . $this->cardBody() . '</div>';
 
         return $html;
     }
@@ -149,6 +188,23 @@ class Bootstrap4Card extends AbstractHelper
      */
     public function setBody(string $content) : Bootstrap4Card
     {
+        $this->body = $content;
+
+        return $this;
+    }
+
+    /**
+     * Set body content for the card body, alternative to setBody, allows you to define body
+     * sections, relevant sections are created for you
+     *
+     * @param string $content
+     * @param string $type [title|subtitle|text|link]
+     * @param array $options Options for the content type
+     *
+     * @return Bootstrap4Card
+     */
+    public function setBodyContent(string $content, string $type, array $options = []) : Bootstrap4Card
+    {
         // Not yet implemented
 
         return $this;
@@ -163,7 +219,7 @@ class Bootstrap4Card extends AbstractHelper
      */
     public function setHeader(string $content) : Bootstrap4Card
     {
-        // Not yet implemented
+        $this->header = $content;
 
         return $this;
     }
@@ -177,7 +233,7 @@ class Bootstrap4Card extends AbstractHelper
      */
     public function setFooter(string $content) : Bootstrap4Card
     {
-        // Not yet implemented
+        $this->footer = $content;
 
         return $this;
     }
