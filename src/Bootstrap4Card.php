@@ -99,14 +99,10 @@ class Bootstrap4Card extends AbstractHelper
     private function elementClasses(string $element) : string
     {
         if (in_array($element, $this->elements) === true) {
-            if ($element === 'card') {
-                $class = 'card';
-            } else {
-                $class = '';
-            }
+            $class = '';
 
             if (count($this->classes[$element]) > 0) {
-                $class .= ' ' . implode(' ', $this->classes[$element]);
+                $class = ' ' . implode(' ', $this->classes[$element]);
             }
 
             return $class;
@@ -125,14 +121,10 @@ class Bootstrap4Card extends AbstractHelper
     private function elementAttr(string $element) : string
     {
         if (in_array($element, $this->elements) === true) {
-            if ($element === 'card') {
-                $attr = 'card';
-            } else {
-                $attr = '';
-            }
+            $attr = '';
 
             if (count($this->attr[$element]) > 0) {
-                $attr .= ' ' . implode(' ', $this->attr[$element]);
+                $attr = ' style="' . implode(' ', $this->attr[$element]) . '"';
             }
 
             return $attr;
@@ -159,7 +151,8 @@ class Bootstrap4Card extends AbstractHelper
             $body = implode('', $this->body_sections);
         }
 
-        return '<div class="card-body">' . $body . '</div>';
+        return '<div class="card-body' . $this->elementClasses('body') . '"' .
+            $this->elementAttr('body') . '>' . $body . '</div>';
     }
 
     /**
@@ -172,7 +165,8 @@ class Bootstrap4Card extends AbstractHelper
         $html = '';
 
         if ($this->header !== null) {
-            $html .= '<div class="card-header">' . $this->header . '</div>';
+            $html .= '<div class="card-header' . $this->elementAttr('header') .
+                '"' . $this->elementAttr('header') . '>' . $this->header . '</div>';
         }
 
         return $html;
@@ -187,8 +181,9 @@ class Bootstrap4Card extends AbstractHelper
     {
         $html = '';
 
-        if ($this->footer !== null) {
-            $html .= '<div class="card-footer">' . $this->footer . '</div>';
+        if ($this->header !== null) {
+            $html .= '<div class="card-footer' . $this->elementAttr('footer') .
+                '"' . $this->elementAttr('header') . '>' . $this->footer . '</div>';
         }
 
         return $html;
@@ -202,14 +197,9 @@ class Bootstrap4Card extends AbstractHelper
      */
     private function render(): string
     {
-        $html = '<div class="' . $this->elementClasses('card') . '"';
-
-        $attr = $this->elementAttr('card');
-        if (strlen($attr) !== 0) {
-            $html .= ' style="' . $attr . '"';
-        }
-
-        $html .= '>' . $this->cardHeader() . $this->cardBody() .
+        $html = '<div class="card' . $this->elementClasses('card') . '"' .
+            $this->elementAttr('card') . '>' .
+            $this->cardHeader() . $this->cardBody() .
             $this->cardFooter() . '</div>';
 
         return $html;
