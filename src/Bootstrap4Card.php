@@ -16,14 +16,14 @@ use Zend\View\Helper\AbstractHelper;
 class Bootstrap4Card extends AbstractHelper
 {
     /**
-     * @var string Width class
+     * @var array Assigned classes
      */
-    private $width_class;
+    private $classes;
 
     /**
-     * @var string Width style attribute
+     * @var array Assigned attributes
      */
-    private $width_attr;
+    private $attr;
 
     /**
      * @var string Body content
@@ -41,6 +41,11 @@ class Bootstrap4Card extends AbstractHelper
     private $footer;
 
     /**
+     * @var array Elements on card
+     */
+    private $elements = ['card', 'body', 'header', 'footer'];
+
+    /**
      * Entry point for the view helper
      *
      * @param string $width_class Optional card width class
@@ -53,11 +58,11 @@ class Bootstrap4Card extends AbstractHelper
         $this->reset();
 
         if (strlen($width_class) > 0) {
-            $this->width_class = $width_class;
+            $this->classes['card'][] = $width_class;
         }
 
         if (strlen($width_attr) > 0) {
-            $this->width_attr = $width_attr;
+            $this->attr['card'][] = $width_attr;
         }
 
         return $this;
@@ -70,8 +75,8 @@ class Bootstrap4Card extends AbstractHelper
      */
     private function reset(): void
     {
-        $this->width_class = null;
-        $this->width_attr = null;
+        $this->classes = ['card' => [], 'body' => [], 'header' => [], 'footer' => []];
+        $this->attr = ['card' => [], 'body' => [], 'header' => [], 'footer' => []];
 
         $this->body = null;
         $this->header = null;
@@ -86,8 +91,9 @@ class Bootstrap4Card extends AbstractHelper
     private function cardClasses() : string
     {
         $class = 'card';
-        if ($this->width_class !== null) {
-            $class .= ' ' . $this->width_class;
+
+        if (count($this->classes['card']) > 0) {
+            $class .= ' ' . implode(' ', $this->classes['card']);
         }
 
         return $class;
@@ -96,17 +102,11 @@ class Bootstrap4Card extends AbstractHelper
     /**
      * Fetch the assigned attributes for the card div
      *
-     * @return null|string
+     * @return string
      */
     private function cardAttr() : string
     {
-        $attr = null;
-
-        if ($this->width_attr !== null) {
-            $attr .= $this->width_attr;
-        }
-
-        return $attr;
+        return implode(' ', $this->attr['card']);
     }
 
     /**
@@ -140,7 +140,7 @@ class Bootstrap4Card extends AbstractHelper
         $html = '<div class="' . $this->cardClasses() . '"';
 
         $attr = $this->cardAttr();
-        if ($attr !== null) {
+        if (strlen($attr) !== 0) {
             $html .= ' style="' . $attr . '"';
         }
 
@@ -159,7 +159,9 @@ class Bootstrap4Card extends AbstractHelper
      */
     public function setCustomClass(string $class, string $element) : Bootstrap4Card
     {
-        // Not yet implemented
+        if (in_array($element, $this->elements) === true) {
+            $this->classes[$element][] = $class;
+        }
 
         return $this;
     }
@@ -167,14 +169,16 @@ class Bootstrap4Card extends AbstractHelper
     /**
      * Set a custom attribute for an element
      *
-     * @param string $class Class to assign to element
+     * @param string $attr Attribute to assign to element
      * @param string $element Element to attach the attribute to [card|body|header|footer]
      *
      * @return Bootstrap4Card
      */
-    public function setCustomAttr(string $class, string $element) : Bootstrap4Card
+    public function setCustomAttr(string $attr, string $element) : Bootstrap4Card
     {
-        // Not yet implemented
+        if (in_array($element, $this->elements) === true) {
+            $this->attr[$element][] = $attr;
+        }
 
         return $this;
     }
