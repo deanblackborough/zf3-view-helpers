@@ -31,6 +31,11 @@ class Bootstrap4Card extends AbstractHelper
     private $body;
 
     /**
+     * @var array Body content items
+     */
+    private $body_sections;
+
+    /**
      * @var string Header content
      */
     private $header;
@@ -79,6 +84,7 @@ class Bootstrap4Card extends AbstractHelper
         $this->attr = ['card' => [], 'body' => [], 'header' => [], 'footer' => []];
 
         $this->body = null;
+        $this->body_sections = [];
         $this->header = null;
         $this->footer = null;
     }
@@ -110,23 +116,48 @@ class Bootstrap4Card extends AbstractHelper
     }
 
     /**
-     * Generate the card body
+     * Generate the card body, checks to see if any section have been defined first, if not, check
+     * for a complete body
      *
      * @return string
      */
     private function cardBody() : string
     {
-        $html = '<div class="card-body">';
-
-        if ($this->body !== null) {
-            $html .= $this->body;
+        if (count($this->body_sections) === 0) {
+            if ($this->body !== null) {
+                $body = $this->body;
+            } else {
+                $body = '<p>No card body content defined, no calls to setBody() or setBodyContent().</p>';
+            }
         } else {
-            $html .= '<p>No card body content defined</p>';
+            $body = implode('', $this->body_sections);
         }
 
-        $html .= '</div>';
+        return '<div class="card-body">' . $body . '</div>';
+    }
 
-        return $html;
+    /**
+     * Generate the card header
+     *
+     * @return string
+     */
+    private function cardHeader() : string
+    {
+        if ($this->header !== null) {
+            return '<div class="card-header">' . $this->header . '</div>';
+        }
+    }
+
+    /**
+     * Generate the card footer
+     *
+     * @return string
+     */
+    private function cardFooter() : string
+    {
+        if ($this->footer !== null) {
+            return '<div class="card-footer">' . $this->footer . '</div>';
+        }
     }
 
     /**
@@ -144,7 +175,8 @@ class Bootstrap4Card extends AbstractHelper
             $html .= ' style="' . $attr . '"';
         }
 
-        $html .= '>' . $this->cardBody() . '</div>';
+        $html .= '>' . $this->cardHeader() . $this->cardBody() .
+            $this->cardFooter() . '</div>';
 
         return $html;
     }
