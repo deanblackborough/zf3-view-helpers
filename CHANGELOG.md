@@ -2,6 +2,11 @@
 
 Full changelog for ZF3 view helpers library.
 
+## v0.60 - Card - 2017-08-22
+
+* Added a Bootstrap 4 card view helper.
+* Updated README, changed order of sections
+
 ## v0.51 - Progress bar - 2017-08-14
 
 * Added Bootstrap 3 progress bar view helper.
