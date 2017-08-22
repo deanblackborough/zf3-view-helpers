@@ -182,14 +182,14 @@ class Bootstrap4Card extends AbstractHelper
     }
 
     /**
-     * Set a custom class for an element
+     * Add a custom class to a card element
      *
      * @param string $class Class to assign to element
      * @param string $element Element to attach the class to [card|body|header|footer]
      *
      * @return Bootstrap4Card
      */
-    public function setCustomClass(string $class, string $element) : Bootstrap4Card
+    public function addCustomClass(string $class, string $element) : Bootstrap4Card
     {
         if (in_array($element, $this->elements) === true) {
             $this->classes[$element][] = $class;
@@ -199,14 +199,14 @@ class Bootstrap4Card extends AbstractHelper
     }
 
     /**
-     * Set a custom attribute for an element
+     * Add a custom attribute to a card element
      *
      * @param string $attr Attribute to assign to element
      * @param string $element Element to attach the attribute to [card|body|header|footer]
      *
      * @return Bootstrap4Card
      */
-    public function setCustomAttr(string $attr, string $element) : Bootstrap4Card
+    public function addCustomAttr(string $attr, string $element) : Bootstrap4Card
     {
         if (in_array($element, $this->elements) === true) {
             $this->attr[$element][] = $attr;
@@ -216,7 +216,8 @@ class Bootstrap4Card extends AbstractHelper
     }
 
     /**
-     * Set the body content for the card
+     * Set the entire body content for the card, alternative to defining the body content
+     * in parts
      *
      * @param string $content
      *
@@ -230,18 +231,60 @@ class Bootstrap4Card extends AbstractHelper
     }
 
     /**
-     * Set body content for the card body, alternative to setBody, allows you to define body
-     * sections, relevant sections are created for you
+     * Add a text section to the body
      *
      * @param string $content
-     * @param string $type [title|subtitle|text|link]
-     * @param array $options Options for the content type
      *
      * @return Bootstrap4Card
      */
-    public function setBodyContent(string $content, string $type, array $options = []) : Bootstrap4Card
+    public function addTextToBody(string $content) : Bootstrap4Card
     {
-        // Not yet implemented
+        $this->body_sections[] = '<div class="card-text">' . $content . '</div>';
+
+        return $this;
+    }
+
+    /**
+     * Add a title section to the body
+     *
+     * @param string $content
+     * @param string $tag title tag, defaults to h4
+     *
+     * @return Bootstrap4Card
+     */
+    public function addTitleToBody(string $content, string $tag = 'h4') : Bootstrap4Card
+    {
+        $this->body_sections[] = '<' . $tag . ' class="card-title">' . $content . '</' . $tag . '>';
+
+        return $this;
+    }
+
+    /**
+     * Add a subtitle section to the body
+     *
+     * @param string $content
+     * @param string $tag title tag, defaults to h6
+     *
+     * @return Bootstrap4Card
+     */
+    public function addSubtitleToBody(string $content, string $tag = 'h6') : Bootstrap4Card
+    {
+        $this->body_sections[] = '<' . $tag . ' class="card-subtitle">' . $content . '</' . $tag . '>';
+
+        return $this;
+    }
+
+    /**
+     * Add a link section to the body
+     *
+     * @param string $content
+     * @param string $uri URI
+     *
+     * @return Bootstrap4Card
+     */
+    public function addLinkToBody(string $content, string $uri) : Bootstrap4Card
+    {
+        $this->body_sections[] = '<a href="' . $uri . '">' . $content . '</a>';
 
         return $this;
     }
@@ -270,18 +313,6 @@ class Bootstrap4Card extends AbstractHelper
     public function setFooter(string $content) : Bootstrap4Card
     {
         $this->footer = $content;
-
-        return $this;
-    }
-
-    /**
-     * Set optional image
-     *
-     * @return Bootstrap4Card
-     */
-    public function setImage() : Bootstrap4Card
-    {
-        // Not yet implemented
 
         return $this;
     }
