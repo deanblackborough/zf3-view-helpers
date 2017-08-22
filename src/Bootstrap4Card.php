@@ -90,29 +90,55 @@ class Bootstrap4Card extends AbstractHelper
     }
 
     /**
-     * Fetch the assigned classes for the card div
+     * Fetch the classes assigned to the given element
+     *
+     * @param string $element [card|body|header|footer]
      *
      * @return string
      */
-    private function cardClasses() : string
+    private function elementClasses(string $element) : string
     {
-        $class = 'card';
+        if (in_array($element, $this->elements) === true) {
+            if ($element === 'card') {
+                $class = 'card';
+            } else {
+                $class = '';
+            }
 
-        if (count($this->classes['card']) > 0) {
-            $class .= ' ' . implode(' ', $this->classes['card']);
+            if (count($this->classes[$element]) > 0) {
+                $class .= ' ' . implode(' ', $this->classes[$element]);
+            }
+
+            return $class;
+        } else {
+            return '';
         }
-
-        return $class;
     }
 
     /**
-     * Fetch the assigned attributes for the card div
+     * Fetch the attributes assigned to the given element
+     *
+     * @param string $element [card|body|header|footer]
      *
      * @return string
      */
-    private function cardAttr() : string
+    private function elementAttr(string $element) : string
     {
-        return implode(' ', $this->attr['card']);
+        if (in_array($element, $this->elements) === true) {
+            if ($element === 'card') {
+                $attr = 'card';
+            } else {
+                $attr = '';
+            }
+
+            if (count($this->attr[$element]) > 0) {
+                $attr .= ' ' . implode(' ', $this->attr[$element]);
+            }
+
+            return $attr;
+        } else {
+            return '';
+        }
     }
 
     /**
@@ -176,9 +202,9 @@ class Bootstrap4Card extends AbstractHelper
      */
     private function render(): string
     {
-        $html = '<div class="' . $this->cardClasses() . '"';
+        $html = '<div class="' . $this->elementClasses('card') . '"';
 
-        $attr = $this->cardAttr();
+        $attr = $this->elementAttr('card');
         if (strlen($attr) !== 0) {
             $html .= ' style="' . $attr . '"';
         }
