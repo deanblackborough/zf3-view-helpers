@@ -53,21 +53,21 @@ class Bootstrap4Card extends AbstractHelper
     /**
      * Entry point for the view helper
      *
-     * @param string $width_class Optional card width class
-     * @param string $width_attr Optional card width style attribute
+     * @param string $class Option card class, for example width
+     * @param string $attr Optional card style attribute, for example width
      *
      * @return Bootstrap4Card
      */
-    public function __invoke(string $width_class = '', string $width_attr = ''): Bootstrap4Card
+    public function __invoke(string $class = '', string $attr = ''): Bootstrap4Card
     {
         $this->reset();
 
-        if (strlen($width_class) > 0) {
-            $this->classes['card'][] = $width_class;
+        if (strlen($class) > 0) {
+            $this->classes['card'][] = $class;
         }
 
-        if (strlen($width_attr) > 0) {
-            $this->attr['card'][] = $width_attr;
+        if (strlen($attr) > 0) {
+            $this->attr['card'][] = $attr;
         }
 
         return $this;
@@ -143,9 +143,13 @@ class Bootstrap4Card extends AbstractHelper
      */
     private function cardHeader() : string
     {
+        $html = '';
+
         if ($this->header !== null) {
-            return '<div class="card-header">' . $this->header . '</div>';
+            $html .= '<div class="card-header">' . $this->header . '</div>';
         }
+
+        return $html;
     }
 
     /**
@@ -155,9 +159,13 @@ class Bootstrap4Card extends AbstractHelper
      */
     private function cardFooter() : string
     {
+        $html = '';
+
         if ($this->footer !== null) {
-            return '<div class="card-footer">' . $this->footer . '</div>';
+            $html .= '<div class="card-footer">' . $this->footer . '</div>';
         }
+
+        return $html;
     }
 
     /**
