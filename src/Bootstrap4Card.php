@@ -214,13 +214,56 @@ class Bootstrap4Card extends AbstractHelper
                 $body = '<p>No card body content defined, no calls to setBody() or setBodyContent().</p>';
             }
         } else {
-            //$this->createBodyFromContent(); // Creates the body sections array
-
-            $body = implode('', $this->body_sections);
+            $body = $this->cardBodyHtml();
         }
 
         return '<div class="card-body' . $this->elementClasses('body') . '"' .
             $this->elementAttr('body') . '>' . $body . '</div>';
+    }
+
+    /**
+     * Generate and return the body content HTML by looping through the set body sections
+     *
+     * @return string
+     */
+    private function cardBodyHtml() : string
+    {
+        $html = '';
+
+        foreach ($this->body_sections as $section) {
+            switch ($section['type']) {
+                case 'title':
+                    $html .= '<' . $section['tag'] . ' class="card-title' .
+                        $this->elementBodyClasses('title') . '"' .
+                        $this->elementBodyAttr('title')  . '>' . $section['content'] .
+                        '</' . $section['tag'] . '>';
+                    break;
+
+                case 'subtitle':
+                    $html .= '<' . $section['tag'] . ' class="card-subtitle' .
+                        $this->elementBodyClasses('subtitle') . '"' .
+                        $this->elementBodyAttr('subtitle') . '>' .
+                        $section['content'] . '</' . $section['tag'] . '>';
+                    break;
+
+                case 'text':
+                    $html .= '<div class="card-text' . $this->elementBodyClasses('text') . '"' .
+                        $this->elementBodyAttr('text') . '>' . $section['content'] . '</div>';
+                    break;
+
+                case 'link':
+                    $html .= '<a href="' . $section['uri'] . '" class="' .
+                        $this->elementBodyClasses('link') . '"' .
+                        $this->elementBodyAttr('link') . '>' . $section['content'] . '</a>';
+                    break;
+
+                default:
+                    // Do nothing
+                    break;
+            }
+        }
+
+        return $html;
     }
 
     /**
@@ -375,9 +418,10 @@ class Bootstrap4Card extends AbstractHelper
      */
     public function addTextToBody(string $content) : Bootstrap4Card
     {
-        $this->body_sections[] = '<div class="card-text' .
-            $this->elementBodyClasses('text') . '"' .
-            $this->elementBodyAttr('text') . '>' . $content . '</div>';
+        $this->body_sections[] = [
+            'type' => 'text',
+            'content' => $content
+        ];
 
         return $this;
     }
@@ -392,9 +436,11 @@ class Bootstrap4Card extends AbstractHelper
      */
     public function addTitleToBody(string $content, string $tag = 'h4') : Bootstrap4Card
     {
-        $this->body_sections[] = '<' . $tag . ' class="card-title' .
-            $this->elementBodyClasses('title') . '"' .
-            $this->elementBodyAttr('title')  . '>' . $content . '</' . $tag . '>';
+        $this->body_sections[] = [
+            'type' => 'title',
+            'tag' => $tag,
+            'content' => $content
+        ];
 
         return $this;
     }
@@ -409,9 +455,11 @@ class Bootstrap4Card extends AbstractHelper
      */
     public function addSubtitleToBody(string $content, string $tag = 'h6') : Bootstrap4Card
     {
-        $this->body_sections[] = '<' . $tag . ' class="card-subtitle' .
-            $this->elementBodyClasses('subtitle') . '"' .
-            $this->elementBodyAttr('subtitle') . '>' . $content . '</' . $tag . '>';
+        $this->body_sections[] = [
+            'type' => 'subtitle',
+            'tag' => $tag,
+            'content' => $content
+        ];
 
         return $this;
     }
@@ -426,9 +474,11 @@ class Bootstrap4Card extends AbstractHelper
      */
     public function addLinkToBody(string $content, string $uri) : Bootstrap4Card
     {
-        $this->body_sections[] = '<a href="' . $uri . '" class="' .
-            $this->elementBodyClasses('link') . '"' .
-            $this->elementBodyAttr('link') . '>' . $content . '</a>';
+        $this->body_sections[] = [
+            'type' => 'link',
+            'uri' => $uri,
+            'content' => $content
+        ];
 
         return $this;
     }
