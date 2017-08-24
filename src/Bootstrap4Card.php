@@ -26,6 +26,11 @@ class Bootstrap4Card extends AbstractHelper
     private $attr;
 
     /**
+     * @var array Assigned body attributes
+     */
+    private $body_attr;
+
+    /**
      * @var string Body content
      */
     private $body;
@@ -46,9 +51,14 @@ class Bootstrap4Card extends AbstractHelper
     private $footer;
 
     /**
-     * @var array Elements on card
+     * @var array Elements of card
      */
     private $elements = ['card', 'body', 'header', 'footer'];
+
+    /**
+     * @var array Elements of card body
+     */
+    private $body_elements = ['title', 'subtitle', 'text', 'link'];
 
     /**
      * Entry point for the view helper
@@ -208,6 +218,8 @@ class Bootstrap4Card extends AbstractHelper
     /**
      * Add a custom class to a card element
      *
+     * Silently errors, if the element is invalid the attribute is not assigned to the classes array
+     *
      * @param string $class Class to assign to element
      * @param string $element Element to attach the class to [card|body|header|footer]
      *
@@ -225,6 +237,8 @@ class Bootstrap4Card extends AbstractHelper
     /**
      * Add a custom attribute to a card element
      *
+     * Silently errors, if the element is invalid the attribute is not assigned to the attributes array
+     *
      * @param string $attr Attribute to assign to element
      * @param string $element Element to attach the attribute to [card|body|header|footer]
      *
@@ -234,6 +248,26 @@ class Bootstrap4Card extends AbstractHelper
     {
         if (in_array($element, $this->elements) === true) {
             $this->attr[$element][] = $attr;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Add a custom attribute to a card body element, if there are multiple body elements of
+     * the same type the attribute will be added to all of them.
+     *
+     * Silently errors, if the element is invalid the attribute is not assigned to the body attributes array
+     *
+     * @param string $attr Attribute to assign to element
+     * @param string $element Body element to attach the attribute to [title|subtitle|text|link]
+     *
+     * @return Bootstrap4Card
+     */
+    public function addCustomBodyAttr(string $attr, string $element) : Bootstrap4Card
+    {
+        if (in_array($element, $this->body_elements) === true) {
+            $this->body_attr[$element][] = $attr;
         }
 
         return $this;
