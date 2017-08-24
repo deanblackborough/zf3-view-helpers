@@ -75,13 +75,15 @@ echo $this->bootstrap4Button($label)->
     link($uri);
 ```
 
-### Bootstrap 4 Cared
+### Bootstrap 4 Card
 
 Create a Bootstrap 4 card
 
 ##### Public methods:
  
 * addCustomAttr() - Add a custom style attribute to a card element
+* addCustomBodyAttr() - Add a custom style attribute to a card body element
+* addCustomBodyClass() - Add a custom class to a card body element
 * addCustomClass() - Add a custom class to a card attribute
 * addLinkToBody() - Add a link section to the card body
 * addSubtitleToBody() - Add a subtitle to the card body
