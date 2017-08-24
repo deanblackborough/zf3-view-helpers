@@ -366,7 +366,9 @@ class Bootstrap4Card extends AbstractHelper
      */
     public function addTextToBody(string $content) : Bootstrap4Card
     {
-        $this->body_sections[] = '<div class="card-text">' . $content . '</div>';
+        $this->body_sections[] = '<div class="card-text' .
+            $this->elementBodyClasses('text') . '"' .
+            $this->elementBodyAttr('text') . '>' . $content . '</div>';
 
         return $this;
     }
@@ -398,7 +400,9 @@ class Bootstrap4Card extends AbstractHelper
      */
     public function addSubtitleToBody(string $content, string $tag = 'h6') : Bootstrap4Card
     {
-        $this->body_sections[] = '<' . $tag . ' class="card-subtitle">' . $content . '</' . $tag . '>';
+        $this->body_sections[] = '<' . $tag . ' class="card-subtitle' .
+            $this->elementBodyClasses('subtitle') . '"' .
+            $this->elementBodyAttr('subtitle') . '>' . $content . '</' . $tag . '>';
 
         return $this;
     }
@@ -413,7 +417,9 @@ class Bootstrap4Card extends AbstractHelper
      */
     public function addLinkToBody(string $content, string $uri) : Bootstrap4Card
     {
-        $this->body_sections[] = '<a href="' . $uri . '">' . $content . '</a>';
+        $this->body_sections[] = '<a href="' . $uri . '" class="' .
+            $this->elementBodyClasses('link') . '"' .
+            $this->elementBodyAttr('link') . '>' . $content . '</a>';
 
         return $this;
     }
