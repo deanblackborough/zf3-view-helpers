@@ -41,9 +41,13 @@ class Bootstrap4Card extends AbstractHelper
     private $body;
 
     /**
-     * @var array Body content items
+     * @var array Body content sections, generated HTML
      */
     private $body_sections;
+
+    /**
+     * @var array Body content items, indexed by type
+     */
 
     /**
      * @var string Header content
@@ -97,6 +101,9 @@ class Bootstrap4Card extends AbstractHelper
     {
         $this->classes = ['card' => [], 'body' => [], 'header' => [], 'footer' => []];
         $this->attr = ['card' => [], 'body' => [], 'header' => [], 'footer' => []];
+
+        $this->body_classes = ['title' => [], 'subtitle' => [], 'text' => [], 'link' => []];
+        $this->body_attr = ['title' => [], 'subtitle' => [], 'text' => [], 'link' => []];
 
         $this->body = null;
         $this->body_sections = [];
@@ -207,6 +214,8 @@ class Bootstrap4Card extends AbstractHelper
                 $body = '<p>No card body content defined, no calls to setBody() or setBodyContent().</p>';
             }
         } else {
+            //$this->createBodyFromContent(); // Creates the body sections array
+
             $body = implode('', $this->body_sections);
         }
 
