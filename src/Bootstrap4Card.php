@@ -26,6 +26,11 @@ class Bootstrap4Card extends AbstractHelper
     private $attr;
 
     /**
+     * @var array Assigned body classes
+     */
+    private $body_classes;
+
+    /**
      * @var array Assigned body attributes
      */
     private $body_attr;
@@ -122,6 +127,28 @@ class Bootstrap4Card extends AbstractHelper
     }
 
     /**
+     * Fetch the classes assigned to the given body element type
+     *
+     * @param string $element [title|subtitle|text|link]
+     *
+     * @return string
+     */
+    private function elementBodyClasses(string $element) : string
+    {
+        if (in_array($element, $this->body_elements) === true) {
+            $class = '';
+
+            if (count($this->body_classes[$element]) > 0) {
+                $class = ' ' . implode(' ', $this->body_classes[$element]);
+            }
+
+            return $class;
+        } else {
+            return '';
+        }
+    }
+
+    /**
      * Fetch the attributes assigned to the given element
      *
      * @param string $element [card|body|header|footer]
@@ -135,6 +162,28 @@ class Bootstrap4Card extends AbstractHelper
 
             if (count($this->attr[$element]) > 0) {
                 $attr = ' style="' . implode(' ', $this->attr[$element]) . '"';
+            }
+
+            return $attr;
+        } else {
+            return '';
+        }
+    }
+
+    /**
+     * Fetch the attributes assigned to the given body element type
+     *
+     * @param string $element [title|subtitle|text|link]
+     *
+     * @return string
+     */
+    private function elementBodyAttr(string $element) : string
+    {
+        if (in_array($element, $this->body_elements) === true) {
+            $attr = '';
+
+            if (count($this->body_attr[$element]) > 0) {
+                $attr = ' style="' . implode(' ', $this->body_attr[$element]) . '"';
             }
 
             return $attr;
@@ -235,6 +284,26 @@ class Bootstrap4Card extends AbstractHelper
     }
 
     /**
+     * Add a custom class to a card body element, if there are multiple body elements of
+     * the same type the class will be added to all of them.
+     *
+     * Silently errors, if the element is invalid the attribute is not assigned to the body classes array
+     *
+     * @param string $class Class to assign to element
+     * @param string $element Body element to attach the class to [title|subtitle|text|link]
+     *
+     * @return Bootstrap4Card
+     */
+    public function addCustomBodyClass(string $class, string $element) : Bootstrap4Card
+    {
+        if (in_array($element, $this->body_elements) === true) {
+            $this->body_classes[$element][] = $class;
+        }
+
+        return $this;
+    }
+
+    /**
      * Add a custom attribute to a card element
      *
      * Silently errors, if the element is invalid the attribute is not assigned to the attributes array
@@ -312,7 +381,9 @@ class Bootstrap4Card extends AbstractHelper
      */
     public function addTitleToBody(string $content, string $tag = 'h4') : Bootstrap4Card
     {
-        $this->body_sections[] = '<' . $tag . ' class="card-title">' . $content . '</' . $tag . '>';
+        $this->body_sections[] = '<' . $tag . ' class="card-title' .
+            $this->elementBodyClasses('title') . '"' .
+            $this->elementBodyAttr('title')  . '>' . $content . '</' . $tag . '>';
 
         return $this;
     }
