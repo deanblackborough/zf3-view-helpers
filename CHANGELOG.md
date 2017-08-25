@@ -2,6 +2,11 @@
 
 Full changelog for Zend Framework 3 view helpers library.
 
+## v0.61.1 - Navbar view helper
+
+* Updated navbar view helper to take account of changes between the alpha and beta.
+* Updated the background schemes.
+
 ## v0.61 - Card view helper: Custom body attributes and classes - 2017-08-25
 
 * Custom attributes and classes can be assigned to body section.

@@ -135,8 +135,7 @@ class Bootstrap4NavbarLite extends AbstractHelper
     }
 
     /**
-     * Set the background class to use for the navbar, for example, bg-primary, bg-faded
-     * and bg-inverse
+     * Set the background class to use for the navbar, for example, bg-primary, bg-dark and bg-light
      *
      * @param string $class
      *
