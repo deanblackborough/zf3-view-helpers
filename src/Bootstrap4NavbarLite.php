@@ -94,9 +94,9 @@ class Bootstrap4NavbarLite extends AbstractHelper
 
                 $html .= '
                     <li class="nav-item' .
-                        (($nav['active'] === true) ? ' active' : null) . '">
+                    (($nav['active'] === true) ? ' active' : null) . '">
                         <a class="nav-link" href="' . $nav['uri'] .
-                        '">' . $this->view->escapeHtml($nav['label']) . '</span></a>
+                    '">' . $this->view->escapeHtml($nav['label']) . '</span></a>
                     </li>';
             } else {
                 $html .= '<!-- Failed to add navigation item, index(es) missing -->';
@@ -187,8 +187,8 @@ class Bootstrap4NavbarLite extends AbstractHelper
     private function brand() : string
     {
         if ($this->brand_uri === null) {
-            return '<h1 class="navbar-brand mb-0">' .
-                $this->view->escapeHtml($this->brand_label) . '</h1>';
+            return '<span class="h1 navbar-brand">' .
+                $this->view->escapeHtml($this->brand_label) . '</span>';
         } else {
             return '<a class="navbar-brand" href="' .
                 $this->brand_uri . '">' .
@@ -211,21 +211,22 @@ class Bootstrap4NavbarLite extends AbstractHelper
         }
         if ($this->bg_style !== null) {
             $class .= ' ' . $this->bg_style;
+        } else {
+            $class .= ' bg-light';
         }
 
-        $html = '
-            <nav class="navbar navbar-toggleable-md' . $class . '" ' . $this->bg_color . '>           
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>';
-        $html .= $this->brand();
+        $html = '<nav class="navbar navbar-expand-lg' . $class . '" ' .
+            $this->bg_color . '>' . $this->brand() .
+            '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">';
 
         foreach ($this->content as $content) {
             $html .= $content;
         }
 
-        $html .= '
-            </nav>';
+        $html .= '</div></nav>';
 
         return $html;
     }
