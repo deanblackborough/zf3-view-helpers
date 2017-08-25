@@ -144,7 +144,7 @@ Create a navbar component
 ```
 echo $this->bootstrap4NavbarLite()->
     addBrand('Dlayer')->
-    bgStyle('bg-faded')->
+    bgStyle('bg-light')->
     addNavigation([ ['uri' => '#', 'label' => 'Item 1', 'active' => false ] ]); ?>
 ```
 
