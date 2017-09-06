@@ -36,6 +36,16 @@ class Bootstrap4Card extends AbstractHelper
     private $body_attr;
 
     /**
+     * @var array Body classes which should only be assigned to first body element of given type
+     */
+    private $body_classes_first;
+
+    /**
+     * @var array Body attributes which should only be assigned to first body element of given type
+     */
+    private $body_attr_first;
+
+    /**
      * @var string Body content
      */
     private $body;
@@ -343,13 +353,18 @@ class Bootstrap4Card extends AbstractHelper
      *
      * @param string $class Class to assign to element
      * @param string $element Body element to attach the class to [title|subtitle|text|link]
+     * @param boolean $first Only apply the class to the first body element of the given type rather than all elements
      *
      * @return Bootstrap4Card
      */
-    public function addCustomBodyClass(string $class, string $element) : Bootstrap4Card
+    public function addCustomBodyClass(string $class, string $element, bool $first = false) : Bootstrap4Card
     {
         if (in_array($element, $this->body_elements) === true) {
             $this->body_classes[$element][] = $class;
+
+            if ($first === true) {
+                $this->body_classes_first[$element][] = $class;
+            }
         }
 
         return $this;
@@ -382,13 +397,18 @@ class Bootstrap4Card extends AbstractHelper
      *
      * @param string $attr Attribute to assign to element
      * @param string $element Body element to attach the attribute to [title|subtitle|text|link]
+     * @param boolean $first Only apply the attribute to the first body element of the given type rather than all elements
      *
      * @return Bootstrap4Card
      */
-    public function addCustomBodyAttr(string $attr, string $element) : Bootstrap4Card
+    public function addCustomBodyAttr(string $attr, string $element, bool $first = false) : Bootstrap4Card
     {
         if (in_array($element, $this->body_elements) === true) {
             $this->body_attr[$element][] = $attr;
+
+            if ($first === true) {
+                $this->body_attr_first[$element][] = $attr;
+            }
         }
 
         return $this;
