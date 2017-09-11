@@ -156,7 +156,21 @@ class Bootstrap4Card extends AbstractHelper
             $class = '';
 
             if (count($this->body_classes[$element]) > 0) {
-                $class = ' ' . implode(' ', $this->body_classes[$element]);
+                if (array_key_exists($element, $this->body_classes_first) === false) {
+                    $class = ' ' . implode(' ', $this->body_classes[$element]);
+                } else {
+                    $class = '';
+                    foreach ($this->body_classes[$element] as $body_class) {
+                        if (array_key_exists($body_class, $this->body_classes_first[$element]) === false) {
+                            $class .= ' ' . $body_class;
+                        } else {
+                            if ($this->body_classes_first[$element][$body_class] === true) {
+                                $class .= ' ' . $body_class;
+                                $this->body_classes_first[$element][$body_class] = false;
+                            }
+                        }
+                    }
+                }
             }
 
             return $class;
@@ -200,7 +214,22 @@ class Bootstrap4Card extends AbstractHelper
             $attr = '';
 
             if (count($this->body_attr[$element]) > 0) {
-                $attr = ' style="' . implode(' ', $this->body_attr[$element]) . '"';
+                if (array_key_exists($element, $this->body_attr_first) === false) {
+                    $attr = ' style="' . implode(' ', $this->body_attr[$element]) . '"';
+                } else {
+                    $attr = ' style="';
+                    foreach ($this->body_attr[$element] as $body_attr) {
+                        if (array_key_exists($body_attr, $this->body_attr_first[$element]) === false) {
+                            $attr .= ' ' . $body_attr . ';';
+                        } else {
+                            if ($this->body_attr_first[$element][$body_attr] === true) {
+                                $attr .= ' ' . $body_attr . ';';
+                                $this->body_attr_first[$element][$body_attr] = false;
+                            }
+                        }
+                    }
+                    $attr .= '"';
+                }
             }
 
             return $attr;
@@ -363,7 +392,7 @@ class Bootstrap4Card extends AbstractHelper
             $this->body_classes[$element][] = $class;
 
             if ($first === true) {
-                $this->body_classes_first[$element][] = $class;
+                $this->body_classes_first[$element][$class] = true;
             }
         }
 
@@ -407,7 +436,7 @@ class Bootstrap4Card extends AbstractHelper
             $this->body_attr[$element][] = $attr;
 
             if ($first === true) {
-                $this->body_attr_first[$element][] = $attr;
+                $this->body_attr_first[$element][$attr] = true;
             }
         }
 
