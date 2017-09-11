@@ -36,6 +36,16 @@ class Bootstrap4Card extends AbstractHelper
     private $body_attr;
 
     /**
+     * @var array Body classes which should only be assigned to first body element of given type
+     */
+    private $body_classes_first;
+
+    /**
+     * @var array Body attributes which should only be assigned to first body element of given type
+     */
+    private $body_attr_first;
+
+    /**
      * @var string Body content
      */
     private $body;
@@ -105,6 +115,9 @@ class Bootstrap4Card extends AbstractHelper
         $this->body_classes = ['title' => [], 'subtitle' => [], 'text' => [], 'link' => []];
         $this->body_attr = ['title' => [], 'subtitle' => [], 'text' => [], 'link' => []];
 
+        $this->body_classes_first = [];
+        $this->body_attr_first = [];
+
         $this->body = null;
         $this->body_sections = [];
         $this->header = null;
@@ -146,7 +159,21 @@ class Bootstrap4Card extends AbstractHelper
             $class = '';
 
             if (count($this->body_classes[$element]) > 0) {
-                $class = ' ' . implode(' ', $this->body_classes[$element]);
+                if (array_key_exists($element, $this->body_classes_first) === false) {
+                    $class = ' ' . implode(' ', $this->body_classes[$element]);
+                } else {
+                    $class = '';
+                    foreach ($this->body_classes[$element] as $body_class) {
+                        if (array_key_exists($body_class, $this->body_classes_first[$element]) === false) {
+                            $class .= ' ' . $body_class;
+                        } else {
+                            if ($this->body_classes_first[$element][$body_class] === true) {
+                                $class .= ' ' . $body_class;
+                                $this->body_classes_first[$element][$body_class] = false;
+                            }
+                        }
+                    }
+                }
             }
 
             return $class;
@@ -190,7 +217,22 @@ class Bootstrap4Card extends AbstractHelper
             $attr = '';
 
             if (count($this->body_attr[$element]) > 0) {
-                $attr = ' style="' . implode(' ', $this->body_attr[$element]) . '"';
+                if (array_key_exists($element, $this->body_attr_first) === false) {
+                    $attr = ' style="' . implode(' ', $this->body_attr[$element]) . '"';
+                } else {
+                    $attr = ' style="';
+                    foreach ($this->body_attr[$element] as $body_attr) {
+                        if (array_key_exists($body_attr, $this->body_attr_first[$element]) === false) {
+                            $attr .= ' ' . $body_attr . ';';
+                        } else {
+                            if ($this->body_attr_first[$element][$body_attr] === true) {
+                                $attr .= ' ' . $body_attr . ';';
+                                $this->body_attr_first[$element][$body_attr] = false;
+                            }
+                        }
+                    }
+                    $attr .= '"';
+                }
             }
 
             return $attr;
@@ -343,13 +385,18 @@ class Bootstrap4Card extends AbstractHelper
      *
      * @param string $class Class to assign to element
      * @param string $element Body element to attach the class to [title|subtitle|text|link]
+     * @param boolean $first Only apply the class to the first body element of the given type rather than all elements
      *
      * @return Bootstrap4Card
      */
-    public function addCustomBodyClass(string $class, string $element) : Bootstrap4Card
+    public function addCustomBodyClass(string $class, string $element, bool $first = false) : Bootstrap4Card
     {
         if (in_array($element, $this->body_elements) === true) {
             $this->body_classes[$element][] = $class;
+
+            if ($first === true) {
+                $this->body_classes_first[$element][$class] = true;
+            }
         }
 
         return $this;
@@ -382,13 +429,18 @@ class Bootstrap4Card extends AbstractHelper
      *
      * @param string $attr Attribute to assign to element
      * @param string $element Body element to attach the attribute to [title|subtitle|text|link]
+     * @param boolean $first Only apply the attribute to the first body element of the given type rather than all elements
      *
      * @return Bootstrap4Card
      */
-    public function addCustomBodyAttr(string $attr, string $element) : Bootstrap4Card
+    public function addCustomBodyAttr(string $attr, string $element, bool $first = false) : Bootstrap4Card
     {
         if (in_array($element, $this->body_elements) === true) {
             $this->body_attr[$element][] = $attr;
+
+            if ($first === true) {
+                $this->body_attr_first[$element][$attr] = true;
+            }
         }
 
         return $this;

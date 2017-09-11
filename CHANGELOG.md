@@ -2,6 +2,11 @@
 
 Full changelog for Zend Framework 3 view helpers library.
 
+## v0.62.0 - Cards: First body element only
+
+* Updated addCustomBodyAttr() and addCustomBodyClass(), only apply custom class or attribute to the first body element 
+of the given type.
+
 ## v0.61.1 - Navbar view helper
 
 * Updated navbar view helper to take account of changes between the alpha and beta.
