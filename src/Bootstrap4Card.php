@@ -115,6 +115,9 @@ class Bootstrap4Card extends AbstractHelper
         $this->body_classes = ['title' => [], 'subtitle' => [], 'text' => [], 'link' => []];
         $this->body_attr = ['title' => [], 'subtitle' => [], 'text' => [], 'link' => []];
 
+        $this->body_classes_first = [];
+        $this->body_attr_first = [];
+
         $this->body = null;
         $this->body_sections = [];
         $this->header = null;
