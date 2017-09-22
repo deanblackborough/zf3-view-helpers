@@ -39,9 +39,11 @@ class Bootstrap4Button extends AbstractHelper
         'primary',
         'secondary',
         'success',
-        'info',
-        'warning',
         'danger',
+        'warning',
+        'info',
+        'light',
+        'dark',
         'link'
     ];
 

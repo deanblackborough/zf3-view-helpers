@@ -2,6 +2,11 @@
 
 Full changelog for Zend Framework 3 view helpers library.
 
+## v0.62.1 - Beta 4.0.0 updates/fixes
+
+* Badge view helper updated, classes match beta-4.0.0 of Bootstrap.
+* Updated supported styles for badge and button view helpers.
+
 ## v0.62.0 - Cards: First body element only
 
 * Updated addCustomBodyAttr() and addCustomBodyClass(), only apply custom class or attribute to the first body element 

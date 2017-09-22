@@ -37,10 +37,11 @@ class Bootstrap4Badge extends AbstractHelper
         'primary',
         'secondary',
         'success',
-        'info',
-        'warning',
         'danger',
-        'link'
+        'warning',
+        'info',
+        'light',
+        'dark'
     ];
 
     /**
@@ -62,7 +63,7 @@ class Bootstrap4Badge extends AbstractHelper
     /**
      * Set the style for the badge, one of the following, primary, secondary, success,
      * info, warning, danger or link. If an incorrect style is passed in we set the
-     * style to btn-primary
+     * style to badge-primary
      *
      * @param string $style
      *
@@ -71,9 +72,9 @@ class Bootstrap4Badge extends AbstractHelper
     public function setStyle(string $style): Bootstrap4Badge
     {
         if (in_array($style, $this->supported_styles) === true) {
-            $this->style = $style;
+            $this->style = 'badge-' . $style;
         } else {
-            $this->style = 'primary';
+            $this->style = 'badge-primary';
         }
 
         return $this;
@@ -125,11 +126,11 @@ class Bootstrap4Badge extends AbstractHelper
         $classes = '';
 
         if ($this->style !== null) {
-            $classes .= ' btn-' . $this->style;
+            $classes .= ' ' . $this->style;
         }
 
         if ($this->pill === true) {
-            $classes .= ' btn-pill';
+            $classes .= ' badge-pill';
         }
 
         return $classes;
