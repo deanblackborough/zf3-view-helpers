@@ -14,7 +14,7 @@ final class Bootstrap4BadgeTest extends \PHPUnit\Framework\TestCase
     {
         $view_helper = new Bootstrap4Badge();
         $view_helper->__invoke('Badge');
-        $this->assertEquals('<span class="badge">Badge</span>', $view_helper->__toString());
+        $this->assertEquals('<span class="badge badge-primary">Badge</span>', $view_helper->__toString());
     }
 
     /**
@@ -24,7 +24,7 @@ final class Bootstrap4BadgeTest extends \PHPUnit\Framework\TestCase
     {
         $view_helper = new Bootstrap4Badge();
         $view_helper->__invoke('Badge')->pill();
-        $this->assertEquals('<span class="badge badge-pill">Badge</span>', $view_helper->__toString());
+        $this->assertEquals('<span class="badge badge-primary badge-pill">Badge</span>', $view_helper->__toString());
     }
 
     /**
