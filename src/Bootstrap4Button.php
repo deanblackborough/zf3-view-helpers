@@ -304,8 +304,8 @@ class Bootstrap4Button extends AbstractHelper
     {
         switch ($this->mode) {
             case 'button':
-                $html = '<button class="btn' . $this->classes() . '" type="submit" ' .
-                    (($this->disabled === true) ? 'disabled ' : null) .
+                $html = '<button class="btn' . $this->classes() . '" type="submit"' .
+                    (($this->disabled === true) ? ' disabled' : null) .
                     '>' . $this->label . '</button>';
                 break;
 
