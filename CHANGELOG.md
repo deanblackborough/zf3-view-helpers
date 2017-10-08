@@ -2,7 +2,7 @@
 
 Full changelog for Zend Framework 3 view helpers library.
 
-## v0.63.0 - Tests
+## v0.63.0 - Tests - 2017-10-08
 
 * Removing call to default escape plugins, assumption now is developer will escape their own data.
 * Added tests for Bootstrap 4 Badge view helper
