@@ -31,6 +31,11 @@ class Bootstrap4Badge extends AbstractHelper
     private $pill;
 
     /**
+     * @var boolean URI if in link mode
+     */
+    private $uri;
+
+    /**
      * @var array Bootstrap styles
      */
     private $supported_styles = [
@@ -81,6 +86,18 @@ class Bootstrap4Badge extends AbstractHelper
     }
 
     /**
+     * Render the badge as a link
+     *
+     * @param string $uri
+     *
+     * @return Bootstrap4Badge
+     */
+    public function asLink(string $uri)
+    {
+        $this->uri = $uri;
+    }
+
+    /**
      * Set the pill option
      *
      * @return Bootstrap4Badge
@@ -102,6 +119,7 @@ class Bootstrap4Badge extends AbstractHelper
         $this->label = null;
         $this->style = null;
         $this->pill = false;
+        $this->uri = null;
     }
 
     /**
@@ -112,8 +130,11 @@ class Bootstrap4Badge extends AbstractHelper
      */
     private function render(): string
     {
-        return '<span class="badge' . $this->classes() . '">' .
-            $this->view->escapeHtml($this->label) . '</span>';
+        if ($this->uri === null) {
+            return '<span class="badge' . $this->classes() . '">' . $this->label . '</span>';
+        } else {
+            return '<a href="' . $this->uri . '" class="badge' . $this->classes() . '">' . $this->label . '</a>';
+        }
     }
 
     /**
@@ -123,10 +144,10 @@ class Bootstrap4Badge extends AbstractHelper
      */
     private function classes(): string
     {
-        $classes = '';
-
         if ($this->style !== null) {
-            $classes .= ' ' . $this->style;
+            $classes = ' ' . $this->style;
+        } else {
+            $classes = ' badge-primary';
         }
 
         if ($this->pill === true) {
