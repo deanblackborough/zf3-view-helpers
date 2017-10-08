@@ -112,8 +112,7 @@ class Bootstrap4Badge extends AbstractHelper
      */
     private function render(): string
     {
-        return '<span class="badge' . $this->classes() . '">' .
-            $this->view->escapeHtml($this->label) . '</span>';
+        return '<span class="badge' . $this->classes() . '">' . $this->label . '</span>';
     }
 
     /**
