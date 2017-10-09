@@ -1,6 +1,7 @@
 [![Latest Stable Version](https://img.shields.io/packagist/v/deanblackborough/zf3-view-helpers.svg?style=flat-square)](https://packagist.org/packages/deanblackborough/zf3-view-helpers)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/deanblackborough/zf3-view-helpers/blob/master/LICENSE)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.1-8892BF.svg)](https://php.net/)
+[![Build Status](https://travis-ci.org/deanblackborough/zf3-view-helpers.svg?branch=master)](https://travis-ci.org/deanblackborough/zf3-view-helpers)
 
 # ZF3 view helpers
 
@@ -12,8 +13,8 @@ A collection of Zend Framework 3 view helpers, primarily focused on Bootstrap 3 
 
 ### Bootstrap 4
  
-* Bootstrap 4 Badge component
-* Bootstrap 4 Button component
+* Bootstrap 4 Badge component - [12 Tests]
+* Bootstrap 4 Button component - [31 Tests]
 * Bootstrap 4 Card component
 * Bootstrap 4 Jumbotron component
 * Bootstrap 4 Navbar component (lite)
