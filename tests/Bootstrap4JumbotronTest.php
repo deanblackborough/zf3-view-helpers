@@ -19,4 +19,18 @@ final class Bootstrap4JumbotronTest extends PHPUnit\Framework\TestCase
             $view_helper->__toString()
         );
     }
+
+    /**
+     * Add a sub heading
+     */
+    public function testSubHeading()
+    {
+        $view_helper = new Bootstrap4Jumbotron();
+        $view_helper->__invoke('Heading', '<p>Content</p>')
+            ->subHeading('Sub heading');
+        $this->assertEquals(
+            '<div class="jumbotron"><h1 class="display-1">Heading <small>Sub heading</small></h1><p>Content</p></div>',
+            $view_helper->__toString()
+        );
+    }
 }
