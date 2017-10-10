@@ -279,3 +279,10 @@ to use in your project.
         ]
     ]
 ```
+
+## Future plans
+
+* Develop view helpers for each of the Bootstrap 4 components.
+* Develop view helpers for each of the Bootstrap 3 components.
+* Update view helpers to provide more control over assigned content.
+* Additional view helpers.

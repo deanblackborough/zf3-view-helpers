@@ -78,7 +78,7 @@ class Bootstrap4Jumbotron extends AbstractHelper
     }
 
     /**
-     * Set the display level class for a heading title, display-1-4
+     * Set the display level class for a heading title, display-[1-4]
      *
      * @param integer $level [1-4]
      *
@@ -131,11 +131,10 @@ class Bootstrap4Jumbotron extends AbstractHelper
             (($this->fluid === true) ? ' jumbotron-fluid' : null) .
             '">' .
             (($this->fluid === true) ? '<div class="container">' : null) .
-            '<h1' .
-            (($this->display_level !== null) ? ' class="display-' . $this->display_level . '"' : null) .
-            '>' . $this->view->escapeHtml($this->heading) .
+            '<h1 class="display-' . (($this->display_level !== null) ? $this->display_level : '1') .
+            '">' . $this->heading .
             (($this->sub_heading !== null) ? '<small>' .
-            $this->view->escapeHtml($this->sub_heading) . '</small>' : null) .
+            $this->sub_heading . '</small>' : null) .
             '</h1>' . $this->content .
             (($this->fluid === true) ? '</div>' : null) .
             '</div>';
