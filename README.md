@@ -13,12 +13,12 @@ A collection of Zend Framework 3 view helpers, primarily focused on Bootstrap 3 
 
 ### Bootstrap 4
  
-* Bootstrap 4 Badge component - [12 Tests]
-* Bootstrap 4 Button component - [31 Tests]
+* Bootstrap 4 Badge component - [12 tests]
+* Bootstrap 4 Button component - [31 tests]
 * Bootstrap 4 Card component
-* Bootstrap 4 Jumbotron component
+* Bootstrap 4 Jumbotron component - [26 tests]
 * Bootstrap 4 Navbar component (lite)
-* Bootstrap 4 Progress bar component
+* Bootstrap 4 Progress bar component - [17 tests]
 * Bootstrap 4 Multiple progress bar component
 
 ### Bootstrap 3
@@ -279,3 +279,10 @@ to use in your project.
         ]
     ]
 ```
+
+## Future plans
+
+* Develop view helpers for each of the Bootstrap 4 components.
+* Develop view helpers for each of the Bootstrap 3 components.
+* Update view helpers to provide more control over assigned content.
+* Additional view helpers.
