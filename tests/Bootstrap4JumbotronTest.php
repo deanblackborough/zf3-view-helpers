@@ -111,7 +111,133 @@ final class Bootstrap4JumbotronTest extends PHPUnit\Framework\TestCase
     {
         $view_helper = new Bootstrap4Jumbotron();
         $view_helper->__invoke('Heading', '<p>Content</p>')
-            ->bgStyle('primary');
+            ->setBgStyle('primary');
+        $this->assertEquals(
+            '<div class="jumbotron bg-primary"><h1 class="display-1">Heading</h1><p>Content</p></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Set background style secondary
+     */
+    public function testBgStyleSecondary()
+    {
+        $view_helper = new Bootstrap4Jumbotron();
+        $view_helper->__invoke('Heading', '<p>Content</p>')
+            ->setBgStyle('secondary');
+        $this->assertEquals(
+            '<div class="jumbotron bg-secondary"><h1 class="display-1">Heading</h1><p>Content</p></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Set background style success
+     */
+    public function testBgStyleSuccess()
+    {
+        $view_helper = new Bootstrap4Jumbotron();
+        $view_helper->__invoke('Heading', '<p>Content</p>')
+            ->setBgStyle('success');
+        $this->assertEquals(
+            '<div class="jumbotron bg-success"><h1 class="display-1">Heading</h1><p>Content</p></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Set background style danger
+     */
+    public function testBgStyleDanger()
+    {
+        $view_helper = new Bootstrap4Jumbotron();
+        $view_helper->__invoke('Heading', '<p>Content</p>')
+            ->setBgStyle('danger');
+        $this->assertEquals(
+            '<div class="jumbotron bg-danger"><h1 class="display-1">Heading</h1><p>Content</p></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Set background style warning
+     */
+    public function testBgStyleWarning()
+    {
+        $view_helper = new Bootstrap4Jumbotron();
+        $view_helper->__invoke('Heading', '<p>Content</p>')
+            ->setBgStyle('warning');
+        $this->assertEquals(
+            '<div class="jumbotron bg-warning"><h1 class="display-1">Heading</h1><p>Content</p></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Set background style info
+     */
+    public function testBgStyleInfo()
+    {
+        $view_helper = new Bootstrap4Jumbotron();
+        $view_helper->__invoke('Heading', '<p>Content</p>')
+            ->setBgStyle('info');
+        $this->assertEquals(
+            '<div class="jumbotron bg-info"><h1 class="display-1">Heading</h1><p>Content</p></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Set background style light
+     */
+    public function testBgStyleLight()
+    {
+        $view_helper = new Bootstrap4Jumbotron();
+        $view_helper->__invoke('Heading', '<p>Content</p>')
+            ->setBgStyle('light');
+        $this->assertEquals(
+            '<div class="jumbotron bg-light"><h1 class="display-1">Heading</h1><p>Content</p></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Set background style dark
+     */
+    public function testBgStyleDark()
+    {
+        $view_helper = new Bootstrap4Jumbotron();
+        $view_helper->__invoke('Heading', '<p>Content</p>')
+            ->setBgStyle('dark');
+        $this->assertEquals(
+            '<div class="jumbotron bg-dark"><h1 class="display-1">Heading</h1><p>Content</p></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Set background style white
+     */
+    public function testBgStyleWhite()
+    {
+        $view_helper = new Bootstrap4Jumbotron();
+        $view_helper->__invoke('Heading', '<p>Content</p>')
+            ->setBgStyle('white');
+        $this->assertEquals(
+            '<div class="jumbotron bg-white"><h1 class="display-1">Heading</h1><p>Content</p></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Set background style invalid
+     */
+    public function testBgStyleInvalid()
+    {
+        $view_helper = new Bootstrap4Jumbotron();
+        $view_helper->__invoke('Heading', '<p>Content</p>')
+            ->setBgStyle('invalid');
         $this->assertEquals(
             '<div class="jumbotron bg-primary"><h1 class="display-1">Heading</h1><p>Content</p></div>',
             $view_helper->__toString()
@@ -125,7 +251,7 @@ final class Bootstrap4JumbotronTest extends PHPUnit\Framework\TestCase
     {
         $view_helper = new Bootstrap4Jumbotron();
         $view_helper->__invoke('Heading', '<p>Content</p>')
-            ->textStyle('primary');
+            ->setTextStyle('primary');
         $this->assertEquals(
             '<div class="jumbotron text-primary"><h1 class="display-1">Heading</h1><p>Content</p></div>',
             $view_helper->__toString()

@@ -166,7 +166,7 @@ class Bootstrap4Jumbotron extends AbstractHelper
 
     /**
      * Set the text style for the jumbotron, one of the following, primary, secondary, success,
-     * info, warning, danger, light, dark or white. If an incorrect style is passed in we set the style to
+     * info, warning, danger, light, dark. If an incorrect style is passed in we set the style to
      * dark
      *
      * @param string $style
@@ -175,7 +175,7 @@ class Bootstrap4Jumbotron extends AbstractHelper
      */
     public function setTextStyle($style)
     {
-        if (in_array($style, $this->supported_styles) === true) {
+        if (in_array($style, $this->supported_styles) === true && $style !== 'white') {
             $this->text_style = $style;
         } else {
             $this->text_style = 'dark';
