@@ -18,7 +18,7 @@ A collection of Zend Framework 3 view helpers, primarily focused on Bootstrap 3 
 * Bootstrap 4 Card component
 * Bootstrap 4 Jumbotron component - [26 tests]
 * Bootstrap 4 Navbar component (lite)
-* Bootstrap 4 Progress bar component
+* Bootstrap 4 Progress bar component - [17 tests]
 * Bootstrap 4 Multiple progress bar component
 
 ### Bootstrap 3

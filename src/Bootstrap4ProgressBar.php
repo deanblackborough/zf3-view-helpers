@@ -49,10 +49,15 @@ class Bootstrap4ProgressBar extends AbstractHelper
      * @var array Bootstrap styles
      */
     private $supported_styles = [
+        'primary',
+        'secondary',
         'success',
-        'info',
-        'warning',
         'danger',
+        'warning',
+        'info',
+        'light',
+        'dark',
+        'white'
     ];
 
     /**
@@ -72,14 +77,14 @@ class Bootstrap4ProgressBar extends AbstractHelper
     }
 
     /**
-     * Set the background color for the progress bar, one of the following, success, info,
-     * warning or danger. If an incorrect style is passed in we don't apply the class.
+     * Set the background color for the progress bar, one of the following, primary, secondary, success, danger,
+     * warning, info, light, dark or white, if an incorrect style is passed in we don't apply the class.
      *
      * @param string $color
      *
      * @return Bootstrap4ProgressBar
      */
-    public function color(string $color): Bootstrap4ProgressBar
+    public function setBgStyle(string $color): Bootstrap4ProgressBar
     {
         if (in_array($color, $this->supported_styles) === true) {
             $this->color = $color;

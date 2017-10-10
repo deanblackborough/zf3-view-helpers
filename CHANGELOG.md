@@ -2,11 +2,13 @@
 
 Full changelog for Zend Framework 3 view helpers library.
 
-## v0.64.0 - Tests and Jumbotron
+## v0.64.0 - Tests and Jumbotron - 2017-10-11
 
 * Added tests for Bootstrap 4 Jumbotron view helper.
 * Added setBGStyle() and setTextStyle() to Jumbotron view helper.
 * Jumbotron headings default to heading-1 for the H1.
+* Added tests for Bootstrap 4 Progress bar view helper.
+* Bootstrap 4 progress bar view helper now supports all the bg-* utility classes.
 
 ## v0.63.0 - Tests - 2017-10-08
 
