@@ -18,7 +18,7 @@ class Bootstrap4Jumbotron extends AbstractHelper
     /**
      * @var array Supported display levels for heading
      */
-    private $supported_display_levels = [ 1, 2, 3, 4];
+    private $supported_display_levels = [ 1, 2, 3, 4 ];
 
     /**
      * @var integer|null Set display level
@@ -44,6 +44,31 @@ class Bootstrap4Jumbotron extends AbstractHelper
      * @var string Content for Jumbotron, HTML
      */
     private $content;
+
+    /**
+     * @var array Bootstrap styles
+     */
+    private $supported_styles = [
+        'primary',
+        'secondary',
+        'success',
+        'danger',
+        'warning',
+        'info',
+        'light',
+        'dark',
+        'white'
+    ];
+
+    /**
+     * @var string Background style
+     */
+    private $bg_style;
+
+    /**
+     * @var string Text style
+     */
+    private $text_style;
 
     /**
      * Entry point for the view helper
@@ -120,6 +145,46 @@ class Bootstrap4Jumbotron extends AbstractHelper
     }
 
     /**
+     * Set the background style for the jumbotron, one of the following, primary, secondary, success,
+     * info, warning, danger, light, dark or white. If an incorrect style is passed in we set the style to
+     * primary
+     *
+     * @param string $style
+     *
+     * @return Bootstrap4Jumbotron
+     */
+    public function setBgStyle($style)
+    {
+        if (in_array($style, $this->supported_styles) === true) {
+            $this->bg_style = $style;
+        } else {
+            $this->bg_style = 'primary';
+        }
+
+        return $this;
+    }
+
+    /**
+     * Set the text style for the jumbotron, one of the following, primary, secondary, success,
+     * info, warning, danger, light, dark or white. If an incorrect style is passed in we set the style to
+     * dark
+     *
+     * @param string $style
+     *
+     * @return Bootstrap4Jumbotron
+     */
+    public function setTextStyle($style)
+    {
+        if (in_array($style, $this->supported_styles) === true) {
+            $this->text_style = $style;
+        } else {
+            $this->text_style = 'dark';
+        }
+
+        return $this;
+    }
+
+    /**
      * Worker method for the view helper, generates the HTML, the method is private so that we
      * can echo/print the view helper directly
      *
@@ -129,6 +194,8 @@ class Bootstrap4Jumbotron extends AbstractHelper
     {
         $html = '<div class="jumbotron' .
             (($this->fluid === true) ? ' jumbotron-fluid' : null) .
+            (($this->bg_style !== null) ? ' bg-' . $this->bg_style : null) .
+            (($this->text_style !== null) ? ' text-' . $this->text_style : null) .
             '">' .
             (($this->fluid === true) ? '<div class="container">' : null) .
             '<h1 class="display-' . (($this->display_level !== null) ? $this->display_level : '1') .
