@@ -257,4 +257,116 @@ final class Bootstrap4JumbotronTest extends PHPUnit\Framework\TestCase
             $view_helper->__toString()
         );
     }
+
+    /**
+     * Set text style secondary
+     */
+    public function testTextStyleSecondary()
+    {
+        $view_helper = new Bootstrap4Jumbotron();
+        $view_helper->__invoke('Heading', '<p>Content</p>')
+            ->setTextStyle('secondary');
+        $this->assertEquals(
+            '<div class="jumbotron text-secondary"><h1 class="display-1">Heading</h1><p>Content</p></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Set text style success
+     */
+    public function testTextStyleSuccess()
+    {
+        $view_helper = new Bootstrap4Jumbotron();
+        $view_helper->__invoke('Heading', '<p>Content</p>')
+            ->setTextStyle('success');
+        $this->assertEquals(
+            '<div class="jumbotron text-success"><h1 class="display-1">Heading</h1><p>Content</p></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Set text style danger
+     */
+    public function testTextStyleDanger()
+    {
+        $view_helper = new Bootstrap4Jumbotron();
+        $view_helper->__invoke('Heading', '<p>Content</p>')
+            ->setTextStyle('danger');
+        $this->assertEquals(
+            '<div class="jumbotron text-danger"><h1 class="display-1">Heading</h1><p>Content</p></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Set text style warning
+     */
+    public function testTextStyleWarning()
+    {
+        $view_helper = new Bootstrap4Jumbotron();
+        $view_helper->__invoke('Heading', '<p>Content</p>')
+            ->setTextStyle('warning');
+        $this->assertEquals(
+            '<div class="jumbotron text-warning"><h1 class="display-1">Heading</h1><p>Content</p></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Set text style info
+     */
+    public function testTextStyleInfo()
+    {
+        $view_helper = new Bootstrap4Jumbotron();
+        $view_helper->__invoke('Heading', '<p>Content</p>')
+            ->setTextStyle('info');
+        $this->assertEquals(
+            '<div class="jumbotron text-info"><h1 class="display-1">Heading</h1><p>Content</p></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Set text style light
+     */
+    public function testTextStyleLight()
+    {
+        $view_helper = new Bootstrap4Jumbotron();
+        $view_helper->__invoke('Heading', '<p>Content</p>')
+            ->setTextStyle('light');
+        $this->assertEquals(
+            '<div class="jumbotron text-light"><h1 class="display-1">Heading</h1><p>Content</p></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Set text style dark
+     */
+    public function testTextStyleDark()
+    {
+        $view_helper = new Bootstrap4Jumbotron();
+        $view_helper->__invoke('Heading', '<p>Content</p>')
+            ->setTextStyle('dark');
+        $this->assertEquals(
+            '<div class="jumbotron text-dark"><h1 class="display-1">Heading</h1><p>Content</p></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Set text style invalid
+     */
+    public function testTextStyleInvalid()
+    {
+        $view_helper = new Bootstrap4Jumbotron();
+        $view_helper->__invoke('Heading', '<p>Content</p>')
+            ->setTextStyle('invalid');
+        $this->assertEquals(
+            '<div class="jumbotron text-dark"><h1 class="display-1">Heading</h1><p>Content</p></div>',
+            $view_helper->__toString()
+        );
+    }
 }
