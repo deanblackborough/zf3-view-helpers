@@ -1,7 +1,6 @@
 <?php
 
 require __DIR__ . '../../vendor/autoload.php';
-require __DIR__ . '../../src/Bootstrap4Badge.php';
 
 use DBlackborough\Zf3ViewHelpers\Bootstrap4Badge;
 
