@@ -48,29 +48,49 @@ alternatively include the classes in src/ in your library.
 
 Below is an overview of the more complex view helpers.
 
+### Bootstrap 4 Badge
+
+Create a Bootstrap 4 badge component
+
+##### Public methods:
+ 
+* asLink() - Display as a link
+* pill() - Use the pill style
+* setBgStyle() - Set the background colour utility class
+* setTextStyle() - Set the text colour utility class
+
+##### Example
+
+``` 
+echo $this->bootstrap4Badge($badge)->
+    pill()->
+    setBgStyle('primary');
+```
+
 ### Bootstrap 4 Button
 
-Create a Bootstrap 4 button
+Create a Bootstrap 4 button component
 
 ##### Public methods:
  
 * active() - Set button as active
 * block() - Add display block style
+* customClass() - Add a custom class
 * disabled() - Set button as disabled
 * large() - Add large class
 * link() - Add URI/URL for default button type
+* setBgStyle() - Set the background colour utility class
+* setTextStyle() - Set the text colour utility class
 * setModeButton() - Render as a button, not an anchor
 * setModeInput() - Render as an input, not an anchor
 * setOutlineStyle() - Set btn-outline-* style
-* setStyle() - Set btn-* style
 * small() - Add small class
-* customClass() - Add a custom class
 
 ##### Example
 
 ``` 
 echo $this->bootstrap4Button($label)->
-    setStyle('primary')->
+    setBgStyle('primary')->
     block()->
     large()->
     link($uri);

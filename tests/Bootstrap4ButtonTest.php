@@ -87,7 +87,7 @@ final class Bootstrap4ButtonTest extends \PHPUnit\Framework\TestCase
     public function testHref()
     {
         $view_helper = new Bootstrap4Button();
-        $view_helper->__invoke('Button')->link('uri');
+        $view_helper->__invoke('Button')->setUri('uri');
         $this->assertEquals(
             '<a href="uri" class="btn" role="button">Button</a>',
             $view_helper->__toString()
@@ -402,6 +402,144 @@ final class Bootstrap4ButtonTest extends \PHPUnit\Framework\TestCase
         $view_helper->__invoke('Button')->setModeInput('invalid');
         $this->assertEquals(
             '<input class="btn" type="button" value="Button" />',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Text style primary
+     */
+    public function testTextStylePrimary()
+    {
+        $view_helper = new Bootstrap4Button();
+        $view_helper->__invoke('Button')
+            ->setBgStyle('light')
+            ->setTextStyle('primary');
+        $this->assertEquals(
+            '<a href="#" class="btn btn-light text-primary" role="button">Button</a>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Text style secondary
+     */
+    public function testTextStyleSecondary()
+    {
+        $view_helper = new Bootstrap4Button();
+        $view_helper->__invoke('Button')
+            ->setBgStyle('light')
+            ->setTextStyle('secondary');
+        $this->assertEquals(
+            '<a href="#" class="btn btn-light text-secondary" role="button">Button</a>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Text style success
+     */
+    public function testTextStyleSuccess()
+    {
+        $view_helper = new Bootstrap4Button();
+        $view_helper->__invoke('Button')
+            ->setBgStyle('light')
+            ->setTextStyle('success');
+        $this->assertEquals(
+            '<a href="#" class="btn btn-light text-success" role="button">Button</a>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Text style danger
+     */
+    public function testTextStyleDanger()
+    {
+        $view_helper = new Bootstrap4Button();
+        $view_helper->__invoke('Button')
+            ->setBgStyle('light')
+            ->setTextStyle('danger');
+        $this->assertEquals(
+            '<a href="#" class="btn btn-light text-danger" role="button">Button</a>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Text style warning
+     */
+    public function testTextStyleWarning()
+    {
+        $view_helper = new Bootstrap4Button();
+        $view_helper->__invoke('Button')
+            ->setBgStyle('light')
+            ->setTextStyle('warning');
+        $this->assertEquals(
+            '<a href="#" class="btn btn-light text-warning" role="button">Button</a>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Text style warning
+     */
+    public function testTextStyleInfo()
+    {
+        $view_helper = new Bootstrap4Button();
+        $view_helper->__invoke('Button')
+            ->setBgStyle('light')
+            ->setTextStyle('info');
+        $this->assertEquals(
+            '<a href="#" class="btn btn-light text-info" role="button">Button</a>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Text style light
+     */
+    public function testTextStyleLight()
+    {
+        $view_helper = new Bootstrap4Button();
+        $view_helper->__invoke('Button')
+            ->setBgStyle('light')
+            ->setTextStyle('light');
+        $this->assertEquals(
+            '<a href="#" class="btn btn-light text-light" role="button">Button</a>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Text style dark
+     */
+    public function testTextStyleDark()
+    {
+        $view_helper = new Bootstrap4Button();
+        $view_helper->__invoke('Button')
+            ->setBgStyle('light')
+            ->setTextStyle('dark');
+        $this->assertEquals(
+            '<a href="#" class="btn btn-light text-dark" role="button">Button</a>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Combined test
+     */
+    public function testCombined()
+    {
+        $view_helper = new Bootstrap4Button();
+        $view_helper->__invoke('Button')
+            ->setBgStyle('dark')
+            ->setTextStyle('light')
+            ->large()
+            ->active()
+            ->block();
+        $this->assertEquals(
+            '<a href="#" class="btn btn-dark text-light btn-lg btn-block active" role="button">Button</a>',
             $view_helper->__toString()
         );
     }

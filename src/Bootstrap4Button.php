@@ -46,7 +46,7 @@ class Bootstrap4Button extends Bootstrap4Helper
     /**
      * @var string Link URI/URL
      */
-    private $link;
+    private $uri;
 
     /**
      * @var boolean Add disabled option
@@ -189,13 +189,13 @@ class Bootstrap4Button extends Bootstrap4Helper
      * Set the link for the button, only usable when in the default mode, anchor tag, ignored
      * in button and input mode
      *
-     * @param string $link
+     * @param string $uri
      *
      * @return Bootstrap4Button
      */
-    public function link($link): Bootstrap4Button
+    public function setUri($uri): Bootstrap4Button
     {
-        $this->link = $link;
+        $this->uri = $uri;
 
         return $this;
     }
@@ -304,7 +304,7 @@ class Bootstrap4Button extends Bootstrap4Helper
                 break;
 
             default:
-                $html = '<a href="' . (($this->link !== null) ? $this->link : '#') .
+                $html = '<a href="' . (($this->uri !== null) ? $this->uri : '#') .
                     '" class="btn' . $this->classes() .
                     (($this->disabled === true) ? ' disabled' : null) .
                     '" role="button">' . $this->label . '</a>';
