@@ -2,20 +2,16 @@
 declare(strict_types=1);
 
 namespace DBlackborough\Zf3ViewHelpers;
-
-use Zend\View\Helper\AbstractHelper;
-
 /**
  * Generate a Bootstrap 4 button, defaults to creating an 'a' tag, use the 'set mode to' methods
  * to switch to button or input
- *
  *
  * @package DBlackborough\Zf3ViewHelpers
  * @author Dean Blackborough <dean@g3d-development.com>
  * @copyright Dean Blackborough
  * @license https://github.com/deanblackborough/zf3-view-helpers/blob/master/LICENSE
  */
-class Bootstrap4Button extends AbstractHelper
+class Bootstrap4Button extends Bootstrap4Helper
 {
     /**
      * @var string Button label
@@ -23,29 +19,9 @@ class Bootstrap4Button extends AbstractHelper
     private $label;
 
     /**
-     * @var string Button style
-     */
-    private $style;
-
-    /**
      * @var string Button outline style
      */
     private $outline_style;
-
-    /**
-     * @var array Bootstrap styles
-     */
-    private $supported_styles = [
-        'primary',
-        'secondary',
-        'success',
-        'danger',
-        'warning',
-        'info',
-        'light',
-        'dark',
-        'link'
-    ];
 
     /**
      * @var boolean Add the large style
@@ -109,21 +85,16 @@ class Bootstrap4Button extends AbstractHelper
     }
 
     /**
-     * Set the style for the button, one of the following, primary, secondary, success,
-     * info, warning, danger or link. If an incorrect style is passed in we set the style to
-     * btn-primary
+     * Set the background colour for the component, needs to be one of the following, primary, secondary, success,
+     * danger, warning, info, light, dark or white, if an incorrect style is passed in we don't apply the class.
      *
-     * @param string $style
+     * @param string $color
      *
      * @return Bootstrap4Button
      */
-    public function setStyle(string $style): Bootstrap4Button
+    public function setBgStyle($color) : Bootstrap4Button
     {
-        if (in_array($style, $this->supported_styles) === true) {
-            $this->style = $style;
-        } else {
-            $this->style = 'primary';
-        }
+        $this->assignBgStyle($color);
 
         return $this;
     }
@@ -139,7 +110,7 @@ class Bootstrap4Button extends AbstractHelper
      */
     public function setOutlineStyle(string $style): Bootstrap4Button
     {
-        if (in_array($style, $this->supported_styles) === true &&
+        if (in_array($style, $this->supported_bg_styles) === true &&
             $style !== 'link'
         ) {
 
@@ -147,6 +118,21 @@ class Bootstrap4Button extends AbstractHelper
         } else {
             $this->outline_style = 'primary';
         }
+
+        return $this;
+    }
+
+    /**
+     * Set the text color for the component, need to be one of the following, primary, secondary, success, danger,
+     * warning, info, light or dark, if an incorrect style is passed in we don't apply the class.
+     *
+     * @param string $color
+     *
+     * @return Bootstrap4Button
+     */
+    public function setTextStyle($color) : Bootstrap4Button
+    {
+        $this->assignTextStyle($color);
 
         return $this;
     }
@@ -281,7 +267,6 @@ class Bootstrap4Button extends AbstractHelper
     private function reset(): void
     {
         $this->label = null;
-        $this->style = null;
         $this->outline_style = null;
         $this->large = false;
         $this->small = false;
@@ -292,6 +277,8 @@ class Bootstrap4Button extends AbstractHelper
         $this->mode = 'link';
         $this->input_type = null;
         $this->custom_classes = [];
+
+        $this->supported_bg_styles[] = 'link';
     }
 
     /**
@@ -300,7 +287,7 @@ class Bootstrap4Button extends AbstractHelper
      *
      * @return string
      */
-    private function render(): string
+    protected function render(): string
     {
         switch ($this->mode) {
             case 'button':
@@ -336,17 +323,16 @@ class Bootstrap4Button extends AbstractHelper
     {
         $classes = '';
 
-        if ($this->style !== null) {
-            $classes .= ' btn-' . $this->style;
+        if ($this->bg_color !== null) {
+            $classes .= ' btn-' . $this->bg_color;
+        }
+
+        if ($this->text_color !== null) {
+            $classes .= ' text-' . $this->text_color;
         }
 
         if ($this->outline_style !== null) {
             $classes .= ' btn-outline-' . $this->outline_style;
-        }
-
-        // If no style or outline style set default to btn-primary
-        if (strlen($classes) === 0) {
-            $classes = ' btn-primary';
         }
 
         if ($this->large === true) {
@@ -370,16 +356,5 @@ class Bootstrap4Button extends AbstractHelper
         }
 
         return $classes;
-    }
-
-    /**
-     * Override the __toString() method to allow echo/print of the view helper directly, saves a
-     * call to render()
-     *
-     * @return string
-     */
-    public function __toString(): string
-    {
-        return $this->render();
     }
 }
