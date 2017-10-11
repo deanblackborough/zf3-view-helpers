@@ -133,6 +133,10 @@ class Bootstrap4Badge extends Bootstrap4Helper
             $classes = ' badge-' . $this->bg_color;
         }
 
+        if ($this->text_color !== null) {
+            $classes .= ' text-' . $this->text_color;
+        }
+
         if ($this->pill === true) {
             $classes .= ' badge-pill';
         }

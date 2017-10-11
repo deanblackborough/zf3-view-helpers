@@ -125,4 +125,22 @@ final class Bootstrap4BadgeTest extends \PHPUnit\Framework\TestCase
         $view_helper->__invoke('Badge')->asLink('#');
         $this->assertEquals('<a href="#" class="badge">Badge</a>', $view_helper->__toString());
     }
+    
+    /**
+     * Combined test
+     */
+    public function testCombined()
+    {
+        $view_helper = new Bootstrap4Badge();
+        $view_helper->__invoke('Badge')
+            ->asLink('#')
+            ->pill()
+            ->setBgStyle('primary')
+            ->setTextStyle('light');
+        $this->assertEquals(
+            '<a href="#" class="badge badge-primary text-light badge-pill">Badge</a>',
+            $view_helper->__toString()
+        );
+    }
+    
 }

@@ -368,4 +368,22 @@ final class Bootstrap4JumbotronTest extends PHPUnit\Framework\TestCase
             $view_helper->__toString()
         );
     }
+    
+    /**
+     * Combined test
+     */
+    public function testCombined()
+    {
+        $view_helper = new Bootstrap4Jumbotron();
+        $view_helper->__invoke('Heading', '<p>Content</p>')
+            ->setTextStyle('primary')
+            ->setBgStyle('light')
+            ->fluid()
+            ->setSubHeading('sub heading')
+            ->setHeadingDisplayLevel(2);
+        $this->assertEquals(
+            '<div class="jumbotron jumbotron-fluid bg-light text-primary"><div class="container"><h1 class="display-2">Heading <small>sub heading</small></h1><p>Content</p></div></div>',
+            $view_helper->__toString()
+        );
+    }
 }
