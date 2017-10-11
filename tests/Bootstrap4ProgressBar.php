@@ -214,6 +214,20 @@ final class Bootstrap4ProgressBarTest extends PHPUnit\Framework\TestCase
     }
 
     /**
+     * Set background style, invalid
+     */
+    public function testBgStyleInvalid()
+    {
+        $view_helper = new Bootstrap4ProgressBar();
+        $view_helper->__invoke(25)
+            ->setBgStyle('invalid');
+        $this->assertEquals(
+            '<div class="progress"><div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
      * Set the striped option
      */
     public function testStriped()
@@ -238,6 +252,132 @@ final class Bootstrap4ProgressBarTest extends PHPUnit\Framework\TestCase
             ->animate();
         $this->assertEquals(
             '<div class="progress"><div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Set text style, primary
+     */
+    public function testTextStylePrimary()
+    {
+        $view_helper = new Bootstrap4ProgressBar();
+        $view_helper->__invoke(25)
+            ->setBgStyle('primary');
+        $this->assertEquals(
+            '<div class="progress"><div class="progress-bar bg-primary" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Set text style, secondary
+     */
+    public function testTextStyleSecondary()
+    {
+        $view_helper = new Bootstrap4ProgressBar();
+        $view_helper->__invoke(25)
+            ->setBgStyle('secondary');
+        $this->assertEquals(
+            '<div class="progress"><div class="progress-bar bg-secondary" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Set text style, success
+     */
+    public function testTextStyleSuccess()
+    {
+        $view_helper = new Bootstrap4ProgressBar();
+        $view_helper->__invoke(25)
+            ->setBgStyle('success');
+        $this->assertEquals(
+            '<div class="progress"><div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Set text style, danger
+     */
+    public function testTextStyleDanger()
+    {
+        $view_helper = new Bootstrap4ProgressBar();
+        $view_helper->__invoke(25)
+            ->setBgStyle('danger');
+        $this->assertEquals(
+            '<div class="progress"><div class="progress-bar bg-danger" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Set text style, warning
+     */
+    public function testTextStyleWarning()
+    {
+        $view_helper = new Bootstrap4ProgressBar();
+        $view_helper->__invoke(25)
+            ->setBgStyle('warning');
+        $this->assertEquals(
+            '<div class="progress"><div class="progress-bar bg-warning" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Set text style, info
+     */
+    public function testTextStyleInfo()
+    {
+        $view_helper = new Bootstrap4ProgressBar();
+        $view_helper->__invoke(25)
+            ->setBgStyle('info');
+        $this->assertEquals(
+            '<div class="progress"><div class="progress-bar bg-info" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Set text style, light
+     */
+    public function testTextStyleLight()
+    {
+        $view_helper = new Bootstrap4ProgressBar();
+        $view_helper->__invoke(25)
+            ->setBgStyle('light');
+        $this->assertEquals(
+            '<div class="progress"><div class="progress-bar bg-light" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Set text style, dark
+     */
+    public function testTextStyleDark()
+    {
+        $view_helper = new Bootstrap4ProgressBar();
+        $view_helper->__invoke(25)
+            ->setBgStyle('dark');
+        $this->assertEquals(
+            '<div class="progress"><div class="progress-bar bg-dark" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Set text style, invalid
+     */
+    public function testTextStyleInvalid()
+    {
+        $view_helper = new Bootstrap4ProgressBar();
+        $view_helper->__invoke(25)
+            ->setBgStyle('invalid');
+        $this->assertEquals(
+            '<div class="progress"><div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div></div>',
             $view_helper->__toString()
         );
     }

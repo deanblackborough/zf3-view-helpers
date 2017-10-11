@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace DBlackborough\Zf3ViewHelpers;
 
-use Zend\View\Helper\AbstractHelper;
-
 /**
  * Generate a Bootstrap 4 progress bar
  *
@@ -13,17 +11,12 @@ use Zend\View\Helper\AbstractHelper;
  * @copyright Dean Blackborough
  * @license https://github.com/deanblackborough/zf3-view-helpers/blob/master/LICENSE
  */
-class Bootstrap4ProgressBar extends AbstractHelper
+class Bootstrap4ProgressBar extends Bootstrap4Helper
 {
     /**
      * @var integer Current progress bar value
      */
     private $value;
-
-    /**
-     * @var string Assigned an alternate background colour
-     */
-    private $color;
 
     /**
      * @var boolean Enabled the striped style
@@ -46,21 +39,6 @@ class Bootstrap4ProgressBar extends AbstractHelper
     private $height;
 
     /**
-     * @var array Bootstrap styles
-     */
-    private $supported_styles = [
-        'primary',
-        'secondary',
-        'success',
-        'danger',
-        'warning',
-        'info',
-        'light',
-        'dark',
-        'white'
-    ];
-
-    /**
      * Entry point for the view helper
      *
      * @param integer $value Current progress bar value
@@ -77,35 +55,6 @@ class Bootstrap4ProgressBar extends AbstractHelper
     }
 
     /**
-     * Set the background color for the progress bar, one of the following, primary, secondary, success, danger,
-     * warning, info, light, dark or white, if an incorrect style is passed in we don't apply the class.
-     *
-     * @param string $color
-     *
-     * @return Bootstrap4ProgressBar
-     */
-    public function setBgStyle(string $color): Bootstrap4ProgressBar
-    {
-        if (in_array($color, $this->supported_styles) === true) {
-            $this->color = $color;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Enable the striped style for the progress bar background
-     *
-     * @return Bootstrap4ProgressBar
-     */
-    public function striped() : Bootstrap4ProgressBar
-    {
-        $this->striped = true;
-
-        return $this;
-    }
-
-    /**
      * Animate the striped background style
      *
      * @return Bootstrap4ProgressBar
@@ -113,20 +62,6 @@ class Bootstrap4ProgressBar extends AbstractHelper
     public function animate() : Bootstrap4ProgressBar
     {
         $this->animate = true;
-
-        return $this;
-    }
-
-    /**
-     * Set the label for the progress bar
-     *
-     * @param string $label
-     *
-     * @return Bootstrap4ProgressBar
-     */
-    public function label(string $label) : Bootstrap4ProgressBar
-    {
-        $this->label = $label;
 
         return $this;
     }
@@ -146,6 +81,109 @@ class Bootstrap4ProgressBar extends AbstractHelper
     }
 
     /**
+     * Set the label for the progress bar
+     *
+     * @param string $label
+     *
+     * @return Bootstrap4ProgressBar
+     */
+    public function label(string $label) : Bootstrap4ProgressBar
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * Set the background colour for the component, needs to be one of the following, primary, secondary, success,
+     * danger, warning, info, light, dark or white, if an incorrect style is passed in we don't apply the class.
+     *
+     * @param string $color
+     *
+     * @return Bootstrap4ProgressBar
+     */
+    public function setBgStyle(string $color) : Bootstrap4ProgressBar
+    {
+        $this->assignBgStyle($color);
+
+        return $this;
+    }
+
+    /**
+     * Set the text color for the component, need to be one of the following, primary, secondary, success, danger,
+     * warning, info, light or dark, if an incorrect style is passed in we don't apply the class.
+     *
+     * @param string $color
+     *
+     * @return Bootstrap4ProgressBar
+     */
+    public function setTextStyle(string $color) : Bootstrap4ProgressBar
+    {
+        $this->assignTextStyle($color);
+
+        return $this;
+    }
+
+    /**
+     * Enable the striped style for the progress bar background
+     *
+     * @return Bootstrap4ProgressBar
+     */
+    public function striped() : Bootstrap4ProgressBar
+    {
+        $this->striped = true;
+
+        return $this;
+    }
+
+    /**
+     * Worker method for the view helper, generates the HTML, the method is private so that we
+     * can echo/print the view helper directly
+     *
+     * @return string
+     */
+    protected function render() : string
+    {
+        $styles = $this->styles();
+        if (strlen($styles) > 0) {
+            $styles = 'style="' . trim($styles) . '"';
+        }
+
+        return '<div class="progress"><div class="progress-bar' . $this->classes() .
+            '" role="progressbar" ' . $styles . ' aria-valuenow="' . $this->value .
+            '" aria-valuemin="0" aria-valuemax="100">' .
+            (($this->label !== null) ? $this->label : null) . '</div></div>';
+    }
+
+    /**
+     * Generate the additional classes
+     *
+     * @return string
+     */
+    private function classes() : string
+    {
+        $classes = '';
+
+        if ($this->bg_color !== null) {
+            $classes .= ' bg-' . $this->bg_color;
+        }
+
+        if ($this->text_color !== null) {
+            $classes .= ' text-' . $this->text_color;
+        }
+
+        if ($this->striped === true) {
+            $classes .= ' progress-bar-striped';
+        }
+
+        if ($this->animate === true) {
+            $classes .= ' progress-bar-animated';
+        }
+
+        return $classes;
+    }
+
+    /**
      * Reset all properties in case the view helper is called multiple times within a script
      *
      * @return void
@@ -153,7 +191,7 @@ class Bootstrap4ProgressBar extends AbstractHelper
     private function reset(): void
     {
         $this->value = 0;
-        $this->color = null;
+        $this->bg_color = null;
         $this->striped = false;
         $this->animate = false;
         $this->label = null;
@@ -178,59 +216,5 @@ class Bootstrap4ProgressBar extends AbstractHelper
         }
 
         return $styles;
-    }
-
-    /**
-     * Generate the additional classes
-     *
-     * @return string
-     */
-    private function classes() : string
-    {
-        $classes = '';
-
-        if ($this->color !== null) {
-            $classes .= ' bg-' . $this->color;
-        }
-
-        if ($this->striped === true) {
-            $classes .= ' progress-bar-striped';
-        }
-
-        if ($this->animate === true) {
-            $classes .= ' progress-bar-animated';
-        }
-
-        return $classes;
-    }
-
-    /**
-     * Worker method for the view helper, generates the HTML, the method is private so that we
-     * can echo/print the view helper directly
-     *
-     * @return string
-     */
-    private function render() : string
-    {
-        $styles = $this->styles();
-        if (strlen($styles) > 0) {
-            $styles = 'style="' . trim($styles) . '"';
-        }
-
-        return '<div class="progress"><div class="progress-bar' . $this->classes() .
-            '" role="progressbar" ' . $styles . ' aria-valuenow="' . $this->value .
-            '" aria-valuemin="0" aria-valuemax="100">' .
-            (($this->label !== null) ? $this->label : null) . '</div></div>';
-    }
-
-    /**
-     * Override the __toString() method to allow echo/print of the view helper directly,
-     * saves a call to render()
-     *
-     * @return string
-     */
-    public function __toString() : string
-    {
-        return $this->render();
     }
 }
