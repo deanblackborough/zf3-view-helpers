@@ -73,7 +73,7 @@ class Bootstrap4ProgressBar extends Bootstrap4Helper
      *
      * @return Bootstrap4ProgressBar
      */
-    public function height(int $height) : Bootstrap4ProgressBar
+    public function setHeight(int $height) : Bootstrap4ProgressBar
     {
         $this->height = $height;
 
@@ -87,7 +87,7 @@ class Bootstrap4ProgressBar extends Bootstrap4Helper
      *
      * @return Bootstrap4ProgressBar
      */
-    public function label(string $label) : Bootstrap4ProgressBar
+    public function setLabel(string $label) : Bootstrap4ProgressBar
     {
         $this->label = $label;
 
