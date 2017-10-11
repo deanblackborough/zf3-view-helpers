@@ -109,22 +109,23 @@ echo $this->bootstrap4Card('', 'width: 20rem;')->
 
 ### Bootstrap 4 Jumbotron
 
-Create a Bootstrap 4 jumbotron, heading and content can be set and optionally the display level class 
-for the heading, a sub heading or whether or not the fluid class applied.
+Create a Bootstrap 4 jumbotron component.
 
 ##### Public methods:
  
-* headingDisplayLevel(integer[1-4]) - Set the display level class for the heading
-* fluid() - Add the jumbotron-fluid class
-* subHeading() - Add an optional sub heading, small tag inside the H1
+* fluid() - Switch to the fluid layout
+* setBgStyle() - Set the background colour utility class
+* setHeadingDisplayLevel() - Set the display class for the H1
+* setSubHeading() - Add an optional sub heading
+* setTextStyle() - Set the text colour utility class
 
 ##### Example
 
 ``` 
 echo $this->bootstrap4Jumbotron($heading, $content)->
-    subHeading($sub_heading)->
+    setSubHeading($sub_heading)->
     fluid()->
-    headingDisplayLevel(1);
+    setHeadingDisplayLevel(1);
 ```
 
 ### Bootstrap 4 Navbar (lite version)
@@ -156,16 +157,17 @@ Create a progress bar component.
 ##### Public methods 
 
 * animate() - Animate the striped background style
-* color() - Set the background color for the progress bar
-* height() - Set the height of the progress bar
-* label() - Set the label for the progress bar
+* setBgStyle() - Set the background colour utility class
+* setHeight() - Set the height of the progress bar
+* setLabel() - Set the label to display in the progress bar
+* setTextStyle() - Set the text colour utility class
 * striped() - Enable the striped style for the progress bar background
 
 #### Example
 
 ```
 echo $this->bootstrap4ProgressBar(25)->
-    color('info')->
+    setBgStyle('info')->
     striped()->
     animate(); ?>
 ```

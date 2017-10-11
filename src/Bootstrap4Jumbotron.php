@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace DBlackborough\Zf3ViewHelpers;
 
-use Zend\View\Helper\AbstractHelper;
-
 /**
  * Generate a Bootstrap 4 Jumbotron component
  *
@@ -13,7 +11,7 @@ use Zend\View\Helper\AbstractHelper;
  * @copyright Dean Blackborough
  * @license https://github.com/deanblackborough/zf3-view-helpers/blob/master/LICENSE
  */
-class Bootstrap4Jumbotron extends AbstractHelper
+class Bootstrap4Jumbotron extends Bootstrap4Helper
 {
     /**
      * @var array Supported display levels for heading
@@ -46,31 +44,6 @@ class Bootstrap4Jumbotron extends AbstractHelper
     private $content;
 
     /**
-     * @var array Bootstrap styles
-     */
-    private $supported_styles = [
-        'primary',
-        'secondary',
-        'success',
-        'danger',
-        'warning',
-        'info',
-        'light',
-        'dark',
-        'white'
-    ];
-
-    /**
-     * @var string Background style
-     */
-    private $bg_style;
-
-    /**
-     * @var string Text style
-     */
-    private $text_style;
-
-    /**
      * Entry point for the view helper
      *
      * @param string $heading
@@ -84,6 +57,78 @@ class Bootstrap4Jumbotron extends AbstractHelper
 
         $this->heading = $heading;
         $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * Add the fluid class to make Jumbotron full width and without rounded corners
+     *
+     * @return Bootstrap4Jumbotron
+     */
+    public function fluid() : Bootstrap4Jumbotron
+    {
+        $this->fluid = true;
+
+        return $this;
+    }
+
+    /**
+     * Set the background colour for the component, needs to be one of the following, primary, secondary, success,
+     * danger, warning, info, light, dark or white, if an incorrect style is passed in we don't apply the class.
+     *
+     * @param string $color
+     *
+     * @return Bootstrap4Jumbotron
+     */
+    public function setBgStyle($color) : Bootstrap4Jumbotron
+    {
+        $this->assignBgStyle($color);
+
+        return $this;
+    }
+
+    /**
+     * Set the display level class for a heading title, display-[1-4]
+     *
+     * @param integer $level [1-4]
+     *
+     * @return Bootstrap4Jumbotron
+     */
+    public function setHeadingDisplayLevel(int $level) : Bootstrap4Jumbotron
+    {
+        if (in_array($level, $this->supported_display_levels) === true) {
+            $this->display_level = $level;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Set the text color for the component, need to be one of the following, primary, secondary, success, danger,
+     * warning, info, light or dark, if an incorrect style is passed in we don't apply the class.
+     *
+     * @param string $color
+     *
+     * @return Bootstrap4Jumbotron
+     */
+    public function setTextStyle($color) : Bootstrap4Jumbotron
+    {
+        $this->assignTextStyle($color);
+
+        return $this;
+    }
+
+    /**
+     * Set an optional sub heading, added to the end of the heading inside small tags
+     *
+     * @param string $sub_heading
+     *
+     * @return Bootstrap4Jumbotron
+     */
+    public function setSubHeading(string $sub_heading) : Bootstrap4Jumbotron
+    {
+        $this->sub_heading = $sub_heading;
 
         return $this;
     }
@@ -103,99 +148,17 @@ class Bootstrap4Jumbotron extends AbstractHelper
     }
 
     /**
-     * Set the display level class for a heading title, display-[1-4]
-     *
-     * @param integer $level [1-4]
-     *
-     * @return Bootstrap4Jumbotron
-     */
-    public function headingDisplayLevel(int $level) : Bootstrap4Jumbotron
-    {
-        if (in_array($level, $this->supported_display_levels) === true) {
-            $this->display_level = $level;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Add the fluid class to make Jumbotron full width and without rounded corners
-     *
-     * @return Bootstrap4Jumbotron
-     */
-    public function fluid() : Bootstrap4Jumbotron
-    {
-        $this->fluid = true;
-
-        return $this;
-    }
-
-    /**
-     * Set an option sub heading, added to the end of the heading inside small tags
-     *
-     * @param string $sub_heading
-     *
-     * @return Bootstrap4Jumbotron
-     */
-    public function subHeading(string $sub_heading) : Bootstrap4Jumbotron
-    {
-        $this->sub_heading = $sub_heading;
-
-        return $this;
-    }
-
-    /**
-     * Set the background style for the jumbotron, one of the following, primary, secondary, success,
-     * info, warning, danger, light, dark or white. If an incorrect style is passed in we set the style to
-     * primary
-     *
-     * @param string $style
-     *
-     * @return Bootstrap4Jumbotron
-     */
-    public function setBgStyle($style)
-    {
-        if (in_array($style, $this->supported_styles) === true) {
-            $this->bg_style = $style;
-        } else {
-            $this->bg_style = 'primary';
-        }
-
-        return $this;
-    }
-
-    /**
-     * Set the text style for the jumbotron, one of the following, primary, secondary, success,
-     * info, warning, danger, light, dark. If an incorrect style is passed in we set the style to
-     * dark
-     *
-     * @param string $style
-     *
-     * @return Bootstrap4Jumbotron
-     */
-    public function setTextStyle($style)
-    {
-        if (in_array($style, $this->supported_styles) === true && $style !== 'white') {
-            $this->text_style = $style;
-        } else {
-            $this->text_style = 'dark';
-        }
-
-        return $this;
-    }
-
-    /**
      * Worker method for the view helper, generates the HTML, the method is private so that we
      * can echo/print the view helper directly
      *
      * @return string
      */
-    private function render() : string
+    protected function render() : string
     {
         $html = '<div class="jumbotron' .
             (($this->fluid === true) ? ' jumbotron-fluid' : null) .
-            (($this->bg_style !== null) ? ' bg-' . $this->bg_style : null) .
-            (($this->text_style !== null) ? ' text-' . $this->text_style : null) .
+            (($this->bg_color !== null) ? ' bg-' . $this->bg_color : null) .
+            (($this->text_color !== null) ? ' text-' . $this->text_color : null) .
             '">' .
             (($this->fluid === true) ? '<div class="container">' : null) .
             '<h1 class="display-' . (($this->display_level !== null) ? $this->display_level : '1') .
@@ -207,16 +170,5 @@ class Bootstrap4Jumbotron extends AbstractHelper
             '</div>';
 
         return $html;
-    }
-
-    /**
-     * Override the __toString() method to allow echo/print of the view helper directly, saves a
-     * call to render()
-     *
-     * @return string
-     */
-    public function __toString() : string
-    {
-        return $this->render();
     }
 }
