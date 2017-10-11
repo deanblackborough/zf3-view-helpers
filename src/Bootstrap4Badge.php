@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace DBlackborough\Zf3ViewHelpers;
 
-use Zend\View\Helper\AbstractHelper;
-
 /**
  * Generate a Bootstrap 4 badge
  *
@@ -13,7 +11,7 @@ use Zend\View\Helper\AbstractHelper;
  * @copyright Dean Blackborough
  * @license https://github.com/deanblackborough/zf3-view-helpers/blob/master/LICENSE
  */
-class Bootstrap4Badge extends AbstractHelper
+class Bootstrap4Badge extends Bootstrap4Helper
 {
     /**
      * @var string Button label
@@ -36,20 +34,6 @@ class Bootstrap4Badge extends AbstractHelper
     private $uri;
 
     /**
-     * @var array Bootstrap styles
-     */
-    private $supported_styles = [
-        'primary',
-        'secondary',
-        'success',
-        'danger',
-        'warning',
-        'info',
-        'light',
-        'dark'
-    ];
-
-    /**
      * Entry point for the view helper
      *
      * @param string $label
@@ -66,35 +50,17 @@ class Bootstrap4Badge extends AbstractHelper
     }
 
     /**
-     * Set the style for the badge, one of the following, primary, secondary, success,
-     * info, warning, danger or link. If an incorrect style is passed in we set the
-     * style to badge-primary
-     *
-     * @param string $style
-     *
-     * @return Bootstrap4Badge
-     */
-    public function setStyle(string $style): Bootstrap4Badge
-    {
-        if (in_array($style, $this->supported_styles) === true) {
-            $this->style = 'badge-' . $style;
-        } else {
-            $this->style = 'badge-primary';
-        }
-
-        return $this;
-    }
-
-    /**
      * Render the badge as a link
      *
      * @param string $uri
      *
      * @return Bootstrap4Badge
      */
-    public function asLink(string $uri)
+    public function asLink(string $uri) : Bootstrap4Badge
     {
         $this->uri = $uri;
+
+        return $this;
     }
 
     /**
@@ -110,16 +76,33 @@ class Bootstrap4Badge extends AbstractHelper
     }
 
     /**
-     * Reset all properties in case the view helper is called multiple times within a script
+     * Set the background colour for the component, needs to be one of the following, primary, secondary, success,
+     * danger, warning, info, light, dark or white, if an incorrect style is passed in we don't apply the class.
      *
-     * @return void
+     * @param string $color
+     *
+     * @return Bootstrap4Badge
      */
-    private function reset(): void
+    public function setBgStyle($color) : Bootstrap4Badge
     {
-        $this->label = null;
-        $this->style = null;
-        $this->pill = false;
-        $this->uri = null;
+        $this->assignBgStyle($color);
+
+        return $this;
+    }
+
+    /**
+     * Set the text color for the component, need to be one of the following, primary, secondary, success, danger,
+     * warning, info, light or dark, if an incorrect style is passed in we don't apply the class.
+     *
+     * @param string $color
+     *
+     * @return Bootstrap4Badge
+     */
+    public function setTextStyle($color) : Bootstrap4Badge
+    {
+        $this->assignTextStyle($color);
+
+        return $this;
     }
 
     /**
@@ -128,7 +111,7 @@ class Bootstrap4Badge extends AbstractHelper
      *
      * @return string
      */
-    private function render(): string
+    protected function render(): string
     {
         if ($this->uri === null) {
             return '<span class="badge' . $this->classes() . '">' . $this->label . '</span>';
@@ -144,10 +127,14 @@ class Bootstrap4Badge extends AbstractHelper
      */
     private function classes(): string
     {
-        if ($this->style !== null) {
-            $classes = ' ' . $this->style;
-        } else {
-            $classes = ' badge-primary';
+        $classes = '';
+
+        if ($this->bg_color !== null) {
+            $classes = ' badge-' . $this->bg_color;
+        }
+
+        if ($this->text_color !== null) {
+            $classes .= ' text-' . $this->text_color;
         }
 
         if ($this->pill === true) {
@@ -158,13 +145,15 @@ class Bootstrap4Badge extends AbstractHelper
     }
 
     /**
-     * Override the __toString() method to allow echo/print of the view helper directly,
-     * saves a call to render()
+     * Reset all properties in case the view helper is called multiple times within a script
      *
-     * @return string
+     * @return void
      */
-    public function __toString(): string
+    private function reset(): void
     {
-        return $this->render();
+        $this->label = null;
+        $this->style = null;
+        $this->pill = false;
+        $this->uri = null;
     }
 }

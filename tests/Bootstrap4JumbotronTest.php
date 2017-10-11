@@ -1,7 +1,6 @@
 <?php
 
 require __DIR__ . '../../vendor/autoload.php';
-require __DIR__ . '../../src/Bootstrap4Jumbotron.php';
 
 use DBlackborough\Zf3ViewHelpers\Bootstrap4Jumbotron;
 
@@ -27,7 +26,7 @@ final class Bootstrap4JumbotronTest extends PHPUnit\Framework\TestCase
     {
         $view_helper = new Bootstrap4Jumbotron();
         $view_helper->__invoke('Heading', '<p>Content</p>')
-            ->subHeading('Sub heading');
+            ->setSubHeading('Sub heading');
         $this->assertEquals(
             '<div class="jumbotron"><h1 class="display-1">Heading <small>Sub heading</small></h1><p>Content</p></div>',
             $view_helper->__toString()
@@ -55,7 +54,7 @@ final class Bootstrap4JumbotronTest extends PHPUnit\Framework\TestCase
     {
         $view_helper = new Bootstrap4Jumbotron();
         $view_helper->__invoke('Heading', '<p>Content</p>')
-            ->headingDisplayLevel(1);
+            ->setHeadingDisplayLevel(1);
         $this->assertEquals(
             '<div class="jumbotron"><h1 class="display-1">Heading</h1><p>Content</p></div>',
             $view_helper->__toString()
@@ -69,7 +68,7 @@ final class Bootstrap4JumbotronTest extends PHPUnit\Framework\TestCase
     {
         $view_helper = new Bootstrap4Jumbotron();
         $view_helper->__invoke('Heading', '<p>Content</p>')
-            ->headingDisplayLevel(2);
+            ->setHeadingDisplayLevel(2);
         $this->assertEquals(
             '<div class="jumbotron"><h1 class="display-2">Heading</h1><p>Content</p></div>',
             $view_helper->__toString()
@@ -83,7 +82,7 @@ final class Bootstrap4JumbotronTest extends PHPUnit\Framework\TestCase
     {
         $view_helper = new Bootstrap4Jumbotron();
         $view_helper->__invoke('Heading', '<p>Content</p>')
-            ->headingDisplayLevel(3);
+            ->setHeadingDisplayLevel(3);
         $this->assertEquals(
             '<div class="jumbotron"><h1 class="display-3">Heading</h1><p>Content</p></div>',
             $view_helper->__toString()
@@ -97,7 +96,7 @@ final class Bootstrap4JumbotronTest extends PHPUnit\Framework\TestCase
     {
         $view_helper = new Bootstrap4Jumbotron();
         $view_helper->__invoke('Heading', '<p>Content</p>')
-            ->headingDisplayLevel(4);
+            ->setHeadingDisplayLevel(4);
         $this->assertEquals(
             '<div class="jumbotron"><h1 class="display-4">Heading</h1><p>Content</p></div>',
             $view_helper->__toString()
@@ -239,7 +238,7 @@ final class Bootstrap4JumbotronTest extends PHPUnit\Framework\TestCase
         $view_helper->__invoke('Heading', '<p>Content</p>')
             ->setBgStyle('invalid');
         $this->assertEquals(
-            '<div class="jumbotron bg-primary"><h1 class="display-1">Heading</h1><p>Content</p></div>',
+            '<div class="jumbotron"><h1 class="display-1">Heading</h1><p>Content</p></div>',
             $view_helper->__toString()
         );
     }
@@ -365,7 +364,25 @@ final class Bootstrap4JumbotronTest extends PHPUnit\Framework\TestCase
         $view_helper->__invoke('Heading', '<p>Content</p>')
             ->setTextStyle('invalid');
         $this->assertEquals(
-            '<div class="jumbotron text-dark"><h1 class="display-1">Heading</h1><p>Content</p></div>',
+            '<div class="jumbotron"><h1 class="display-1">Heading</h1><p>Content</p></div>',
+            $view_helper->__toString()
+        );
+    }
+    
+    /**
+     * Combined test
+     */
+    public function testCombined()
+    {
+        $view_helper = new Bootstrap4Jumbotron();
+        $view_helper->__invoke('Heading', '<p>Content</p>')
+            ->setTextStyle('primary')
+            ->setBgStyle('light')
+            ->fluid()
+            ->setSubHeading('sub heading')
+            ->setHeadingDisplayLevel(2);
+        $this->assertEquals(
+            '<div class="jumbotron jumbotron-fluid bg-light text-primary"><div class="container"><h1 class="display-2">Heading <small>sub heading</small></h1><p>Content</p></div></div>',
             $view_helper->__toString()
         );
     }

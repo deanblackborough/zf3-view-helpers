@@ -13,13 +13,13 @@ A collection of Zend Framework 3 view helpers, primarily focused on Bootstrap 3 
 
 ### Bootstrap 4
  
-* Bootstrap 4 Badge component - [12 tests]
+* Bootstrap 4 Badge component - [13 tests]
 * Bootstrap 4 Button component - [31 tests]
 * Bootstrap 4 Card component
-* Bootstrap 4 Jumbotron component - [26 tests]
+* Bootstrap 4 Jumbotron component - [27 tests]
 * Bootstrap 4 Navbar component (lite)
-* Bootstrap 4 Progress bar component - [27 tests]
-* Bootstrap 4 Multiple progress bar component
+* Bootstrap 4 Progress bar component - [28 tests]
+* Bootstrap 4 Multiple progress bar component - [4 tests]
 
 ### Bootstrap 3
 
@@ -48,29 +48,49 @@ alternatively include the classes in src/ in your library.
 
 Below is an overview of the more complex view helpers.
 
+### Bootstrap 4 Badge
+
+Create a Bootstrap 4 badge component
+
+##### Public methods:
+ 
+* asLink() - Display as a link
+* pill() - Use the pill style
+* setBgStyle() - Set the background colour utility class
+* setTextStyle() - Set the text colour utility class
+
+##### Example
+
+``` 
+echo $this->bootstrap4Badge($badge)->
+    pill()->
+    setBgStyle('primary');
+```
+
 ### Bootstrap 4 Button
 
-Create a Bootstrap 4 button
+Create a Bootstrap 4 button component
 
 ##### Public methods:
  
 * active() - Set button as active
 * block() - Add display block style
+* customClass() - Add a custom class
 * disabled() - Set button as disabled
 * large() - Add large class
 * link() - Add URI/URL for default button type
+* setBgStyle() - Set the background colour utility class
+* setTextStyle() - Set the text colour utility class
 * setModeButton() - Render as a button, not an anchor
 * setModeInput() - Render as an input, not an anchor
 * setOutlineStyle() - Set btn-outline-* style
-* setStyle() - Set btn-* style
 * small() - Add small class
-* customClass() - Add a custom class
 
 ##### Example
 
 ``` 
 echo $this->bootstrap4Button($label)->
-    setStyle('primary')->
+    setBgStyle('primary')->
     block()->
     large()->
     link($uri);
@@ -109,22 +129,23 @@ echo $this->bootstrap4Card('', 'width: 20rem;')->
 
 ### Bootstrap 4 Jumbotron
 
-Create a Bootstrap 4 jumbotron, heading and content can be set and optionally the display level class 
-for the heading, a sub heading or whether or not the fluid class applied.
+Create a Bootstrap 4 jumbotron component.
 
 ##### Public methods:
  
-* headingDisplayLevel(integer[1-4]) - Set the display level class for the heading
-* fluid() - Add the jumbotron-fluid class
-* subHeading() - Add an optional sub heading, small tag inside the H1
+* fluid() - Switch to the fluid layout
+* setBgStyle() - Set the background colour utility class
+* setHeadingDisplayLevel() - Set the display class for the H1
+* setSubHeading() - Add an optional sub heading
+* setTextStyle() - Set the text colour utility class
 
 ##### Example
 
 ``` 
 echo $this->bootstrap4Jumbotron($heading, $content)->
-    subHeading($sub_heading)->
+    setSubHeading($sub_heading)->
     fluid()->
-    headingDisplayLevel(1);
+    setHeadingDisplayLevel(1);
 ```
 
 ### Bootstrap 4 Navbar (lite version)
@@ -156,27 +177,6 @@ Create a progress bar component.
 ##### Public methods 
 
 * animate() - Animate the striped background style
-* color() - Set the background color for the progress bar
-* height() - Set the height of the progress bar
-* label() - Set the label for the progress bar
-* striped() - Enable the striped style for the progress bar background
-
-#### Example
-
-```
-echo $this->bootstrap4ProgressBar(25)->
-    color('info')->
-    striped()->
-    animate(); ?>
-```
-
-### Bootstrap 4 multiple progress bar
-
-Create a progress bar with multiple bars
-
-##### Public methods 
-
-* animate() - Animate the striped background style
 * setBgStyle() - Set the background colour utility class
 * setHeight() - Set the height of the progress bar
 * setLabel() - Set the label to display in the progress bar
@@ -186,8 +186,26 @@ Create a progress bar with multiple bars
 #### Example
 
 ```
-echo $this->bootstrap4ProgressBar([25, 15])->
-    colors(['info', 'warning'])->
+echo $this->bootstrap4ProgressBar(25)->
+    setBgStyle('info')->
+    striped()->
+    animate(); ?>
+```
+
+### Bootstrap 4 multiple progress bar
+
+Create a progress bar component with multiple bars
+
+##### Public methods 
+
+* animate() - Animate the striped background style
+* setHeight() - Set the height of the progress bar
+* striped() - Enable the striped style for the progress bar background
+
+#### Example
+
+```
+echo $this->bootstrap4ProgressBar([25, 15], ['primary', 'info'])->
     striped()->
     animate(); ?>
 ```
