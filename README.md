@@ -18,7 +18,7 @@ A collection of Zend Framework 3 view helpers, primarily focused on Bootstrap 3 
 * Bootstrap 4 Card component
 * Bootstrap 4 Jumbotron component - [26 tests]
 * Bootstrap 4 Navbar component (lite)
-* Bootstrap 4 Progress bar component - [17 tests]
+* Bootstrap 4 Progress bar component - [27 tests]
 * Bootstrap 4 Multiple progress bar component
 
 ### Bootstrap 3
@@ -151,7 +151,7 @@ echo $this->bootstrap4NavbarLite()->
 
 ### Bootstrap 4 progress bar
 
-Create a progress bar
+Create a progress bar component.
 
 ##### Public methods 
 
@@ -177,9 +177,10 @@ Create a progress bar with multiple bars
 ##### Public methods 
 
 * animate() - Animate the striped background style
-* colors() - Set the background colors for the progress bar
-* height() - Set the height of the progress bar
-* label() - Set the label for the progress bar
+* setBgStyle() - Set the background colour utility class
+* setHeight() - Set the height of the progress bar
+* setLabel() - Set the label to display in the progress bar
+* setTextStyle() - Set the text colour utility class
 * striped() - Enable the striped style for the progress bar background
 
 #### Example

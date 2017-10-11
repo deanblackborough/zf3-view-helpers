@@ -2,6 +2,12 @@
 
 Full changelog for Zend Framework 3 view helpers library.
 
+## v0.65.0 - Base class - 2017-10-11
+
+* Additional tests for Bootstrap 4 Progress bar view helper.
+* Added a base class for Bootstrap 4 view helpers, Progress bar now extends it for base functionality.
+* Minor changes to method names.
+
 ## v0.64.0 - Tests and Jumbotron - 2017-10-11
 
 * Added tests for Bootstrap 4 Jumbotron view helper.
