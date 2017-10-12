@@ -110,9 +110,11 @@ Create a Bootstrap 4 card
 * addSubtitleToBody() - Add a subtitle to the card body
 * addTextToBody() - Add a text section to the card body
 * addTitleToBody() - Add a title section to the card body
+* setBgStyle() - Set the background colour utility class
 * setBody() - Set the entire card body
 * setFooter() - Set the entire card footer
 * setHeader() - Set the entire care header
+* setTextStyle() - Set the text colour utility class
 
 ##### Example
 

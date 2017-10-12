@@ -332,7 +332,7 @@ class Bootstrap4Card extends Bootstrap4Helper
     {
         $html = '';
 
-        if ($this->header !== null) {
+        if ($this->footer !== null) {
             $html .= '<div class="card-footer' . $this->elementAttr('footer') .
                 '"' . $this->elementAttr('header') . '>' . $this->footer . '</div>';
         }
@@ -570,7 +570,7 @@ class Bootstrap4Card extends Bootstrap4Helper
     protected function assignBgStyle(string $color)
     {
         if (in_array($color, $this->supported_bg_styles) === true) {
-            $this->classes['card'][] = $color;
+            $this->classes['card'][] = 'bg-' . $color;
         }
     }
 
@@ -598,7 +598,7 @@ class Bootstrap4Card extends Bootstrap4Helper
     protected function assignTextStyle(string $color)
     {
         if (in_array($color, $this->supported_text_styles) === true) {
-            $this->classes['card'][] = $color;
+            $this->classes['card'][] = 'text-' . $color;
         }
     }
 
