@@ -289,8 +289,8 @@ class Bootstrap4Card extends AbstractHelper
                     break;
 
                 case 'text':
-                    $html .= '<div class="card-text' . $this->elementBodyClasses('text') . '"' .
-                        $this->elementBodyAttr('text') . '>' . $section['content'] . '</div>';
+                    $html .= '<p class="card-text' . $this->elementBodyClasses('text') . '"' .
+                        $this->elementBodyAttr('text') . '>' . $section['content'] . '</p>';
                     break;
 
                 case 'link':
