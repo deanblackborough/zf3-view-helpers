@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace DBlackborough\Zf3ViewHelpers;
 
-use Zend\View\Helper\AbstractHelper;
-
 /**
  * Generate a Bootstrap 4 card component
  *
@@ -13,7 +11,7 @@ use Zend\View\Helper\AbstractHelper;
  * @copyright Dean Blackborough
  * @license https://github.com/deanblackborough/zf3-view-helpers/blob/master/LICENSE
  */
-class Bootstrap4Card extends AbstractHelper
+class Bootstrap4Card extends Bootstrap4Helper
 {
     /**
      * @var array Assigned classes
@@ -348,7 +346,7 @@ class Bootstrap4Card extends AbstractHelper
      *
      * @return string
      */
-    private function render(): string
+    protected function render(): string
     {
         $html = '<div class="card' . $this->elementClasses('card') . '"' .
             $this->elementAttr('card') . '>' .
@@ -550,6 +548,61 @@ class Bootstrap4Card extends AbstractHelper
     }
 
     /**
+     * Set the background colour for the component, needs to be one of the following, primary, secondary, success,
+     * danger, warning, info, light, dark or white, if an incorrect style is passed in we don't apply the class.
+     *
+     * @param string $color
+     *
+     * @return Bootstrap4Card
+     */
+    public function setBgStyle($color) : Bootstrap4Card
+    {
+        $this->assignBgStyle($color);
+
+        return $this;
+    }
+
+    /**
+     * Validate and assign the background colour, overrides the method in Bootstrap4Helper
+     *
+     * @param string $color
+     */
+    protected function assignBgStyle(string $color)
+    {
+        if (in_array($color, $this->supported_bg_styles) === true) {
+            $this->classes['card'][] = $color;
+        }
+    }
+
+    /**
+     * Set the text color for the component, need to be one of the following, primary, secondary, success, danger,
+     * warning, info, light or dark, if an incorrect style is passed in we don't apply the class.
+     *
+     * @param string $color
+     *
+     * @return Bootstrap4Card
+     */
+    public function setTextStyle($color) : Bootstrap4Card
+    {
+        $this->assignTextStyle($color);
+
+        return $this;
+    }
+
+    /**
+     * Validate and assign the text colour, need to be one of the following, primary, secondary, success, danger,
+     * warning, info, light or dark, if an incorrect style is passed in we don't apply the class.
+     *
+     * @param string $color
+     */
+    protected function assignTextStyle(string $color)
+    {
+        if (in_array($color, $this->supported_text_styles) === true) {
+            $this->classes['card'][] = $color;
+        }
+    }
+
+        /**
      * Set optional footer content for card
      *
      * @param string $content
@@ -561,16 +614,5 @@ class Bootstrap4Card extends AbstractHelper
         $this->footer = $content;
 
         return $this;
-    }
-
-    /**
-     * Override the __toString() method to allow echo/print to call on the view helper, saves a
-     * call to render()
-     *
-     * @return string
-     */
-    public function __toString(): string
-    {
-        return $this->render();
     }
 }
