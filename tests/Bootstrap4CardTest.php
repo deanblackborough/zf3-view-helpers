@@ -415,4 +415,119 @@ final class Bootstrap4CardTest extends PHPUnit\Framework\TestCase
             $view_helper->__toString()
         );
     }
+
+    /**
+     * Test setting the entire body
+     */
+    public function testSettingEntireBody()
+    {
+        $view_helper = new Bootstrap4Card();
+        $view_helper->__invoke()
+            ->setBody('<p>Body</p>');
+        $this->assertEquals(
+            '<div class="card"><div class="card-body"><p>Body</p></div></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Test adding a link to body
+     */
+    public function testBodyAddLink()
+    {
+        $view_helper = new Bootstrap4Card();
+        $view_helper->__invoke()
+            ->addLinkToBody('Link', '#');
+        $this->assertEquals(
+            '<div class="card"><div class="card-body"><a href="#" class="">Link</a></div></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Test adding a subtitle to body
+     */
+    public function testBodyAddSubtitle()
+    {
+        $view_helper = new Bootstrap4Card();
+        $view_helper->__invoke()
+            ->addSubtitleToBody('Sub-title');
+        $this->assertEquals(
+            '<div class="card"><div class="card-body"><h6 class="card-subtitle">Sub-title</h6></div></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Test adding a title to body
+     */
+    public function testBodyAddTitle()
+    {
+        $view_helper = new Bootstrap4Card();
+        $view_helper->__invoke()
+            ->addTitleToBody('Title');
+        $this->assertEquals(
+            '<div class="card"><div class="card-body"><h4 class="card-title">Title</h4></div></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Test adding text to a body
+     */
+    public function testBodyAddText()
+    {
+        $view_helper = new Bootstrap4Card();
+        $view_helper->__invoke()
+            ->addTextToBody('Text');
+        $this->assertEquals(
+            '<div class="card"><div class="card-body"><p class="card-text">Text</p></div></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Test adding multiple parts to body
+     */
+    public function testBodyAddMultipleParts()
+    {
+        $view_helper = new Bootstrap4Card();
+        $view_helper->__invoke()
+            ->addTitleToBody('Title')
+            ->addSubtitleToBody('Subtitle')
+            ->addTextToBody('Text')
+            ->addLinkToBody('Link', '#');
+        $this->assertEquals(
+            '<div class="card"><div class="card-body"><h4 class="card-title">Title</h4><h6 class="card-subtitle">Subtitle</h6><p class="card-text">Text</p><a href="#" class="">Link</a></div></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Test body title, alternate tag
+     */
+    public function testBodyTitleAlternateTag()
+    {
+        $view_helper = new Bootstrap4Card();
+        $view_helper->__invoke()
+            ->addTitleToBody('Title', 'h5');
+        $this->assertEquals(
+            '<div class="card"><div class="card-body"><h5 class="card-title">Title</h5></div></div>',
+            $view_helper->__toString()
+        );
+    }
+
+    /**
+     * Test body sub title, alternate tag
+     */
+    public function testBodySubtitleAlternateTag()
+    {
+        $view_helper = new Bootstrap4Card();
+        $view_helper->__invoke()
+            ->addSubtitleToBody('Title', 'h3');
+        $this->assertEquals(
+            '<div class="card"><div class="card-body"><h3 class="card-subtitle">Title</h3></div></div>',
+            $view_helper->__toString()
+        );
+    }
 }
