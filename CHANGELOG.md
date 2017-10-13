@@ -2,6 +2,17 @@
 
 Full changelog for Zend Framework 3 view helpers library.
 
+## v1.00.0 - Card component (Official release)
+
+Official v1.00.0 release, tests in place for all the Bootstrap 4 view helpers.
+
+* Card view helper extends Bootstrap4Helper
+* Card view helper supports setTextStyle() and setBgStyle()
+* Added tests for card view helper
+* setFooter() in card view helper broken, incorrect property being used to generated HTML
+* Fixed a couple of bugs with the navbar view helper
+* Added tests for the navbar view helper
+
 ## v0.66.0 - Minor updates
 
 * Updated Bootstrap 4 jumbotron view helper, extends Bootstrap4Helper

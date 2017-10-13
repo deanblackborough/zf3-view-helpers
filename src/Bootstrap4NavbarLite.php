@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace DBlackborough\Zf3ViewHelpers;
 
-use Zend\View\Helper\AbstractHelper;
-
 /**
  * Generate a Bootstrap 4 Navbar component, this is the lite version of the view
  * helper, there will be a full version which supports all the possible controls
@@ -14,7 +12,7 @@ use Zend\View\Helper\AbstractHelper;
  * @copyright Dean Blackborough
  * @license https://github.com/deanblackborough/zf3-view-helpers/blob/master/LICENSE
  */
-class Bootstrap4NavbarLite extends AbstractHelper
+class Bootstrap4NavbarLite extends Bootstrap4Helper
 {
     /**
      * @var array Navbar content data array, populated by the add* methods
@@ -25,16 +23,6 @@ class Bootstrap4NavbarLite extends AbstractHelper
      * @var string Selected color scheme
      */
     private $scheme;
-
-    /**
-     * @var string An optional background class for the navbar
-     */
-    private $bg_style;
-
-    /**
-     * @var string An optional background color for the navbar
-     */
-    private $bg_color;
 
     /**
      * @var string Brand label/name
@@ -68,8 +56,6 @@ class Bootstrap4NavbarLite extends AbstractHelper
         $this->content = [];
 
         $this->scheme = null;
-        $this->bg_style = null;
-        $this->bg_color = null;
         $this->brand_label = null;
         $this->brand_uri = null;
     }
@@ -92,12 +78,8 @@ class Bootstrap4NavbarLite extends AbstractHelper
                 array_key_exists('active', $nav) === true &&
                 array_key_exists('label', $nav) === true) {
 
-                $html .= '
-                    <li class="nav-item' .
-                    (($nav['active'] === true) ? ' active' : null) . '">
-                        <a class="nav-link" href="' . $nav['uri'] .
-                    '">' . $this->view->escapeHtml($nav['label']) . '</span></a>
-                    </li>';
+                $html .= '<li class="nav-item' . (($nav['active'] === true) ? ' active' : null) . '"><a class="nav-link" href="' .
+                    $nav['uri'] . '">' . $nav['label'] . '</a></li>';
             } else {
                 $html .= '<!-- Failed to add navigation item, index(es) missing -->';
             }
@@ -135,29 +117,31 @@ class Bootstrap4NavbarLite extends AbstractHelper
     }
 
     /**
-     * Set the background class to use for the navbar, for example, bg-primary, bg-dark and bg-light
+     * Set the background colour for the component, needs to be one of the following, primary, secondary, success,
+     * danger, warning, info, light, dark or white, if an incorrect style is passed in we don't apply the class.
      *
-     * @param string $class
+     * @param string $color
      *
      * @return Bootstrap4NavbarLite
      */
-    public function bgStyle(string $class) : Bootstrap4NavbarLite
+    public function setBgStyle(string $color) : Bootstrap4NavbarLite
     {
-        $this->bg_style = $class;
+        $this->assignBgStyle($color);
 
         return $this;
     }
 
     /**
-     * Set the background color for the navbar
+     * Set the text color for the component, need to be one of the following, primary, secondary, success, danger,
+     * warning, info, light or dark, if an incorrect style is passed in we don't apply the class.
      *
-     * @param string $hex
+     * @param string $color
      *
      * @return Bootstrap4NavbarLite
      */
-    public function bgColor(string $hex) : Bootstrap4NavbarLite
+    public function setTextStyle(string $color) : Bootstrap4NavbarLite
     {
-        $this->bg_color = 'style="background-color:' . $this->view->escapeHtml($hex) . ';"';
+        $this->assignTextStyle($color);
 
         return $this;
     }
@@ -185,14 +169,14 @@ class Bootstrap4NavbarLite extends AbstractHelper
      */
     private function brand() : string
     {
-        if ($this->brand_uri === null) {
-            return '<span class="h1 navbar-brand">' .
-                $this->view->escapeHtml($this->brand_label) . '</span>';
-        } else {
-            return '<a class="navbar-brand" href="' .
-                $this->brand_uri . '">' .
-                $this->view->escapeHtml($this->brand_label) . '</a>';
-        }
+        if ($this->brand_label !== null) {
+            if ($this->brand_uri === null) {
+                return '<span class="h1 navbar-brand">' . $this->brand_label . '</span>';
+            } else {
+                return '<a class="navbar-brand" href="' .
+                    $this->brand_uri . '">' . $this->brand_label . '</a>';
+            }
+        } return '';
     }
 
     /**
@@ -201,25 +185,27 @@ class Bootstrap4NavbarLite extends AbstractHelper
      *
      * @return string
      */
-    private function render() : string
+    protected function render() : string
     {
         if ($this->scheme !== null) {
             $class = ' ' . $this->scheme;
         } else {
             $class = ' navbar-light';
         }
-        if ($this->bg_style !== null) {
-            $class .= ' ' . $this->bg_style;
+
+        if ($this->bg_color !== null) {
+            $class .= ' ' . $this->bg_color;
         } else {
             $class .= ' bg-light';
         }
 
-        $html = '<nav class="navbar navbar-expand-lg' . $class . '" ' .
-            $this->bg_color . '>' . $this->brand() .
-            '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">';
+        if ($this->text_color !== null) {
+            $class .= ' ' . $this->text_color;
+        }
+
+        $html = '<nav class="navbar navbar-expand-lg' . $class . '" ' . $this->bg_color . '>' . $this->brand() .
+            '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">' .
+            '<span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarSupportedContent">';
 
         foreach ($this->content as $content) {
             $html .= $content;

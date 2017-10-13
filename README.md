@@ -110,9 +110,11 @@ Create a Bootstrap 4 card
 * addSubtitleToBody() - Add a subtitle to the card body
 * addTextToBody() - Add a text section to the card body
 * addTitleToBody() - Add a title section to the card body
+* setBgStyle() - Set the background colour utility class
 * setBody() - Set the entire card body
 * setFooter() - Set the entire card footer
 * setHeader() - Set the entire care header
+* setTextStyle() - Set the text colour utility class
 
 ##### Example
 
@@ -156,17 +158,16 @@ Create a navbar component
 
 * addBrand() - Add a brand an option uri
 * addNavigation() - Pass in a navigation array
-* bgColor() - Set a custom background color for the navbar
-* bgStyle() - Set a class for the navbar
 * inverseScheme() - Add the navbar-inverse style
 * lightScheme() - Add the navbar-light style
+* setBgStyle() - Set the background colour utility class
+* setTextStyle() - Set the text colour utility class
 
 #### Example
 
 ```
 echo $this->bootstrap4NavbarLite()->
-    addBrand('Dlayer')->
-    bgStyle('bg-light')->
+    addBrand('Dlayer', '#uri')->
     addNavigation([ ['uri' => '#', 'label' => 'Item 1', 'active' => false ] ]); ?>
 ```
 
