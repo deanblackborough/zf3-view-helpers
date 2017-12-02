@@ -13,6 +13,7 @@ A collection of Zend Framework 3 view helpers, primarily focused on Bootstrap 3 
 
 ### Bootstrap 4
  
+* Bootstrap 4 Alert component - [20 tests]
 * Bootstrap 4 Badge component - [13 tests]
 * Bootstrap 4 Button component - [31 tests]
 * Bootstrap 4 Card component
@@ -47,6 +48,24 @@ alternatively include the classes in src/ in your library.
 ## The view helpers
 
 Below is an overview of the more complex view helpers.
+
+### Bootstrap 4 Alert
+
+Create a Bootstrap 4 alert component
+
+##### Public methods:
+ 
+* setBgStyle() - Set the background colour utility class
+* setHeading() - Set an optional heading for the alert
+* setTextStyle() - Set the text colour utility class
+
+##### Example
+
+``` 
+echo $this->bootstrap4Alert($message)->
+    setHeading($heading)->
+    setBgStyle('primary');
+```
 
 ### Bootstrap 4 Badge
 

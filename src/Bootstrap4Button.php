@@ -193,7 +193,7 @@ class Bootstrap4Button extends Bootstrap4Helper
      *
      * @return Bootstrap4Button
      */
-    public function setUri($uri): Bootstrap4Button
+    public function setUri(string $uri): Bootstrap4Button
     {
         $this->uri = $uri;
 
@@ -233,7 +233,7 @@ class Bootstrap4Button extends Bootstrap4Helper
      *
      * @return Bootstrap4Button
      */
-    public function setModeInput($type): Bootstrap4Button
+    public function setModeInput(string $type): Bootstrap4Button
     {
         $this->mode = 'input';
         if (in_array($type, array('button', 'submit', 'reset')) === true) {
@@ -252,7 +252,7 @@ class Bootstrap4Button extends Bootstrap4Helper
      *
      * @return Bootstrap4Button
      */
-    public function customClass($class): Bootstrap4Button
+    public function customClass(string $class): Bootstrap4Button
     {
         $this->custom_classes[] = $class;
 
@@ -272,11 +272,11 @@ class Bootstrap4Button extends Bootstrap4Helper
         $this->small = false;
         $this->block = false;
         $this->active = false;
-        $this->link = null;
         $this->disabled = false;
         $this->mode = 'link';
         $this->input_type = null;
         $this->custom_classes = [];
+        $this->uri = null;
 
         $this->supported_bg_styles[] = 'link';
     }

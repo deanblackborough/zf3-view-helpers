@@ -2,7 +2,14 @@
 
 Full changelog for Zend Framework 3 view helpers library.
 
-## v1.00.0 - Card component (Official release)
+## v1.01.0 - Alert component - 2017-12-02
+
+* Added a Bootstrap 4 alert view helper
+* Removed a redundant property in the button view helper
+* Type hints missing
+* Added missing dates in CHANGELOG
+
+## v1.00.0 - Card component (Official release) - 2017-10-13
 
 Official v1.00.0 release, tests in place for all the Bootstrap 4 view helpers.
 
@@ -13,7 +20,7 @@ Official v1.00.0 release, tests in place for all the Bootstrap 4 view helpers.
 * Fixed a couple of bugs with the navbar view helper
 * Added tests for the navbar view helper
 
-## v0.66.0 - Minor updates
+## v0.66.0 - Minor updates - 2017-10-11
 
 * Updated Bootstrap 4 jumbotron view helper, extends Bootstrap4Helper
 * Updated Bootstrap 4 multiple progress bar view helper, extends Bootstrap4Helper

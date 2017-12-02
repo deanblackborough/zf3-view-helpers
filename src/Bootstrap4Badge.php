@@ -83,7 +83,7 @@ class Bootstrap4Badge extends Bootstrap4Helper
      *
      * @return Bootstrap4Badge
      */
-    public function setBgStyle($color) : Bootstrap4Badge
+    public function setBgStyle(string $color) : Bootstrap4Badge
     {
         $this->assignBgStyle($color);
 
@@ -98,7 +98,7 @@ class Bootstrap4Badge extends Bootstrap4Helper
      *
      * @return Bootstrap4Badge
      */
-    public function setTextStyle($color) : Bootstrap4Badge
+    public function setTextStyle(string $color) : Bootstrap4Badge
     {
         $this->assignTextStyle($color);
 
