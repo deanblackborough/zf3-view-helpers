@@ -14,13 +14,32 @@ namespace DBlackborough\Zf3ViewHelpers;
 class Bootstrap4Alert extends Bootstrap4Helper
 {
     /**
+     * @var string Alter message
+     */
+    private $message;
+
+    /**
+     * @var string Optional heading
+     */
+    private $heading;
+
+    /**
+     * @var integer Optional heading level, if null will default to 4
+     */
+    private $heading_level;
+
+    /**
      * Entry point for the view helper
+     *
+     * @param string $message HTML content to display inside the alert
      *
      * @return Bootstrap4Alert
      */
-    public function __invoke(): Bootstrap4Alert
+    public function __invoke(string $message): Bootstrap4Alert
     {
         $this->reset();
+
+        $this->message = $message;
 
         return $this;
     }
@@ -36,6 +55,22 @@ class Bootstrap4Alert extends Bootstrap4Helper
     public function setBgStyle(string $color) : Bootstrap4Alert
     {
         $this->assignBgStyle($color);
+
+        return $this;
+    }
+
+    /**
+     * Set an optional heading for the alert
+     *
+     * @param string $heading
+     * @param integer $heading_level Optional heading level, 1-7 defaults to 4
+     *
+     * @return Bootstrap4Alert
+     */
+    public function setHeading(string $heading, $heading_level = 4) : Bootstrap4Alert
+    {
+        $this->heading = $heading;
+        $this->heading_level = $heading_level;
 
         return $this;
     }
@@ -63,7 +98,14 @@ class Bootstrap4Alert extends Bootstrap4Helper
      */
     protected function render(): string
     {
-        return '';
+        $html = '<div class="' . $this->classes() . '" role="alert">';
+        if ($this->heading !== null) {
+            $html .= '<h' . $this->heading_level . ' class="alert-heading">' .
+                $this->heading . '</h' . $this->heading_level . '>';
+        }
+        $html .= $this->message . '</div>';
+
+        return $html;
     }
 
     /**
@@ -73,10 +115,10 @@ class Bootstrap4Alert extends Bootstrap4Helper
      */
     private function classes(): string
     {
-        $classes = '';
+        $classes = 'alert';
 
         if ($this->bg_color !== null) {
-            $classes = ' alert-' . $this->bg_color;
+            $classes .= ' alert-' . $this->bg_color;
         }
 
         if ($this->text_color !== null) {
@@ -93,6 +135,8 @@ class Bootstrap4Alert extends Bootstrap4Helper
      */
     private function reset(): void
     {
-
+        $this->message = null;
+        $this->heading = null;
+        $this->heading_level = null;
     }
 }
