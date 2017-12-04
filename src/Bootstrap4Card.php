@@ -555,7 +555,7 @@ class Bootstrap4Card extends Bootstrap4Helper
      *
      * @return Bootstrap4Card
      */
-    public function setBgStyle($color) : Bootstrap4Card
+    public function setBgStyle(string $color) : Bootstrap4Card
     {
         $this->assignBgStyle($color);
 
@@ -582,7 +582,7 @@ class Bootstrap4Card extends Bootstrap4Helper
      *
      * @return Bootstrap4Card
      */
-    public function setTextStyle($color) : Bootstrap4Card
+    public function setTextStyle(string $color) : Bootstrap4Card
     {
         $this->assignTextStyle($color);
 

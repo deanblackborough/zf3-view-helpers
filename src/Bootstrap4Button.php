@@ -92,7 +92,7 @@ class Bootstrap4Button extends Bootstrap4Helper
      *
      * @return Bootstrap4Button
      */
-    public function setBgStyle($color) : Bootstrap4Button
+    public function setBgStyle(string $color) : Bootstrap4Button
     {
         $this->assignBgStyle($color);
 
@@ -130,7 +130,7 @@ class Bootstrap4Button extends Bootstrap4Helper
      *
      * @return Bootstrap4Button
      */
-    public function setTextStyle($color) : Bootstrap4Button
+    public function setTextStyle(string $color) : Bootstrap4Button
     {
         $this->assignTextStyle($color);
 

@@ -180,7 +180,6 @@ class Bootstrap4ProgressBarMultiple extends Bootstrap4Helper
         $this->bg_colors = [];
         $this->striped = false;
         $this->animate = false;
-        $this->label = null;
         $this->height = null;
     }
 
