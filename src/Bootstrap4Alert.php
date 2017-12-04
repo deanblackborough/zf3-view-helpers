@@ -67,7 +67,7 @@ class Bootstrap4Alert extends Bootstrap4Helper
      *
      * @return Bootstrap4Alert
      */
-    public function setHeading(string $heading, $heading_level = 4) : Bootstrap4Alert
+    public function setHeading(string $heading, int $heading_level = 4) : Bootstrap4Alert
     {
         $this->heading = $heading;
         $this->heading_level = $heading_level;

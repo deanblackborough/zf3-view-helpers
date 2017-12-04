@@ -81,7 +81,7 @@ class Bootstrap4Jumbotron extends Bootstrap4Helper
      *
      * @return Bootstrap4Jumbotron
      */
-    public function setBgStyle($color) : Bootstrap4Jumbotron
+    public function setBgStyle(string $color) : Bootstrap4Jumbotron
     {
         $this->assignBgStyle($color);
 
@@ -112,7 +112,7 @@ class Bootstrap4Jumbotron extends Bootstrap4Helper
      *
      * @return Bootstrap4Jumbotron
      */
-    public function setTextStyle($color) : Bootstrap4Jumbotron
+    public function setTextStyle(string $color) : Bootstrap4Jumbotron
     {
         $this->assignTextStyle($color);
 
