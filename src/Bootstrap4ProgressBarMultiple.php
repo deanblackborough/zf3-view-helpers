@@ -47,13 +47,14 @@ class Bootstrap4ProgressBarMultiple extends Bootstrap4Helper
      * @param array $colors Utility colours to use for each progress bar
      *
      * @return Bootstrap4ProgressBarMultiple
+     * @throws \Exception
      */
     public function __invoke(array $values, array $colors): Bootstrap4ProgressBarMultiple
     {
         $this->reset();
 
         $this->values = $values;
-
+        
         $this->bgStyles($colors);
 
         return $this;

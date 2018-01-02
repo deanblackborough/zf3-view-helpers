@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace DBlackborough\Zf3ViewHelpers;
 
 /**
- * Generate a Bootstrap 4 badge
+ * Generate a Bootstrap 4 badge component
  *
  * @package DBlackborough\Zf3ViewHelpers
  * @author Dean Blackborough <dean@g3d-development.com>
