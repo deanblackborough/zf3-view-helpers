@@ -2,6 +2,14 @@
 
 Full changelog for Zend Framework 3 view helpers library.
 
+## v1.01.2 - Minor corrections - 2018-01-05
+
+* Require PHP 7, suggest PHP 7.2.
+* Removed unused property.
+* Testing against PHP7.2.
+* Updated dependencies.
+* Spelling corrections.
+
 ## v1.01.1 - Minor corrections - 2017-12-04
 
 * Type hints missing.

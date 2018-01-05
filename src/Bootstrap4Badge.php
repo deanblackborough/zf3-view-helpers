@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace DBlackborough\Zf3ViewHelpers;
 
 /**
- * Generate a Bootstrap 4 badge
+ * Generate a Bootstrap 4 badge component
  *
  * @package DBlackborough\Zf3ViewHelpers
  * @author Dean Blackborough <dean@g3d-development.com>
@@ -17,11 +17,6 @@ class Bootstrap4Badge extends Bootstrap4Helper
      * @var string Button label
      */
     private $label;
-
-    /**
-     * @var string Button style
-     */
-    private $style;
 
     /**
      * @var boolean Apply the pill style
@@ -152,7 +147,6 @@ class Bootstrap4Badge extends Bootstrap4Helper
     private function reset(): void
     {
         $this->label = null;
-        $this->style = null;
         $this->pill = false;
         $this->uri = null;
     }
