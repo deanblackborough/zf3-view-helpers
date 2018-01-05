@@ -19,11 +19,6 @@ class Bootstrap4Badge extends Bootstrap4Helper
     private $label;
 
     /**
-     * @var string Button style
-     */
-    private $style;
-
-    /**
      * @var boolean Apply the pill style
      */
     private $pill;
@@ -152,7 +147,6 @@ class Bootstrap4Badge extends Bootstrap4Helper
     private function reset(): void
     {
         $this->label = null;
-        $this->style = null;
         $this->pill = false;
         $this->uri = null;
     }
