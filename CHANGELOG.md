@@ -2,6 +2,10 @@
 
 Full changelog for Zend Framework 3 view helpers library.
 
+## v1.02.0 - N/K - N/K
+
+* Added a Bootstrap 4 row view helper.
+
 ## v1.01.2 - Minor corrections - 2018-01-05
 
 * Require PHP 7, suggest PHP 7.2.

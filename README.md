@@ -1,7 +1,8 @@
 [![Latest Stable Version](https://img.shields.io/packagist/v/deanblackborough/zf3-view-helpers.svg?style=flat-square)](https://packagist.org/packages/deanblackborough/zf3-view-helpers)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/deanblackborough/zf3-view-helpers/blob/master/LICENSE)
-[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.1-8892BF.svg)](https://php.net/)
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.0-8892BF.svg)](https://php.net/)
 [![Build Status](https://travis-ci.org/deanblackborough/zf3-view-helpers.svg?branch=master)](https://travis-ci.org/deanblackborough/zf3-view-helpers)
+[![Total Downloads](https://img.shields.io/packagist/dt/deanblackborough/zf3-view-helpers.svg?style=flat-square)](https://packagist.org/packages/deanblackborough/zf3-view-helpers)
 
 # ZF3 view helpers
 
@@ -21,6 +22,7 @@ A collection of Zend Framework 3 view helpers, primarily focused on Bootstrap 3 
 * Bootstrap 4 Navbar component (lite)
 * Bootstrap 4 Progress bar component - [28 tests]
 * Bootstrap 4 Multiple progress bar component - [4 tests]
+* Bootstrap 4 Row - [17 tests]
 
 ### Bootstrap 3
 
@@ -228,6 +230,27 @@ Create a progress bar component with multiple bars
 echo $this->bootstrap4ProgressBar([25, 15], ['primary', 'info'])->
     striped()->
     animate(); ?>
+```
+
+### Bootstrap 4 row
+
+Create a row
+
+##### Public methods 
+
+* setBgStyle() - Set the background colour utility class
+* setTextStyle() - Set the text colour utility class
+
+#### Examples
+
+```
+echo $this->bootstrap4Row('<p>Content</p>')
+```
+
+```
+echo $this->bootstrap4Row('<p>Content</p>')->
+    setBgStyle()->
+    setTextStyle(); ?>
 ```
 
 ### Bootstrap 3 Button

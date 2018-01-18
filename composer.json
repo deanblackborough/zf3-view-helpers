@@ -1,13 +1,13 @@
 {
     "name": "deanblackborough/zf3-view-helpers",
-    "description": "A collection of view helpers for ZF3",
+    "description": "A bunch of view helpers that I use in my Zend Framework 3 apps",
     "autoload": {
         "psr-4" : {
             "DBlackborough\\Zf3ViewHelpers\\" : "src/"
         }
     },
     "homepage": "https://github.com/deanblackborough/zf3-view-helpers",
-    "keywords": [ "zf3", "view helpers", "bootstrap", "zend" ],
+    "keywords": [ "zf3", "view helpers", "bootstrap", "zend", "framework", "bootstrap4" ],
     "authors": [
         {
             "name": "Dean Blackborough",

@@ -14,25 +14,54 @@ namespace DBlackborough\Zf3ViewHelpers;
 class Bootstrap4Row extends Bootstrap4Helper
 {
     /**
+     * @var string Row content
+     */
+    private $content;
+
+    /**
      * Entry point for the view helper
+     *
+     * @param string $content Row content
      *
      * @return Bootstrap4Row
      */
-    public function __invoke(): Bootstrap4Row
+    public function __invoke(string $content): Bootstrap4Row
     {
         $this->reset();
+
+        $this->content = $content;
 
         return $this;
     }
 
     /**
-     * Reset all properties in case the view helper is called multiple times within a script
+     * Set the background colour for the component, needs to be one of the following, primary, secondary, success,
+     * danger, warning, info, light, dark or white, if an incorrect style is passed in we don't apply the class.
      *
-     * @return void
+     * @param string $color
+     *
+     * @return Bootstrap4Row
      */
-    private function reset(): void
+    public function setBgStyle(string $color) : Bootstrap4Row
     {
+        $this->assignBgStyle($color);
 
+        return $this;
+    }
+
+    /**
+     * Set the text color for the component, need to be one of the following, primary, secondary, success, danger,
+     * warning, info, light or dark, if an incorrect style is passed in we don't apply the class.
+     *
+     * @param string $color
+     *
+     * @return Bootstrap4Row
+     */
+    public function setTextStyle(string $color) : Bootstrap4Row
+    {
+        $this->assignTextStyle($color);
+
+        return $this;
     }
 
     /**
@@ -43,8 +72,40 @@ class Bootstrap4Row extends Bootstrap4Helper
      */
     protected function render(): string
     {
-        $html = '';
+        $html = '<div class="' . $this->classes() . '">' .
+            $this->content .
+            '</div>';
 
         return $html;
+    }
+
+    /**
+     * Generate the classes string for the row
+     *
+     * @return string
+     */
+    private function classes() : string
+    {
+        $classes = 'row';
+
+        if ($this->bg_color !== null) {
+            $classes .= ' bg-' . $this->bg_color;
+        }
+
+        if ($this->text_color !== null) {
+            $classes .= ' text-' . $this->text_color;
+        }
+
+        return $classes;
+    }
+
+    /**
+     * Reset all properties in case the view helper is called multiple times within a script
+     *
+     * @return void
+     */
+    private function reset(): void
+    {
+        $this->content = null;
     }
 }
