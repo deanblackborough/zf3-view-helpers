@@ -68,7 +68,9 @@ class Bootstrap4Column extends Bootstrap4Helper
      */
     public function lg(int $size): Bootstrap4Column
     {
-        $this->lg_size = $size;
+        if ($this->validateColumnSize($size) === true) {
+            $this->lg_size = $size;
+        }
 
         return $this;
     }
@@ -82,7 +84,9 @@ class Bootstrap4Column extends Bootstrap4Helper
      */
     public function md(int $size): Bootstrap4Column
     {
-        $this->md_size = $size;
+        if ($this->validateColumnSize($size) === true) {
+            $this->md_size = $size;
+        }
 
         return $this;
     }
@@ -126,7 +130,9 @@ class Bootstrap4Column extends Bootstrap4Helper
      */
     public function sm(int $size): Bootstrap4Column
     {
-        $this->sm_size = $size;
+        if ($this->validateColumnSize($size) === true) {
+            $this->sm_size = $size;
+        }
 
         return $this;
     }
@@ -140,7 +146,9 @@ class Bootstrap4Column extends Bootstrap4Helper
      */
     public function xl(int $size): Bootstrap4Column
     {
-        $this->xl_size = $size;
+        if ($this->validateColumnSize($size) === true) {
+            $this->xl_size = $size;
+        }
 
         return $this;
     }
@@ -154,7 +162,9 @@ class Bootstrap4Column extends Bootstrap4Helper
      */
     public function xs(int $size): Bootstrap4Column
     {
-        $this->xs_size = $size;
+        if ($this->validateColumnSize($size) === true) {
+            $this->xs_size = $size;
+        }
 
         return $this;
     }
@@ -227,5 +237,21 @@ class Bootstrap4Column extends Bootstrap4Helper
         $this->sm_size = null;
         $this->xl_size = null;
         $this->xs_size = null;
+    }
+
+    /**
+     * Validate column width
+     *
+     * @param integer $size Column size to validate, needs to be a value between 1 and 12
+     *
+     * @return boolean
+     */
+    private function validateColumnSize(int $size) : bool
+    {
+        if ($size > 0 && $size < 13) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
