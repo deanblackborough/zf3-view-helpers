@@ -17,9 +17,10 @@ A collection of Zend Framework 3 view helpers, primarily focused on Bootstrap 3 
 * Bootstrap 4 Alert component - [20 tests]
 * Bootstrap 4 Badge component - [13 tests]
 * Bootstrap 4 Button component - [31 tests]
-* Bootstrap 4 Card component
+* Bootstrap 4 Card component - [34 tests]
+* Bootstrap 4 Column - [33 tests]
 * Bootstrap 4 Jumbotron component - [27 tests]
-* Bootstrap 4 Navbar component (lite)
+* Bootstrap 4 Navbar component (lite) - [2 tests]
 * Bootstrap 4 Progress bar component - [28 tests]
 * Bootstrap 4 Multiple progress bar component - [4 tests]
 * Bootstrap 4 Row - [17 tests]
@@ -148,6 +149,35 @@ echo $this->bootstrap4Card('', 'width: 20rem;')->
     addLinkToBody('Card link', '#')->
     setHeader('Header')->
     setFooter('Footer');
+```
+
+### Bootstrap 4 column
+
+Create a column
+
+##### Public methods 
+
+* lg() - Set large column width
+* md() - Set medium column width
+* setBgStyle() - Set the background colour utility class
+* setTextStyle() - Set the text colour utility class
+* sm() - Set small column width
+* xl() - Set extra large column width
+* xs() - Set extra small column width
+
+#### Examples
+
+```
+echo $this->bootstrap4Column('<p>Content</p>')->md(12);
+```
+
+```
+echo $this->bootstrap4Column('<p>Content</p>')->
+    xl(6)->
+    xl(12)->
+    sm(6)->
+    setBgStyle()->
+    setTextStyle(); ?>
 ``` 
 
 ### Bootstrap 4 Jumbotron
