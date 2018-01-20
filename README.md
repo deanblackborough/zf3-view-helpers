@@ -1,7 +1,8 @@
 [![Latest Stable Version](https://img.shields.io/packagist/v/deanblackborough/zf3-view-helpers.svg?style=flat-square)](https://packagist.org/packages/deanblackborough/zf3-view-helpers)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/deanblackborough/zf3-view-helpers/blob/master/LICENSE)
-[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.1-8892BF.svg)](https://php.net/)
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.0-8892BF.svg)](https://php.net/)
 [![Build Status](https://travis-ci.org/deanblackborough/zf3-view-helpers.svg?branch=master)](https://travis-ci.org/deanblackborough/zf3-view-helpers)
+[![Total Downloads](https://img.shields.io/packagist/dt/deanblackborough/zf3-view-helpers.svg?style=flat-square)](https://packagist.org/packages/deanblackborough/zf3-view-helpers)
 
 # ZF3 view helpers
 
@@ -16,11 +17,13 @@ A collection of Zend Framework 3 view helpers, primarily focused on Bootstrap 3 
 * Bootstrap 4 Alert component - [20 tests]
 * Bootstrap 4 Badge component - [13 tests]
 * Bootstrap 4 Button component - [31 tests]
-* Bootstrap 4 Card component
+* Bootstrap 4 Card component - [34 tests]
+* Bootstrap 4 Column - [33 tests]
 * Bootstrap 4 Jumbotron component - [27 tests]
-* Bootstrap 4 Navbar component (lite)
+* Bootstrap 4 Navbar component (lite) - [2 tests]
 * Bootstrap 4 Progress bar component - [28 tests]
 * Bootstrap 4 Multiple progress bar component - [4 tests]
+* Bootstrap 4 Row - [17 tests]
 
 ### Bootstrap 3
 
@@ -146,6 +149,35 @@ echo $this->bootstrap4Card('', 'width: 20rem;')->
     addLinkToBody('Card link', '#')->
     setHeader('Header')->
     setFooter('Footer');
+```
+
+### Bootstrap 4 column
+
+Create a column
+
+##### Public methods 
+
+* lg() - Set large column width
+* md() - Set medium column width
+* setBgStyle() - Set the background colour utility class
+* setTextStyle() - Set the text colour utility class
+* sm() - Set small column width
+* xl() - Set extra large column width
+* xs() - Set extra small column width
+
+#### Examples
+
+```
+echo $this->bootstrap4Column('<p>Content</p>')->md(12);
+```
+
+```
+echo $this->bootstrap4Column('<p>Content</p>')->
+    xl(6)->
+    xl(12)->
+    sm(6)->
+    setBgStyle()->
+    setTextStyle(); ?>
 ``` 
 
 ### Bootstrap 4 Jumbotron
@@ -228,6 +260,27 @@ Create a progress bar component with multiple bars
 echo $this->bootstrap4ProgressBar([25, 15], ['primary', 'info'])->
     striped()->
     animate(); ?>
+```
+
+### Bootstrap 4 row
+
+Create a row
+
+##### Public methods 
+
+* setBgStyle() - Set the background colour utility class
+* setTextStyle() - Set the text colour utility class
+
+#### Examples
+
+```
+echo $this->bootstrap4Row('<p>Content</p>')
+```
+
+```
+echo $this->bootstrap4Row('<p>Content</p>')->
+    setBgStyle()->
+    setTextStyle(); ?>
 ```
 
 ### Bootstrap 3 Button
