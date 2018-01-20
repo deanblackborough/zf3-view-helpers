@@ -170,7 +170,7 @@ final class Bootstrap4RowTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test text color of row, dark
+     * Test background color and text color of row
      */
     public function testBackgroundAndTextSet()
     {

@@ -176,14 +176,10 @@ class Bootstrap4Column extends Bootstrap4Helper
      */
     private function classes() : string
     {
-        $classes = 'row';
+        $classes = '';
 
-        if ($this->bg_color !== null) {
-            $classes .= ' bg-' . $this->bg_color;
-        }
-
-        if ($this->text_color !== null) {
-            $classes .= ' text-' . $this->text_color;
+        if ($this->xl_size !== null) {
+            $classes .= ' col-xl-' . $this->xl_size;
         }
 
         if ($this->lg_size !== null) {
@@ -198,15 +194,19 @@ class Bootstrap4Column extends Bootstrap4Helper
             $classes .= ' col-sm-' . $this->sm_size;
         }
 
-        if ($this->xl_size !== null) {
-            $classes .= ' col-xl-' . $this->xl_size;
-        }
-
         if ($this->xs_size !== null) {
             $classes .= ' col-' . $this->xs_size;
         }
 
-        return $classes;
+        if ($this->bg_color !== null) {
+            $classes .= ' bg-' . $this->bg_color;
+        }
+
+        if ($this->text_color !== null) {
+            $classes .= ' text-' . $this->text_color;
+        }
+
+        return trim($classes);
     }
 
     /**
