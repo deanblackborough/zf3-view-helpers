@@ -2,6 +2,10 @@
 
 Full changelog for Zend Framework 3 view helpers library.
 
+## v1.02.1 - Dependency - 2010-01-20
+
+* Removed deanblackborough/zf3-view-helpers-code-completion from require, added to suggest
+
 ## v1.02.0 - Row and Column view helper - 2018-01-20
 
 * Added a Bootstrap 4 row view helper.

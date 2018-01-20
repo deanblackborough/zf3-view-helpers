@@ -4,57 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a7930b899fe9586b213fa2b311f485cb",
+    "content-hash": "c5ab2e3654ae2ff98a2a69f7785708f2",
     "packages": [
-        {
-            "name": "deanblackborough/zf3-view-helpers-code-completion",
-            "version": "v1.06.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/deanblackborough/zf3-view-helpers-code-completion.git",
-                "reference": "9c16e6d03538f6a5a1d6d0a16d1bb6031f77777b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/deanblackborough/zf3-view-helpers-code-completion/zipball/9c16e6d03538f6a5a1d6d0a16d1bb6031f77777b",
-                "reference": "9c16e6d03538f6a5a1d6d0a16d1bb6031f77777b",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1"
-            },
-            "require-dev": {
-                "deanblackborough/zf3-view-helpers": "^1",
-                "zendframework/zend-view": "^2.9"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "DBlackborough\\Zf3ViewHelpersCC\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dean Blackborough",
-                    "email": "dean@g3d-development.com"
-                }
-            ],
-            "description": "Helper classes to provide code completion for Zend view helpers and my custom view helpers",
-            "homepage": "https://github.com/deanblackborough/zf3-view-helpers-code-completion",
-            "keywords": [
-                "bootstrap",
-                "code completion",
-                "phpstorm",
-                "view helpers",
-                "zend",
-                "zf3"
-            ],
-            "time": "2017-12-03T01:38:12+00:00"
-        },
         {
             "name": "zendframework/zend-eventmanager",
             "version": "3.2.0",
