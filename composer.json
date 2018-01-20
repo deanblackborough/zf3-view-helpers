@@ -16,7 +16,7 @@
     ],
     "require": {
         "php": "^7",
-        "zendframework/zend-view": "^2.9",
+        "zendframework/zend-view": "^2.10",
         "deanblackborough/zf3-view-helpers-code-completion": "^1"
     },
     "suggest": {
