@@ -2,6 +2,10 @@
 
 Full changelog for Zend Framework 3 view helpers library.
 
+## v1.03.0 - Bootstrap 4 - [Date]
+
+* [Notes on changes for Bootstrap 4 release]
+
 ## v1.02.1 - Dependency - 2010-01-20
 
 * Removed deanblackborough/zf3-view-helpers-code-completion from require, added to suggest

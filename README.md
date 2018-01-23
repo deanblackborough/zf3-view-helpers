@@ -12,6 +12,8 @@ A bunch of view helpers that I use in my apps.
 
 A collection of Zend Framework 3 view helpers, primarily focused on Bootstrap 3 and 4.
 
+**Updated to support the official release of Bootstrap 4.0.0.**
+
 ### Bootstrap 4
  
 * Bootstrap 4 Alert component - [20 tests]
