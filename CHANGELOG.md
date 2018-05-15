@@ -2,7 +2,7 @@
 
 Full changelog for Zend Framework 3 view helpers library.
 
-## v1.03.2 - Code coverage - 2018-05-16
+## v1.02.2 - Code coverage - 2018-05-16
 
 * Added code coverage reporting.
 * Updated dependencies and tested.
