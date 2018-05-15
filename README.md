@@ -2,6 +2,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/deanblackborough/zf3-view-helpers/blob/master/LICENSE)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.0-8892BF.svg)](https://php.net/)
 [![Build Status](https://travis-ci.org/deanblackborough/zf3-view-helpers.svg?branch=master)](https://travis-ci.org/deanblackborough/zf3-view-helpers)
+[![Coverage Status](https://coveralls.io/repos/github/deanblackborough/zf3-view-helpers/badge.svg?branch=master)](https://coveralls.io/github/deanblackborough/zf3-view-helpers?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/deanblackborough/zf3-view-helpers.svg?style=flat-square)](https://packagist.org/packages/deanblackborough/zf3-view-helpers)
 
 # ZF3 view helpers

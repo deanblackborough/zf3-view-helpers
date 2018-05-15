@@ -15,7 +15,7 @@
         }
     ],
     "require": {
-        "php": "^7",
+        "php": "^7.2",
         "zendframework/zend-view": "^2.10"
     },
     "suggest": {
@@ -23,7 +23,8 @@
         "deanblackborough/zf3-view-helpers-code-completion": "^1"
     },
     "require-dev": {
-        "phpunit/phpunit": "^6"
+        "phpunit/phpunit": "^7",
+        "php-coveralls/php-coveralls": "^2"
     },
     "repositories": [
         {
