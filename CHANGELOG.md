@@ -2,7 +2,12 @@
 
 Full changelog for Zend Framework 3 view helpers library.
 
-## v1.02.1 - Dependency - 2010-01-20
+## v1.03.2 - Code coverage - 2018-05-16
+
+* Added code coverage reporting.
+* Updated dependencies and tested.
+
+## v1.02.1 - Dependency - 2018-01-20
 
 * Removed deanblackborough/zf3-view-helpers-code-completion from require, added to suggest
 
